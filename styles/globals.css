@@ -12,7 +12,21 @@ body {
   background-image: url("https://shorturl.at/PBoTv"),
     url("https://shorturl.at/NNZEz"), url("https://shorturl.at/NNZEz");
   background-position: center, left, right;
-  background-repeat: repeat, no-repeat, no-repeat; 
-  background-size: 200px 200px, 350px 600px, 300px 600px; 
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-size: 200px 200px, 350px 600px, 300px 600px;
   background-color: black;
+}
+
+button span {
+  color: #5a5959;
+  font-weight: "500";
+}
+
+input::placeholder {
+  color: #5a5959;
+  font-weight: "500";
+}
+
+#highlightedText {
+  color: #df9a00;
 }
