@@ -10,8 +10,10 @@ import {
   Input,
   Text,
   Image,
+  useDisclosure,
+  Link,
 } from "@chakra-ui/react";
-import { toaster } from "@/components/ui/toaster";
+import Checkbox from "@/components/Checkbox";
 import { useState, useEffect } from "react";
 import { createListCollection } from "@chakra-ui/react";
 import {
@@ -24,68 +26,190 @@ import {
 } from "@/components/ui/select";
 import { db, collection, addDoc } from "@/lib/firebase";
 import { Timestamp } from "firebase/firestore";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+} from "@chakra-ui/modal";
+import { toaster } from "@/components/ui/toaster";
 
 // Adicione no início do componente (após as imports)
 const VerificationGate: React.FC<{
   onVerify: () => void;
 }> = ({ onVerify }) => {
   const [verificationCode, setVerificationCode] = useState("");
+  const [errorMessage, setErrorMessage] = useState<React.ReactNode>(null);
+  const { open, onOpen, onClose } = useDisclosure(); // Controle do modal
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleVerification = () => {
     // Verificação mockada temporária
     const mockValidCode = "1234"; // Substituir por lógica real depois
-    if (verificationCode === mockValidCode) {
-      onVerify();
+    if (isChecked) {
+      if (verificationCode === mockValidCode) {
+        onVerify();
+      } else {
+        setErrorMessage(
+          <>
+            Não conseguimos encontrar seu CPF em nosso banco de dados. Verifique
+            se este foi o mesmo CPF utilizado para a compra dos ingressos do{" "}
+            <b>Um Baita Festival</b>.
+          </>
+        );
+        onOpen();
+      }
     } else {
-      toaster.create({
-        title: "Código inválido",
-        description: "Por favor, insira um código de verificação válido",
-        type: "error",
-        duration: 5000,
-      });
+      setErrorMessage(
+        <>
+          Para continuar, é necessário concordar com as <b>regras</b> do
+          sorteio. Marque a opção antes de prosseguir.
+        </>
+      );
+      onOpen();
     }
   };
 
   return (
     <Box
       textAlign="center"
-      p="6"
       borderRadius="md"
       bg="transparent"
-      maxW="600px"
+      maxWidth={{ base: "100%", md: "600px" }} // Ajuste para mobile
       height="650px"
       mx="auto"
       my="auto"
+      p={{ base: "10px", md: "20px" }} // Padding menor em mobile
     >
-      <Image src="https://shorturl.at/3qVoS" mb={"50px"} />
+      <Modal isOpen={open} onClose={onClose} isCentered>
+        <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
+        <ModalContent maxW={"350px"} mx="auto" mt={"200px"}>
+          <ModalHeader
+            bgColor={"#0E0E0E"}
+            color={"#FFDE00"}
+            borderTopRadius={"8px"}
+            sx={{
+              minHeight: "60px", // Altura mínima desejada
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "10px 20px", // Ajuste o padding para controlar o espaçamento interno
+              fontSize: "20px", // Tamanho do texto
+            }}
+          >
+            Algo deu errado...
+          </ModalHeader>
+          <ModalBody py={6} bgColor={"#fff"}>
+            <Text
+              color={"#4b4a4a"}
+              textAlign={"center"}
+              mx={"10px"}
+              fontSize={"14px"}
+              paddingTop={"5px"}
+            >
+              {errorMessage}
+            </Text>
+          </ModalBody>
+          <ModalFooter
+            bgColor={"#fff"}
+            borderColor="gray.600"
+            justifyContent={"center"}
+            height={"70px"}
+            borderBottomRadius={"8px"}
+          >
+            <Button
+              bgColor={"#ED7678"}
+              color={"#fff"}
+              fontWeight={"500"}
+              onClick={onClose}
+              _hover={{ bg: "#302e2e", color: "#ED7678" }}
+              borderRadius={"8px"}
+            >
+              Tentar Novamente
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Image
+        src="https://shorturl.at/3qVoS"
+        mb={{ base: "30px", md: "50px" }}
+        width={{ base: "350px", md: "500px" }}
+        mx="auto"
+      />
       <Text
         mb="4"
         color="white"
-        fontSize={"26px"}
+        fontSize={{ base: "18px", md: "25px" }}
         fontWeight={"400"}
-        fontFamily="Roboto, sans-serif"
-        lineHeight={"37.5px"}
+        lineHeight={{ base: "22px", md: "37.5px" }}
+        textAlign={"center"}
       >
         Se você foi <b>comprador</b> de alguma edição do{" "}
         <b>Um Baita Festival</b>, digite seu CPF e concorra a um{" "}
         <b id="highlightedText">Black Ticket</b> com prêmios especiais!{" "}
       </Text>
 
-      <Flex gap="2" mb="4">
-        <Input
-          value={verificationCode}
-          onChange={(e) => setVerificationCode(e.target.value)}
-          placeholder="Código de acesso"
-          color="black"
-          bg="white"
-        />
+      <Flex
+        gap={{ base: "30px", md: "15px" }}
+        mb="4"
+        mt={"50px"}
+        direction={{ base: "column", md: "row" }}
+        alignItems={"center"}
+      >
+        <Flex
+          flexDirection={"column"}
+          width={{ base: "100%", md: "65%" }}
+          mt={"33px"}
+        >
+          <Input
+            value={verificationCode}
+            onChange={(e) => setVerificationCode(e.target.value)}
+            placeholder="Digite seu cpf aqui"
+            borderRadius={"10px"}
+            color="black"
+            bg="white"
+            height={"50px"}
+            _focus={{
+              border: "2px solid #DF9A00",
+              bg: "blue.50", // Cor de fundo
+              transform: "scale(1.02)", // Efeito de zoom
+              transition: "all 0.2s", // Transição suave
+            }}
+          />
+          <Checkbox
+            checked={isChecked}
+            onChange={(checked) => setIsChecked(checked)}
+            label={
+              <>
+                Concordo com as{" "}
+                <Link
+                  href="https://v2.chakra-ui.com/docs/hooks/use-disclosure"
+                  color="#7E92FF"
+                  textDecoration={"underline"}
+                  target="_blank"
+                  _focus={{ outline: "none" }}
+                >
+                  regras
+                </Link>{" "}
+                do sorteio
+              </>
+            }
+          />
+        </Flex>
+
         <Button
           onClick={handleVerification}
           bg="#DF9A00"
-          color="white"
-          _hover={{ bg: "#FFDE00" }}
+          color="#fff"
+          _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+          borderRadius={"lg"}
+          width={{ base: "60%", md: "35%" }}
+          height={"50px"}
+          fontWeight={"900"}
         >
-          Verificar
+          QUERO PARTICIPAR
         </Button>
       </Flex>
     </Box>
@@ -110,6 +234,11 @@ interface ListItem {
 }
 
 export default function SignupPage() {
+  const {
+    open: isSuccessModalOpen,
+    onOpen: onOpenSuccessModal,
+    onClose: onCloseSuccessModal,
+  } = useDisclosure();
   const [isVerified, setIsVerified] = useState(false); // Novo estado
   const [states, setStates] = useState(
     createListCollection<ListItem>({ items: [] })
@@ -262,12 +391,7 @@ export default function SignupPage() {
       // Salvar no Firestore
       const docRef = await addDoc(collection(db, "users"), userData);
 
-      toaster.create({
-        title: "Cadastro realizado com sucesso!",
-        description: `ID do registro: ${docRef.id}`,
-        type: "success",
-        duration: 5000,
-      });
+      onOpenSuccessModal();
 
       // Resetar formulário
       setFormData({
@@ -333,12 +457,87 @@ export default function SignupPage() {
     <Box
       bgColor={"transparent"}
       border={"0"}
-      maxWidth="600px"
+      maxWidth={{ base: "100%", md: "600px" }} // Ajuste para mobile
       maxHeight="650px"
       mx="auto"
-      my="auto"
+      my={{ base: "30px", md: "auto" }}
       p="20px"
     >
+      {/* Modal de Sucesso */}
+      <Modal
+        isOpen={isSuccessModalOpen}
+        onClose={onCloseSuccessModal}
+        isCentered
+      >
+        <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
+        <ModalContent maxW={"350px"} mx="auto" mt={"200px"}>
+          <ModalHeader
+            bgColor={"#0E0E0E"}
+            color={"#FFDE00"} // Verde para sucesso
+            borderTopRadius={"8px"}
+            sx={{
+              minHeight: "60px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "10px 20px",
+              fontSize: "20px",
+            }}
+          >
+            Você está participando!
+          </ModalHeader>
+          <ModalBody py={6} bgColor={"#fff"}>
+            <Text
+              color={"#4b4a4a"}
+              textAlign={"center"}
+              mx={"10px"}
+              fontSize={"14px"}
+              paddingTop={"5px"}
+            >
+              Agora é só esperar e torcer para ser um dos premiados! Enquanto
+              isso, que tal postar nos seus stories uma imagem especial com a{" "}
+              <b>#umbaitafestival</b> e já ir se preparando?
+            </Text>
+          </ModalBody>
+          <ModalFooter
+            bgColor={"#fff"}
+            borderColor="gray.600"
+            justifyContent={"center"}
+            height={"70px"}
+            borderBottomRadius={"8px"}
+            gap={"10px"}
+          >
+            <Button
+              bgColor={"#ED7678"} // Verde para sucesso
+              color={"#fff"}
+              fontWeight={"500"}
+              onClick={() => {
+                onCloseSuccessModal();
+                setIsVerified(false);
+              }}
+              _hover={{ bg: "#302e2e", color: "#ED7678" }}
+              borderRadius={"8px"}
+              width={"150px"}
+            >
+              DEIXA PRA LÁ...
+            </Button>
+            <Button
+              bgColor={"#DF9A00"} // Verde para sucesso
+              color={"#fff"}
+              fontWeight={"900"}
+              onClick={() => {
+                onCloseSuccessModal();
+                setIsVerified(false);
+              }}
+              _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+              borderRadius={"8px"}
+              width={"150px"}
+            >
+              VAMOS LÁ!
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       {!isVerified ? (
         <VerificationGate onVerify={() => setIsVerified(true)} />
       ) : (
@@ -568,12 +767,15 @@ export default function SignupPage() {
                 />
               </GridItem>
             </Grid>
-            <Flex justifyContent={"center"}>
+            <Flex
+              justifyContent={"center"}
+              alignItems={"center"}
+              height={"80px"}
+            >
               <Button
                 type="submit"
                 color={"#FFF"}
                 bgColor={"#DF9A00"}
-                mt="35px"
                 justifySelf={"center"}
                 height={"45px"}
                 width="150px"

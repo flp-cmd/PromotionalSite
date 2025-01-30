@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA0b6ljIZcmslPHLpNB7EzBgQrcA-_sPXE",
-  authDomain: "promotionalpagebaita.firebaseapp.com",
-  projectId: "promotionalpagebaita",
-  storageBucket: "promotionalpagebaita.firebasestorage.app",
-  messagingSenderId: "569484718440",
-  appId: "1:569484718440:web:6a5117f6a71ecf5ff866dd",
-  measurementId: "G-NQRP1KH05P",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
