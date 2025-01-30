@@ -13,6 +13,7 @@ import {
   useDisclosure,
   Link,
 } from "@chakra-ui/react";
+import { toast } from "react-hot-toast";
 import Checkbox from "@/components/Checkbox";
 import { useState, useEffect } from "react";
 import { createListCollection } from "@chakra-ui/react";
@@ -236,6 +237,7 @@ export default function SignupPage() {
     onOpen: onOpenSuccessModal,
     onClose: onCloseSuccessModal,
   } = useDisclosure();
+  const [emptyForm, setEmptyForm] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [states, setStates] = useState<ListItem[]>([]);
 
@@ -282,13 +284,11 @@ export default function SignupPage() {
     }
   };
 
-  // Tipo para o handler
   type SelectChangeHandler = (
     selectedOption: SingleValue<SelectOption>,
     actionMeta: ActionMeta<SelectOption> & { name: string }
   ) => void;
 
-  // Implementação do handler
   const handleSelectChange: SelectChangeHandler = (
     selectedOption,
     actionMeta
@@ -384,12 +384,8 @@ export default function SignupPage() {
       !city ||
       !postalCode
     ) {
-      toaster.create({
-        title: "Erro",
-        description: "Todos os campos são obrigatórios.",
-        type: "error",
-        duration: 5000,
-      });
+      setEmptyForm(true);
+      toast.error("Todos os campos devem ser preenchidos!");
       return;
     }
 
@@ -442,7 +438,6 @@ export default function SignupPage() {
           value: state.sigla,
         }));
 
-        console.log(statesCollection);
         setStates(statesCollection);
 
         setLoading(false);
@@ -577,6 +572,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   color={"#000"}
                   bgColor={"#FFF"}
+                  border={
+                    emptyForm && formData.fullName === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
@@ -593,6 +593,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.birthDate === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 4 }}>
@@ -609,6 +614,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.cellphone === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 6 }}>
@@ -625,6 +635,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.email === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 4 }}>
@@ -641,6 +656,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.address === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
@@ -657,6 +677,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.addressNumber === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 4 }}>
@@ -673,6 +698,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.neighborhood === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
@@ -689,6 +719,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.complement === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
@@ -708,6 +743,7 @@ export default function SignupPage() {
                   onChange={(option, meta) =>
                     handleSelectChange(option, { ...meta, name: "state" })
                   }
+                  menuPosition="fixed"
                   styles={{
                     placeholder: (provided) => ({
                       ...provided,
@@ -718,6 +754,10 @@ export default function SignupPage() {
                     control: (provided) => ({
                       ...provided,
                       height: "5px",
+                      border:
+                        emptyForm && !formData.state
+                          ? "2px solid red"
+                          : "1px solid transparent",
                     }),
                     option: (provided) => ({
                       ...provided,
@@ -744,6 +784,7 @@ export default function SignupPage() {
                   onChange={(option, meta) =>
                     handleSelectChange(option, { ...meta, name: "city" })
                   }
+                  menuPosition="fixed"
                   styles={{
                     placeholder: (provided) => ({
                       ...provided,
@@ -754,6 +795,10 @@ export default function SignupPage() {
                     control: (provided) => ({
                       ...provided,
                       height: "35px",
+                      border:
+                        emptyForm && !formData.city
+                          ? "2px solid red"
+                          : "1px solid transparent",
                     }),
                     option: (provided) => ({
                       ...provided,
@@ -778,6 +823,11 @@ export default function SignupPage() {
                   borderRadius={"lg"}
                   bgColor={"#FFF"}
                   color={"#000"}
+                  border={
+                    emptyForm && formData.postalCode === ""
+                      ? "2px solid red"
+                      : "1px solid transparent"
+                  }
                 />
               </GridItem>
             </Grid>
@@ -785,6 +835,7 @@ export default function SignupPage() {
               justifyContent={"center"}
               alignItems={"center"}
               height={"80px"}
+              mt={"10px"}
             >
               <Button
                 type="submit"
@@ -796,6 +847,7 @@ export default function SignupPage() {
                 borderRadius={"lg"}
                 fontWeight={"900"}
                 onSubmit={handleSubmit}
+                _hover={{ bg: "#302e2e", color: "#DF9A00" }}
               >
                 Enviar
               </Button>
