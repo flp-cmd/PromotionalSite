@@ -137,6 +137,7 @@ const VerificationGate: React.FC<{
         mb={{ base: "30px", md: "50px" }}
         width={{ base: "350px", md: "500px" }}
         mx="auto"
+        alt="PromotionalLogo"
       />
       <Text
         mb="4"
@@ -281,7 +282,9 @@ export default function SignupPage() {
       });
 
       setCities(citiesCollection);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -389,7 +392,7 @@ export default function SignupPage() {
       };
 
       // Salvar no Firestore
-      const docRef = await addDoc(collection(db, "users"), userData);
+      await addDoc(collection(db, "users"), userData);
 
       onOpenSuccessModal();
 
@@ -442,6 +445,7 @@ export default function SignupPage() {
 
         setLoading(false);
       } catch (err) {
+        console.log(err);
         setError("Erro ao carregar estados");
         setLoading(false);
       }

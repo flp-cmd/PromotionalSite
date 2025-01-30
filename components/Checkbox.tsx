@@ -7,8 +7,6 @@ type CheckboxProps = {
   onChange?: (checked: boolean) => void;
   label?: string | React.ReactNode;
   disabled?: boolean;
-  className?: string;
-  checkboxClassName?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "onChange">;
 
 const Checkbox = ({
@@ -16,8 +14,6 @@ const Checkbox = ({
   onChange,
   label,
   disabled = false,
-  className = "",
-  checkboxClassName = "",
   ...props
 }: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState(checked);
