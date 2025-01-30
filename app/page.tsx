@@ -16,14 +16,6 @@ import {
 import Checkbox from "@/components/Checkbox";
 import { useState, useEffect } from "react";
 import { createListCollection } from "@chakra-ui/react";
-import {
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-  SelectValueText,
-} from "@/components/ui/select";
 import { db, collection, addDoc } from "@/lib/firebase";
 import { Timestamp } from "firebase/firestore";
 import {
@@ -35,6 +27,8 @@ import {
   ModalBody,
 } from "@chakra-ui/modal";
 import { toaster } from "@/components/ui/toaster";
+import Select from "react-select";
+import { ActionMeta, SingleValue } from "react-select";
 
 const VerificationGate: React.FC<{
   onVerify: () => void;
@@ -153,7 +147,7 @@ const VerificationGate: React.FC<{
       <Flex
         gap={{ base: "30px", md: "15px" }}
         mb="4"
-        mt={"50px"}
+        mt={"30px"}
         direction={{ base: "column", md: "row" }}
         alignItems={"center"}
       >
@@ -231,6 +225,11 @@ interface ListItem {
   value: string;
 }
 
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
 export default function SignupPage() {
   const {
     open: isSuccessModalOpen,
@@ -238,9 +237,8 @@ export default function SignupPage() {
     onClose: onCloseSuccessModal,
   } = useDisclosure();
   const [isVerified, setIsVerified] = useState(false);
-  const [states, setStates] = useState(
-    createListCollection<ListItem>({ items: [] })
-  );
+  const [states, setStates] = useState<ListItem[]>([]);
+
   const [cities, setCities] = useState(
     createListCollection<ListItem>({ items: [] })
   );
@@ -284,6 +282,27 @@ export default function SignupPage() {
     }
   };
 
+  // Tipo para o handler
+  type SelectChangeHandler = (
+    selectedOption: SingleValue<SelectOption>,
+    actionMeta: ActionMeta<SelectOption> & { name: string }
+  ) => void;
+
+  // Implementação do handler
+  const handleSelectChange: SelectChangeHandler = (
+    selectedOption,
+    actionMeta
+  ) => {
+    const { name } = actionMeta;
+    const value = selectedOption?.value || "";
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "state") {
+      fetchCities(value);
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -315,10 +334,6 @@ export default function SignupPage() {
           7
         )}-${onlyNumbers.slice(7, 11)}`;
       }
-    }
-
-    if (name === "state") {
-      fetchCities(formattedValue);
     }
 
     if (name === "postalCode") {
@@ -422,15 +437,12 @@ export default function SignupPage() {
 
         const sortedStates = data.sort((a, b) => a.nome.localeCompare(b.nome));
 
-        const statesCollection = createListCollection<ListItem>({
-          items: sortedStates.map(
-            (state): ListItem => ({
-              label: state.nome,
-              value: state.sigla,
-            })
-          ),
-        });
+        const statesCollection: ListItem[] = sortedStates.map((state) => ({
+          label: state.nome,
+          value: state.sigla,
+        }));
 
+        console.log(statesCollection);
         setStates(statesCollection);
 
         setLoading(false);
@@ -680,68 +692,77 @@ export default function SignupPage() {
                 />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
-                <SelectRoot
-                  name="state"
-                  collection={states}
-                  gap={"5px"}
-                  size={"sm"}
-                  onChange={handleChange}
+                <Text
+                  mb="2"
+                  color={"#FFDE00"}
+                  fontSize={"16px"}
+                  fontWeight={"700"}
                 >
-                  <SelectLabel
-                    mb="2"
-                    color={"#FFDE00"}
-                    fontSize={"16px"}
-                    fontWeight={"700"}
-                  >
-                    Selecione um estado:
-                  </SelectLabel>
-                  <SelectTrigger
-                    height={"35px"}
-                    borderRadius={"8px"}
-                    bgColor={"#FFF"}
-                  >
-                    <SelectValueText placeholder="Selecione o estado" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {states.items.map((state) => (
-                      <SelectItem item={state} key={state.value}>
-                        {state.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </SelectRoot>
+                  Selecione um estado:
+                </Text>
+                <Select
+                  name="state"
+                  isSearchable
+                  options={Array.isArray(states) ? states : []}
+                  placeholder="Selecione um estado"
+                  onChange={(option, meta) =>
+                    handleSelectChange(option, { ...meta, name: "state" })
+                  }
+                  styles={{
+                    placeholder: (provided) => ({
+                      ...provided,
+                      fontSize: "14px",
+                      color: "#5a5959",
+                      fontWeight: "500",
+                    }),
+                    control: (provided) => ({
+                      ...provided,
+                      height: "5px",
+                    }),
+                    option: (provided) => ({
+                      ...provided,
+                      color: "black",
+                      padding: 10,
+                    }),
+                  }}
+                />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
-                <SelectRoot
-                  collection={cities}
-                  name="city"
-                  gap={"5px"}
-                  size={"sm"}
-                  onChange={handleChange}
+                <Text
+                  mb="2"
+                  color={"#FFDE00"}
+                  fontSize={"16px"}
+                  fontWeight={"700"}
                 >
-                  <SelectLabel
-                    mb="2"
-                    color={"#FFDE00"}
-                    fontSize={"16px"}
-                    fontWeight={"700"}
-                  >
-                    Selecione uma cidade:
-                  </SelectLabel>
-                  <SelectTrigger
-                    height={"35px"}
-                    borderRadius={"8px"}
-                    bgColor={"#FFF"}
-                  >
-                    <SelectValueText placeholder="Selecione a cidade" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.items.map((city) => (
-                      <SelectItem item={city} key={city.value}>
-                        {city.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </SelectRoot>
+                  Selecione uma cidade:
+                </Text>
+                <Select
+                  name="city"
+                  isSearchable
+                  options={Array.isArray(cities.items) ? cities.items : []}
+                  placeholder="Selecione uma cidade"
+                  onChange={(option, meta) =>
+                    handleSelectChange(option, { ...meta, name: "city" })
+                  }
+                  styles={{
+                    placeholder: (provided) => ({
+                      ...provided,
+                      fontSize: "13px",
+                      color: "#5a5959",
+                      fontWeight: "500",
+                    }),
+                    control: (provided) => ({
+                      ...provided,
+                      height: "35px",
+                    }),
+                    option: (provided) => ({
+                      ...provided,
+                      color: "black",
+                      padding: 10,
+                    }),
+                  }}
+                  isDisabled={!formData.state}
+                />
               </GridItem>
               <GridItem colSpan={{ base: 1, md: 2 }}>
                 <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
