@@ -36,18 +36,16 @@ import {
 } from "@chakra-ui/modal";
 import { toaster } from "@/components/ui/toaster";
 
-// Adicione no início do componente (após as imports)
 const VerificationGate: React.FC<{
   onVerify: () => void;
 }> = ({ onVerify }) => {
   const [verificationCode, setVerificationCode] = useState("");
   const [errorMessage, setErrorMessage] = useState<React.ReactNode>(null);
-  const { open, onOpen, onClose } = useDisclosure(); // Controle do modal
+  const { open, onOpen, onClose } = useDisclosure();
   const [isChecked, setIsChecked] = useState(false);
 
   const handleVerification = () => {
-    // Verificação mockada temporária
-    const mockValidCode = "1234"; // Substituir por lógica real depois
+    const mockValidCode = "1234";
     if (isChecked) {
       if (verificationCode === mockValidCode) {
         onVerify();
@@ -77,11 +75,11 @@ const VerificationGate: React.FC<{
       textAlign="center"
       borderRadius="md"
       bg="transparent"
-      maxWidth={{ base: "100%", md: "600px" }} // Ajuste para mobile
+      maxWidth={{ base: "100%", md: "600px" }}
       height="650px"
       mx="auto"
       my="auto"
-      p={{ base: "10px", md: "20px" }} // Padding menor em mobile
+      p={{ base: "10px", md: "20px" }}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -91,12 +89,12 @@ const VerificationGate: React.FC<{
             color={"#FFDE00"}
             borderTopRadius={"8px"}
             sx={{
-              minHeight: "60px", // Altura mínima desejada
+              minHeight: "60px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "10px 20px", // Ajuste o padding para controlar o espaçamento interno
-              fontSize: "20px", // Tamanho do texto
+              padding: "10px 20px",
+              fontSize: "20px",
             }}
           >
             Algo deu errado...
@@ -174,9 +172,9 @@ const VerificationGate: React.FC<{
             height={"50px"}
             _focus={{
               border: "2px solid #DF9A00",
-              bg: "blue.50", // Cor de fundo
-              transform: "scale(1.02)", // Efeito de zoom
-              transition: "all 0.2s", // Transição suave
+              bg: "blue.50",
+              transform: "scale(1.02)",
+              transition: "all 0.2s",
             }}
           />
           <Checkbox
@@ -228,7 +226,6 @@ interface Cidade {
   nome: string;
 }
 
-// Novo tipo para os itens da lista
 interface ListItem {
   label: string;
   value: string;
@@ -240,7 +237,7 @@ export default function SignupPage() {
     onOpen: onOpenSuccessModal,
     onClose: onCloseSuccessModal,
   } = useDisclosure();
-  const [isVerified, setIsVerified] = useState(false); // Novo estado
+  const [isVerified, setIsVerified] = useState(false);
   const [states, setStates] = useState(
     createListCollection<ListItem>({ items: [] })
   );
@@ -292,34 +289,31 @@ export default function SignupPage() {
 
     let formattedValue = value;
 
-    // Aplicando a máscara para a data de nascimento
     if (name === "birthDate") {
       formattedValue = value
-        .replace(/\D/g, "") // Remove caracteres não numéricos
-        .slice(0, 8) // Limita a 8 caracteres
+        .replace(/\D/g, "")
+        .slice(0, 8)
         .replace(/(\d{2})(\d{2})?(\d{4})?/, (_, d, m, y) => {
           return [d, m, y].filter(Boolean).join("/");
         });
     }
 
-    // Máscara de número
     if (name === "addressNumber") {
       formattedValue = value.replace(/\D/g, "");
     }
 
-    // Máscara para Celular (XX) XXXXX-XXXX
     if (name === "cellphone") {
-      const onlyNumbers = value.replace(/\D/g, ""); // Remove tudo que não for número
+      const onlyNumbers = value.replace(/\D/g, "");
 
       if (onlyNumbers.length <= 2) {
-        formattedValue = onlyNumbers; // Apenas DDD sem parênteses
+        formattedValue = onlyNumbers;
       } else if (onlyNumbers.length <= 7) {
-        formattedValue = `(${onlyNumbers.slice(0, 2)}) ${onlyNumbers.slice(2)}`; // DDD + primeiros dígitos
+        formattedValue = `(${onlyNumbers.slice(0, 2)}) ${onlyNumbers.slice(2)}`;
       } else {
         formattedValue = `(${onlyNumbers.slice(0, 2)}) ${onlyNumbers.slice(
           2,
           7
-        )}-${onlyNumbers.slice(7, 11)}`; // Formato completo
+        )}-${onlyNumbers.slice(7, 11)}`;
       }
     }
 
@@ -328,15 +322,15 @@ export default function SignupPage() {
     }
 
     if (name === "postalCode") {
-      const onlyNumbers = value.replace(/\D/g, ""); // Remove tudo que não for número
+      const onlyNumbers = value.replace(/\D/g, "");
 
       if (onlyNumbers.length <= 5) {
-        formattedValue = onlyNumbers; // Apenas os primeiros números
+        formattedValue = onlyNumbers;
       } else {
         formattedValue = `${onlyNumbers.slice(0, 5)}-${onlyNumbers.slice(
           5,
           8
-        )}`; // Insere o hífen automaticamente
+        )}`;
       }
     }
 
@@ -385,18 +379,15 @@ export default function SignupPage() {
     }
 
     try {
-      // Processar dados antes de enviar
       const userData = {
         ...formData,
         createdAt: Timestamp.now(),
       };
 
-      // Salvar no Firestore
       await addDoc(collection(db, "users"), userData);
 
       onOpenSuccessModal();
 
-      // Resetar formulário
       setFormData({
         fullName: "",
         birthDate: "",
@@ -429,7 +420,6 @@ export default function SignupPage() {
         );
         const data: Estado[] = await response.json();
 
-        // Ordena os estados alfabeticamente
         const sortedStates = data.sort((a, b) => a.nome.localeCompare(b.nome));
 
         const statesCollection = createListCollection<ListItem>({
@@ -461,13 +451,12 @@ export default function SignupPage() {
     <Box
       bgColor={"transparent"}
       border={"0"}
-      maxWidth={{ base: "100%", md: "600px" }} // Ajuste para mobile
+      maxWidth={{ base: "100%", md: "600px" }}
       maxHeight="650px"
       mx="auto"
       my={{ base: "30px", md: "auto" }}
       p="20px"
     >
-      {/* Modal de Sucesso */}
       <Modal
         isOpen={isSuccessModalOpen}
         onClose={onCloseSuccessModal}
@@ -477,7 +466,7 @@ export default function SignupPage() {
         <ModalContent maxW={"350px"} mx="auto" mt={"200px"}>
           <ModalHeader
             bgColor={"#0E0E0E"}
-            color={"#FFDE00"} // Verde para sucesso
+            color={"#FFDE00"}
             borderTopRadius={"8px"}
             sx={{
               minHeight: "60px",
@@ -512,7 +501,7 @@ export default function SignupPage() {
             gap={"10px"}
           >
             <Button
-              bgColor={"#ED7678"} // Verde para sucesso
+              bgColor={"#ED7678"}
               color={"#fff"}
               fontWeight={"500"}
               onClick={() => {
@@ -526,7 +515,7 @@ export default function SignupPage() {
               DEIXA PRA LÁ...
             </Button>
             <Button
-              bgColor={"#DF9A00"} // Verde para sucesso
+              bgColor={"#DF9A00"}
               color={"#fff"}
               fontWeight={"900"}
               onClick={() => {
