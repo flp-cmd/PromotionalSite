@@ -1,5 +1,5 @@
 // components/Checkbox.tsx
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { useState, useEffect, InputHTMLAttributes } from "react";
 
 type CheckboxProps = {
@@ -61,15 +61,7 @@ const Checkbox = ({
         )}
       </Box>
 
-      {label && (
-        <span
-          className={`select-none ${
-            disabled ? "cursor-not-allowed" : "cursor-pointer"
-          }`}
-        >
-          {label}
-        </span>
-      )}
+      {label && <Text color="white">{label}</Text>}
     </Flex>
   );
 };
