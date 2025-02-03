@@ -41,7 +41,6 @@ const Checkbox = ({
         {...props}
       />
 
-      {/* Checkbox visual */}
       <Box bgColor={"#fff"}>
         {isChecked && (
           <svg

@@ -10,6 +10,7 @@ import {
   Input,
   Text,
   useDisclosure,
+  Image,
 } from "@chakra-ui/react";
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
@@ -291,10 +292,12 @@ export default function SignupPage() {
       bgColor={"transparent"}
       border={"0"}
       maxWidth={{ base: "100%", md: "600px" }}
-      maxHeight="650px"
+      maxHeight={{ base: "100%", md: "650px" }}
       mx="auto"
       my={{ base: "30px", md: "auto" }}
-      p="20px"
+      p={{ base: "30px", md: "20px" }}
+      position="relative"
+      zIndex={"1"}
     >
       <Modal
         isOpen={isSuccessModalOpen}
@@ -679,8 +682,44 @@ export default function SignupPage() {
             </Button>
           </Flex>
         </form>
+        <Box
+          position={{ base: "fixed" }}
+          top={{ base: 380, md: 150 }}
+          left={0}
+          right={0}
+          w={{ md: "100vw" }}
+          h="1px"
+          overflow="visible"
+          pointerEvents="none"
+          zIndex="-1"
+        >
+          <Image
+            src={"https://shorturl.at/NNZEz"}
+            alt="Instrumentos"
+            width={{ base: 250, md: 350 }}
+            position="absolute"
+            left={{ base: -70, md: -130 }}
+            top={{ base: 160, md: 0 }}
+            transform={{
+              base: "rotate(-10deg) scale(0.8)",
+              md: "rotate(30deg)",
+            }}
+          />
+
+          <Image
+            src={"https://shorturl.at/NNZEz"}
+            alt="Instrumentos"
+            width={{ base: 250, md: 350 }}
+            position="absolute"
+            right={{ base: -70, md: -130 }}
+            top={{ base: 160, md: 0 }}
+            transform={{
+              base: "rotate(10deg) scaleX(-1) scale(0.8)",
+              md: "rotate(-30deg) scaleX(-1)",
+            }}
+          />
+        </Box>
       </>
-      )
     </Box>
   );
 }

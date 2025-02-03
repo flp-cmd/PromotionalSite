@@ -1,6 +1,5 @@
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,29 +8,14 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  background-image: url("https://shorturl.at/PBoTv"),
-    url("https://shorturl.at/NNZEz"), url("https://shorturl.at/NNZEz");
-  background-repeat: repeat, no-repeat, no-repeat;
+  background-image: url("https://shorturl.at/PBoTv");
+  background-repeat: repeat;
   background-color: black;
-  font-family: "Roboto, sans-serif";
-  /* Layout Desktop */
-  background-position: center, /* Estrelas */ left,
-    /* Imagem esquerda */ 110% 50%; /* Imagem direita */
-
-  background-size: 200px 200px, /* Tamanho das estrelas */ 350px 600px,
-    /* Tamanho imagem esquerda */ 300px 600px; /* Tamanho imagem direita */
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Ajustes para Mobile */
-@media (max-width: 768px) {
-  body {
-    background-position: center, /* Estrelas */ "110% 110%",
-      /* Imagem esquerda */ 120%; /* Imagem direita */
-
-    background-size: 100px 100px, /* Reduz estrelas */ 150px 300px,
-      /* Tamanho mobile imagem esquerda */ 150px 300px; /* Tamanho mobile imagem direita */
-  }
-}
 
 button span {
   color: #5a5959;

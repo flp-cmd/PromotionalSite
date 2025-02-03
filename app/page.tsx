@@ -131,14 +131,36 @@ const VerificationGate: React.FC = () => {
           onOpen();
         }
       } else {
-        setErrorMessage(
-          <>
-            Não conseguimos encontrar seu CPF ou CNPJ em nosso banco de dados.
-            Verifique se este foi o mesmo utilizado para a compra dos ingressos
-            do <b>Um Baita Festival</b>.
-          </>
-        );
-        onOpen();
+        try {
+          const response = await fetch(
+            `https://api.icones.com.br/tickets/promo/baita-2025?cpf=${cleanedCpf}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `${process.env.NEXT_PUBLIC_API_TOKEN}`,
+              },
+            }
+          );
+
+          if (response.status === 200) {
+            handleVerificationSuccess();
+          } else {
+            setErrorMessage(
+              <>
+                Não conseguimos encontrar seu CPF ou CNPJ em nosso banco de
+                dados. Verifique se este foi o mesmo utilizado para a compra dos
+                ingressos do <b>Um Baita Festival</b>.
+              </>
+            );
+            onOpen();
+          }
+        } catch (error) {
+          console.error("Erro na verificação:", error);
+          setErrorMessage(
+            <>Ocorreu um erro durante a verificação. Tente novamente.</>
+          );
+          onOpen();
+        }
       }
     } catch (error) {
       console.error("Erro na verificação:", error);
@@ -151,14 +173,16 @@ const VerificationGate: React.FC = () => {
 
   return (
     <Box
+      className="content"
       textAlign="center"
       borderRadius="md"
       bg="transparent"
-      maxWidth={{ base: "100%", md: "600px" }}
+      maxWidth={{ base: "400px", md: "600px" }}
       height="650px"
       mx="auto"
       my="auto"
-      p={{ base: "10px", md: "20px" }}
+      p={{ base: "50px", md: "20px" }}
+      zIndex={"1"}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -290,6 +314,43 @@ const VerificationGate: React.FC = () => {
           QUERO PARTICIPAR
         </Button>
       </Flex>
+      <Box
+        position={{ base: "fixed", md: "absolute" }}
+        top={{ base: 360, md: 150 }}
+        left={0}
+        right={0}
+        w={{ md: "100vw" }}
+        h="1px"
+        overflow="visible"
+        pointerEvents="none"
+        zIndex="-1"
+      >
+        <Image
+          src={"https://shorturl.at/NNZEz"}
+          alt="Instrumentos"
+          width={{ base: 250, md: 350 }}
+          position="absolute"
+          left={{ base: -70, md: -130 }}
+          top={{ base: 170, md: 0 }}
+          transform={{
+            base: "rotate(-10deg) scale(0.8)",
+            md: "rotate(40deg)",
+          }}
+        />
+
+        <Image
+          src={"https://shorturl.at/NNZEz"}
+          alt="Instrumentos"
+          width={{ base: 250, md: 350 }}
+          position="absolute"
+          right={{ base: -70, md: -130 }}
+          top={{ base: 170, md: 0 }}
+          transform={{
+            base: "rotate(10deg) scaleX(-1) scale(0.8)",
+            md: "rotate(-40deg) scaleX(-1)",
+          }}
+        />
+      </Box>
     </Box>
   );
 };
