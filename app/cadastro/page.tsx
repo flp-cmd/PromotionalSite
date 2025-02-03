@@ -513,27 +513,6 @@ export default function SignupPage() {
                 }
               />
             </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
-                Bairro:
-              </Text>
-              <Input
-                type="text"
-                name="neighborhood"
-                placeholder="Escreva seu bairro aqui"
-                value={formData.neighborhood}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.neighborhood === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
             <GridItem colSpan={{ base: 1, md: 2 }}>
               <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
                 Complemento:
@@ -550,6 +529,27 @@ export default function SignupPage() {
                 color={"#000"}
                 border={
                   emptyForm && formData.complement === ""
+                    ? "2px solid red"
+                    : "1px solid transparent"
+                }
+              />
+            </GridItem>
+            <GridItem colSpan={{ base: 1, md: 4 }}>
+              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+                Bairro:
+              </Text>
+              <Input
+                type="text"
+                name="neighborhood"
+                placeholder="Escreva seu bairro aqui"
+                value={formData.neighborhood}
+                onChange={handleChange}
+                height={"35px"}
+                borderRadius={"lg"}
+                bgColor={"#FFF"}
+                color={"#000"}
+                border={
+                  emptyForm && formData.neighborhood === ""
                     ? "2px solid red"
                     : "1px solid transparent"
                 }
