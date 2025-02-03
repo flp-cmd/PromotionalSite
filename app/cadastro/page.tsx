@@ -684,7 +684,7 @@ export default function SignupPage() {
         </form>
         <Box
           position={{ base: "fixed" }}
-          top={{ base: 380, md: 150 }}
+          top={{ base: "55%", md: 200 }}
           left={0}
           right={0}
           w={{ md: "100vw" }}
@@ -699,7 +699,7 @@ export default function SignupPage() {
             width={{ base: 250, md: 350 }}
             position="absolute"
             left={{ base: -70, md: -130 }}
-            top={{ base: 160, md: 0 }}
+            top={{ base: 170, md: 0 }}
             transform={{
               base: "rotate(-10deg) scale(0.8)",
               md: "rotate(30deg)",
@@ -712,7 +712,7 @@ export default function SignupPage() {
             width={{ base: 250, md: 350 }}
             position="absolute"
             right={{ base: -70, md: -130 }}
-            top={{ base: 160, md: 0 }}
+            top={{ base: 170, md: 0 }}
             transform={{
               base: "rotate(10deg) scaleX(-1) scale(0.8)",
               md: "rotate(-30deg) scaleX(-1)",

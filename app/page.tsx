@@ -177,7 +177,7 @@ const VerificationGate: React.FC = () => {
       textAlign="center"
       borderRadius="md"
       bg="transparent"
-      maxWidth={{ base: "400px", md: "600px" }}
+      maxWidth={{ base: "500px", md: "600px" }}
       height="650px"
       mx="auto"
       my="auto"
@@ -316,7 +316,7 @@ const VerificationGate: React.FC = () => {
       </Flex>
       <Box
         position={{ base: "fixed", md: "absolute" }}
-        top={{ base: 360, md: 150 }}
+        top={{ base: "55%", md: 200 }}
         left={0}
         right={0}
         w={{ md: "100vw" }}
