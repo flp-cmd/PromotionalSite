@@ -15,8 +15,8 @@ body {
   background-color: black;
   font-family: "Roboto, sans-serif";
   /* Layout Desktop */
-  background-position: center, /* Estrelas */ left bottom,
-    /* Imagem esquerda */ right bottom; /* Imagem direita */
+  background-position: center, /* Estrelas */ left,
+    /* Imagem esquerda */ 110% 50%; /* Imagem direita */
 
   background-size: 200px 200px, /* Tamanho das estrelas */ 350px 600px,
     /* Tamanho imagem esquerda */ 300px 600px; /* Tamanho imagem direita */
@@ -25,8 +25,8 @@ body {
 /* Ajustes para Mobile */
 @media (max-width: 768px) {
   body {
-    background-position: center, /* Estrelas */ left bottom,
-      /* Imagem esquerda */ right bottom; /* Imagem direita */
+    background-position: center, /* Estrelas */ "110% 110%",
+      /* Imagem esquerda */ 120%; /* Imagem direita */
 
     background-size: 100px 100px, /* Reduz estrelas */ 150px 300px,
       /* Tamanho mobile imagem esquerda */ 150px 300px; /* Tamanho mobile imagem direita */
