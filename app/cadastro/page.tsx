@@ -297,7 +297,6 @@ export default function SignupPage() {
       my={{ base: "30px", md: "auto" }}
       p={{ base: "30px", md: "20px" }}
       position="relative"
-      zIndex={"1"}
     >
       <Modal
         isOpen={isSuccessModalOpen}
@@ -691,7 +690,6 @@ export default function SignupPage() {
           h="1px"
           overflow="visible"
           pointerEvents="none"
-          zIndex="-1"
         >
           <Image
             src={"https://shorturl.at/NNZEz"}

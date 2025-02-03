@@ -182,7 +182,6 @@ const VerificationGate: React.FC = () => {
       mx="auto"
       my="auto"
       p={{ base: "50px", md: "20px" }}
-      zIndex={"1"}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -323,7 +322,6 @@ const VerificationGate: React.FC = () => {
         h="1px"
         overflow="visible"
         pointerEvents="none"
-        zIndex="-1"
       >
         <Image
           src={"https://shorturl.at/NNZEz"}
