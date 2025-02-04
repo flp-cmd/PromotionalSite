@@ -276,10 +276,44 @@ const VerificationGate: React.FC = () => {
         overflow="visible"
         pointerEvents="none"
       >
+        <Box
+          width={{ base: 120, md: 120 }}
+          position="absolute"
+          left={{ base: 50, md: 50 }}
+          top={{ base: 250, md: -160 }}
+          display={"flex"}
+          flexDirection={"column"}
+          gap={"10px"}
+          alignItems={"center"}
+        >
+          <Text fontSize={"12px"}>CERVEJA OFICIAL:</Text>
+          <Image
+            src={"https://shorturl.at/xvMUq"}
+            alt="Logo Black Princess"
+            width={{ base: "100px" }}
+          />
+        </Box>
+        <Box
+          width={{ base: 120, md: 120 }}
+          position="absolute"
+          right={{ base: 50, md: 50 }}
+          top={{ base: 250, md: 600 }}
+          display={"flex"}
+          flexDirection={"column"}
+          gap={"10px"}
+          alignItems={"center"}
+        >
+          <Text fontSize={"12px"}>PATROCINADOR:</Text>
+          <Image
+            src={"https://shorturl.at/hj0gs"}
+            alt="Logo Ophicina"
+            width={{ base: "100px" }}
+          />
+        </Box>
         <Image
           src={"https://shorturl.at/NNZEz"}
           alt="Instrumentos"
-          width={{ base: 250, md: 350 }}
+          width={{ base: 0, md: 350 }}
           position="absolute"
           left={{ base: -70, md: -130 }}
           top={{ base: 170, md: 0 }}
@@ -292,7 +326,7 @@ const VerificationGate: React.FC = () => {
         <Image
           src={"https://shorturl.at/NNZEz"}
           alt="Instrumentos"
-          width={{ base: 250, md: 350 }}
+          width={{ base: 0, md: 350 }}
           position="absolute"
           right={{ base: -70, md: -130 }}
           top={{ base: 170, md: 0 }}
