@@ -286,7 +286,7 @@ const VerificationGate: React.FC = () => {
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
         >
-          <Text fontSize="12px">CERVEJA OFICIAL:</Text>
+          <Text fontSize="12px" color={"#fff"}>CERVEJA OFICIAL:</Text>
           <Image
             src="https://shorturl.at/xvMUq"
             alt="Logo Black Princess"
@@ -304,7 +304,7 @@ const VerificationGate: React.FC = () => {
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
         >
-          <Text fontSize="12px">PATROCINADOR:</Text>
+          <Text fontSize="12px" color={"#fff"}>PATROCINADOR:</Text>
           <Image
             src="https://shorturl.at/hj0gs"
             alt="Logo Ophicina"
@@ -323,6 +323,7 @@ const VerificationGate: React.FC = () => {
             fontSize="12px"
             textAlign="center"
             position={"absolute"}
+            color={"#fff"}
           >
             BEBA COM SABEDORIA
           </Text>

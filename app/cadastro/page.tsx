@@ -668,7 +668,9 @@ export default function SignupPage() {
               gap={"10px"}
               alignItems={"center"}
             >
-              <Text fontSize={"12px"}>CERVEJA OFICIAL:</Text>
+              <Text fontSize={"12px"} color={"#fff"}>
+                CERVEJA OFICIAL:
+              </Text>
               <Image
                 src={"https://shorturl.at/xvMUq"}
                 alt="Logo Black Princess"
@@ -684,7 +686,9 @@ export default function SignupPage() {
               gap={"10px"}
               alignItems={"center"}
             >
-              <Text fontSize={"12px"}>PATROCINADOR:</Text>
+              <Text fontSize={"12px"} color={"#fff"}>
+                PATROCINADOR:
+              </Text>
               <Image
                 src={"https://shorturl.at/hj0gs"}
                 alt="Logo Ophicina"
@@ -693,7 +697,13 @@ export default function SignupPage() {
             </Box>
           </Box>
 
-          <Text mt={"30px"} fontSize={"12px"} textAlign={"center"} display={{ md: "none"}}>
+          <Text
+            mt={"30px"}
+            fontSize={"12px"}
+            textAlign={"center"}
+            display={{ md: "none" }}
+            color={"#fff"}
+          >
             BEBA COM SABEDORIA
           </Text>
         </form>
@@ -706,18 +716,17 @@ export default function SignupPage() {
           overflow="visible"
           pointerEvents="none"
         >
-          {/* Patrocinadores em Flexbox */}
-
-          {/* Cerveja Oficial */}
           <Box
-            display={{ base: "none", md: "flex"}}
+            display={{ base: "none", md: "flex" }}
             flexDirection="column"
             alignItems="center"
             top={{ base: "30vh", md: "-50vh" }}
             right={{ base: "60vw", md: "88vw" }}
             position={{ base: "absolute", md: "absolute" }}
           >
-            <Text fontSize="12px">CERVEJA OFICIAL:</Text>
+            <Text fontSize="12px" color={"#fff"}>
+              CERVEJA OFICIAL:
+            </Text>
             <Image
               src="https://shorturl.at/xvMUq"
               alt="Logo Black Princess"
@@ -726,16 +735,17 @@ export default function SignupPage() {
             />
           </Box>
 
-          {/* Patrocinador */}
           <Box
-            display={{ base: "none", md: "flex"}}
+            display={{ base: "none", md: "flex" }}
             flexDirection="column"
             alignItems="center"
             top={{ base: "30vh", md: "35vh" }}
             right={{ base: "20vw", md: "3vw" }}
             position={{ base: "absolute", md: "absolute" }}
           >
-            <Text fontSize="12px">PATROCINADOR:</Text>
+            <Text fontSize="12px" color={"#fff"}>
+              PATROCINADOR:
+            </Text>
             <Image
               src="https://shorturl.at/hj0gs"
               alt="Logo Ophicina"
@@ -746,21 +756,20 @@ export default function SignupPage() {
 
           <Box
             position={{ base: "relative", md: "relative" }}
-            display={{ base: "none", md: "flex"}}
+            display={{ base: "none", md: "flex" }}
             justifyContent={"center"}
           >
-            {/* Texto Beba com Sabedoria */}
             <Text
               mt={{ base: "42vh", md: "42vh" }}
               fontSize="12px"
               textAlign="center"
               position={"absolute"}
+              color={"#fff"}
             >
               BEBA COM SABEDORIA
             </Text>
           </Box>
 
-          {/* Imagens Laterais */}
           <Image
             src="https://shorturl.at/NNZEz"
             alt="Instrumentos"
