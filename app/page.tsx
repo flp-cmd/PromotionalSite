@@ -12,8 +12,6 @@ import {
 } from "@chakra-ui/react";
 import Checkbox from "@/components/Checkbox";
 import { useState } from "react";
-import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import {
   Modal,
   ModalOverlay,
@@ -92,84 +90,33 @@ const VerificationGate: React.FC = () => {
     router.push("/cadastro");
   };
 
-  const handleVerification = async () => {
-    if (!isChecked) {
+  async function validarCPF() {
+    if (isChecked) {
+      const response = await fetch(`/api/validar-cpf?cpf=${cpf}`, {
+        method: "GET",
+      });
+
+      const data = await response.json();
+
+      console.log(data.message);
+
+      if (data.status === "success") {
+        handleVerificationSuccess();
+      } else {
+        setErrorMessage(<>{data.message}</>);
+        onOpen();
+      }
+    } else {
       setErrorMessage(
         <>
+          {" "}
           Para continuar, é necessário concordar com as <b>regras</b> do
           sorteio. Marque a opção antes de prosseguir.
         </>
       );
-      onOpen();
-      return;
+      onOpen()
     }
-
-    const cleanedCpf = sanitizeCpf(cpf);
-
-    if (![11, 14].includes(cleanedCpf.length)) {
-      setErrorMessage(<>CPF/CNPJ inválido. Verifique o número digitado.</>);
-      onOpen();
-      return;
-    }
-
-    try {
-      const docRef = doc(db, "clients", cleanedCpf);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-
-        if (data?.isParticipating === false) {
-          handleVerificationSuccess();
-        } else {
-          setErrorMessage(
-            <>
-              Seu CPF ou CNPJ já está participando do sorteio, aguarde os
-              resultados!
-            </>
-          );
-          onOpen();
-        }
-      } else {
-        try {
-          const response = await fetch(
-            `https://api.icones.com.br/tickets/promo/baita-2025?cpf=${cleanedCpf}`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `${process.env.NEXT_PUBLIC_API_TOKEN}`,
-              },
-            }
-          );
-
-          if (response.status === 200) {
-            handleVerificationSuccess();
-          } else {
-            setErrorMessage(
-              <>
-                Não conseguimos encontrar seu CPF ou CNPJ em nosso banco de
-                dados. Verifique se este foi o mesmo utilizado para a compra dos
-                ingressos do <b>Um Baita Festival</b>.
-              </>
-            );
-            onOpen();
-          }
-        } catch (error) {
-          console.error("Erro na verificação:", error);
-          setErrorMessage(
-            <>Ocorreu um erro durante a verificação. Tente novamente.</>
-          );
-          onOpen();
-        }
-      }
-    } catch (error) {
-      console.error("Erro na verificação:", error);
-      setErrorMessage(
-        <>Ocorreu um erro durante a verificação. Tente novamente.</>
-      );
-      onOpen();
-    }
-  };
+  }
 
   return (
     <Box
@@ -301,7 +248,7 @@ const VerificationGate: React.FC = () => {
         </Flex>
 
         <Button
-          onClick={handleVerification}
+          onClick={validarCPF}
           bg="#DF9A00"
           color="#fff"
           _hover={{ bg: "#302e2e", color: "#DF9A00" }}

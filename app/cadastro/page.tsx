@@ -256,6 +256,52 @@ export default function SignupPage() {
     }
   };
 
+  const handleSubmit2 = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    if (Object.values(formData).some((value) => !value)) {
+      setEmptyForm(true);
+      toast.error("Todos os campos devem ser preenchidos!");
+      return;
+    }
+  
+    try {
+      const response = await fetch("/api/cadastro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, cpf }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        sessionStorage.removeItem("validatedCpf");
+        onOpenSuccessModal();
+        setFormData({
+          fullName: "",
+          birthDate: "",
+          cellphone: "",
+          email: "",
+          address: "",
+          addressNumber: "",
+          neighborhood: "",
+          complement: "",
+          state: "",
+          city: "",
+          postalCode: "",
+        });
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Erro ao salvar:", error);
+      toast.error("Erro ao cadastrar. Tente novamente.");
+    }
+  };
+  
+
   useEffect(() => {
     const fetchStates = async () => {
       try {
@@ -384,7 +430,7 @@ export default function SignupPage() {
         >
           Preencha todos os campos para concorrer aos prêmios.
         </Heading>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit2}>
           <Grid templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }} gap="4">
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
