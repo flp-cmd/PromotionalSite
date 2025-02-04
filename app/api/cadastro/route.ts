@@ -43,7 +43,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     const sanitizedCpf = body.cpf.replace(/\D/g, ""); 
 
-    await setDoc(doc(db, "clients", sanitizedCpf), {
+    await setDoc(doc(db, "clientes", sanitizedCpf), {
       ...body,
       isParticipating: true,
       createdAt: Timestamp.now(),

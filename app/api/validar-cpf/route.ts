@@ -23,7 +23,7 @@ export async function GET(
       );
     }
 
-    const docRef = doc(db, "clients", cpf);
+    const docRef = doc(db, "clientes", cpf);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
