@@ -267,6 +267,7 @@ export default function SignupPage() {
       mx="auto"
       my={{ base: "30px", md: "auto" }}
       p={{ base: "30px", md: "20px" }}
+      paddingBottom={{ base: "0" }}
       position="relative"
     >
       <Modal
@@ -634,24 +635,69 @@ export default function SignupPage() {
             justifyContent={"center"}
             alignItems={"center"}
             height={"80px"}
-            mt={"10px"}
+            mt={"20px"}
           >
             <Button
               type="submit"
               color={"#FFF"}
               bgColor={"#DF9A00"}
               justifySelf={"center"}
-              height={"45px"}
-              width="150px"
+              height={"50px"}
+              width={{ base: "60%", md: "35%" }}
               borderRadius={"lg"}
               fontWeight={"900"}
               onSubmit={handleSubmit}
               _hover={{ bg: "#302e2e", color: "#DF9A00" }}
             >
-              Enviar
+              ENVIAR
             </Button>
           </Flex>
+          <Box
+            display={"flex"}
+            paddingInline={"20px"}
+            paddingTop={"20px"}
+            mt={"10px"}
+            justifyContent={"center"}
+          >
+            <Box
+              width={{ base: 80, md: 120 }}
+              left={{ base: 50, md: 50 }}
+              top={{ base: 0, md: -160 }}
+              display={{ base: "flex", md: "none" }}
+              flexDirection={"column"}
+              gap={"10px"}
+              alignItems={"center"}
+            >
+              <Text fontSize={"12px"}>CERVEJA OFICIAL:</Text>
+              <Image
+                src={"https://shorturl.at/xvMUq"}
+                alt="Logo Black Princess"
+                width={{ base: "100px" }}
+              />
+            </Box>
+            <Box
+              width={{ base: 80, md: 120 }}
+              right={{ base: 0, md: 50 }}
+              top={{ base: 0, md: 600 }}
+              display={{ base: "flex", md: "none" }}
+              flexDirection={"column"}
+              gap={"10px"}
+              alignItems={"center"}
+            >
+              <Text fontSize={"12px"}>PATROCINADOR:</Text>
+              <Image
+                src={"https://shorturl.at/hj0gs"}
+                alt="Logo Ophicina"
+                width={{ base: "100px" }}
+              />
+            </Box>
+          </Box>
+
+          <Text mt={"30px"} fontSize={"12px"} textAlign={"center"}>
+            BEBA COM SABEDORIA
+          </Text>
         </form>
+        <Box></Box>
         <Box
           position={{ base: "fixed" }}
           top={{ base: "55%", md: 200 }}
@@ -662,10 +708,45 @@ export default function SignupPage() {
           overflow="visible"
           pointerEvents="none"
         >
+          <Box
+            width={{ base: 120, md: 120 }}
+            position="absolute"
+            left={{ base: 50, md: 50 }}
+            top={{ base: 250, md: -160 }}
+            display={{ base: "none", md: "flex" }}
+            flexDirection={"column"}
+            gap={"10px"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"12px"}>CERVEJA OFICIAL:</Text>
+            <Image
+              src={"https://shorturl.at/xvMUq"}
+              alt="Logo Black Princess"
+              width={{ base: "100px" }}
+            />
+          </Box>
+          <Box
+            width={{ base: 120, md: 120 }}
+            position="absolute"
+            right={{ base: 50, md: 50 }}
+            top={{ base: 250, md: 600 }}
+            display={{ base: "none", md: "flex" }}
+            flexDirection={"column"}
+            gap={"10px"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"12px"}>PATROCINADOR:</Text>
+            <Image
+              src={"https://shorturl.at/hj0gs"}
+              alt="Logo Ophicina"
+              width={{ base: "100px" }}
+            />
+          </Box>
           <Image
             src={"https://shorturl.at/NNZEz"}
             alt="Instrumentos"
-            width={{ base: 250, md: 350 }}
+            width={{ base: 0, md: 350 }}
+            display={{ base: "none" }}
             position="absolute"
             left={{ base: -70, md: -130 }}
             top={{ base: 170, md: 0 }}
@@ -678,7 +759,8 @@ export default function SignupPage() {
           <Image
             src={"https://shorturl.at/NNZEz"}
             alt="Instrumentos"
-            width={{ base: 250, md: 350 }}
+            width={{ base: 0, md: 350 }}
+            display={{ base: "none" }}
             position="absolute"
             right={{ base: -70, md: -130 }}
             top={{ base: 170, md: 0 }}
