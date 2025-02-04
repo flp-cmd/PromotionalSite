@@ -267,6 +267,7 @@ export default function SignupPage() {
       mx="auto"
       my={{ base: "30px", md: "auto" }}
       p={{ base: "30px", md: "20px" }}
+      paddingBottom={{ base: "0" }}
       position="relative"
     >
       <Modal
@@ -656,6 +657,7 @@ export default function SignupPage() {
             paddingInline={"20px"}
             paddingTop={"20px"}
             mt={"10px"}
+            justifyContent={"center"}
           >
             <Box
               width={{ base: 80, md: 120 }}
@@ -690,6 +692,10 @@ export default function SignupPage() {
               />
             </Box>
           </Box>
+
+          <Text mt={"30px"} fontSize={"12px"} textAlign={"center"}>
+            BEBA COM SABEDORIA
+          </Text>
         </form>
         <Box></Box>
         <Box

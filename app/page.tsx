@@ -267,7 +267,7 @@ const VerificationGate: React.FC = () => {
         </Button>
       </Flex>
       <Box
-        position={{ base: "fixed", md: "absolute" }}
+        position={{ base: "fixed" }}
         top={{ base: "55%", md: 200 }}
         left={0}
         right={0}
@@ -276,6 +276,9 @@ const VerificationGate: React.FC = () => {
         overflow="visible"
         pointerEvents="none"
       >
+        <Text mt={{ base: "370px", md: "640px" }} fontSize={"12px"}>
+          BEBA COM SABEDORIA
+        </Text>
         <Box
           width={{ base: 120, md: 120 }}
           position="absolute"
