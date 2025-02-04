@@ -281,17 +281,19 @@ const VerificationGate: React.FC = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          top={{ base: "30vh", md: "-50vh" }}
-          right={{ base: "60vw", md: "88vw" }}
+          top={{ base: "25vh", md: "-50vh" }}
+          left={{ base: "20vw", md: "3vw" }}
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
         >
-          <Text fontSize="12px" color={"#fff"}>CERVEJA OFICIAL:</Text>
+          <Text fontSize="12px" color={"#fff"}>
+            CERVEJA OFICIAL:
+          </Text>
           <Image
             src="https://shorturl.at/xvMUq"
             alt="Logo Black Princess"
             maxWidth="70px"
-            h="4vh"
+            w={"100%"}
           />
         </Box>
 
@@ -299,12 +301,14 @@ const VerificationGate: React.FC = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          top={{ base: "30vh", md: "35vh" }}
+          top={{ base: "25vh", md: "35vh" }}
           right={{ base: "20vw", md: "3vw" }}
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
         >
-          <Text fontSize="12px" color={"#fff"}>PATROCINADOR:</Text>
+          <Text fontSize="12px" color={"#fff"}>
+            PATROCINADOR:
+          </Text>
           <Image
             src="https://shorturl.at/hj0gs"
             alt="Logo Ophicina"
