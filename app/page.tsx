@@ -131,10 +131,10 @@ const VerificationGate: React.FC = () => {
       borderRadius="md"
       bg="transparent"
       maxWidth={{ base: "100vw", md: "600px" }}
-      minW={"380px"}
+      minW={"360px"}
       mx="auto"
       my={{ md: "auto" }}
-      mt={{ base: "8vh" }}
+      mt={{ base: "0vh" }}
       p={{ base: "50px", md: "20px" }}
       position={{ md: "relative" }}
     >
@@ -271,7 +271,6 @@ const VerificationGate: React.FC = () => {
       <Box
         position="fixed"
         top="55%"
-        left={0}
         right={0}
         w="100vw"
         overflow="visible"
@@ -281,7 +280,7 @@ const VerificationGate: React.FC = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          top={{ base: "25vh", md: "-50vh" }}
+          top={{ base: "28vh", md: "-50vh" }}
           left={{ base: "20vw", md: "3vw" }}
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
@@ -301,7 +300,7 @@ const VerificationGate: React.FC = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          top={{ base: "25vh", md: "35vh" }}
+          top={{ base: "28vh", md: "35vh" }}
           right={{ base: "20vw", md: "3vw" }}
           position={{ base: "absolute", md: "absolute" }}
           gap={"1vh"}
