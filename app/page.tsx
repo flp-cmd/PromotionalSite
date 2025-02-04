@@ -91,14 +91,23 @@ const VerificationGate: React.FC = () => {
   };
 
   async function validarCPF() {
-    if (isChecked) {
+    if (!isChecked) {
+      setErrorMessage(
+        <>
+          Para continuar, é necessário concordar com as <b>regras</b> do
+          sorteio. Marque a opção antes de prosseguir.
+        </>
+      );
+      onOpen();
+      return;
+    }
+
+    try {
       const response = await fetch(`/api/validar-cpf?cpf=${cpf}`, {
         method: "GET",
       });
 
       const data = await response.json();
-
-      console.log(data.message);
 
       if (data.status === "success") {
         handleVerificationSuccess();
@@ -106,15 +115,12 @@ const VerificationGate: React.FC = () => {
         setErrorMessage(<>{data.message}</>);
         onOpen();
       }
-    } else {
+    } catch (error) {
+      console.error("Erro ao validar CPF:", error);
       setErrorMessage(
-        <>
-          {" "}
-          Para continuar, é necessário concordar com as <b>regras</b> do
-          sorteio. Marque a opção antes de prosseguir.
-        </>
+        <>Ocorreu um erro na verificação. Tente novamente mais tarde.</>
       );
-      onOpen()
+      onOpen();
     }
   }
 

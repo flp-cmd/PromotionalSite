@@ -15,8 +15,6 @@ import {
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { createListCollection } from "@chakra-ui/react";
-import { db } from "@/lib/firebase";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
 import {
   Modal,
   ModalOverlay,
@@ -25,7 +23,6 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/modal";
-import { toaster } from "@/components/ui/toaster";
 import Select from "react-select";
 import { ActionMeta, SingleValue } from "react-select";
 import { useRouter } from "next/navigation";
@@ -187,84 +184,13 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const {
-      fullName,
-      birthDate,
-      cellphone,
-      email,
-      address,
-      addressNumber,
-      neighborhood,
-      complement,
-      state,
-      city,
-      postalCode,
-    } = formData;
 
-    if (
-      !fullName ||
-      !birthDate ||
-      !cellphone ||
-      !email ||
-      !address ||
-      !addressNumber ||
-      !neighborhood ||
-      !complement ||
-      !state ||
-      !city ||
-      !postalCode
-    ) {
-      setEmptyForm(true);
-      toast.error("Todos os campos devem ser preenchidos!");
-      return;
-    }
-
-    try {
-      const userData = {
-        ...formData,
-        isParticipating: true,
-        createdAt: Timestamp.now(),
-      };
-
-      await setDoc(doc(db, "clients", cpf), userData);
-
-      sessionStorage.removeItem("validatedCpf");
-
-      onOpenSuccessModal();
-
-      setFormData({
-        fullName: "",
-        birthDate: "",
-        cellphone: "",
-        email: "",
-        address: "",
-        addressNumber: "",
-        neighborhood: "",
-        complement: "",
-        state: "",
-        city: "",
-        postalCode: "",
-      });
-    } catch (error) {
-      console.error("Erro ao salvar:", error);
-      toaster.create({
-        title: "Erro",
-        description: "Ocorreu um erro ao salvar os dados. Tente novamente.",
-        type: "error",
-        duration: 5000,
-      });
-    }
-  };
-
-  const handleSubmit2 = async (e: React.FormEvent) => {
-    e.preventDefault();
-  
     if (Object.values(formData).some((value) => !value)) {
       setEmptyForm(true);
       toast.error("Todos os campos devem ser preenchidos!");
       return;
     }
-  
+
     try {
       const response = await fetch("/api/cadastro", {
         method: "POST",
@@ -273,9 +199,9 @@ export default function SignupPage() {
         },
         body: JSON.stringify({ ...formData, cpf }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         sessionStorage.removeItem("validatedCpf");
         onOpenSuccessModal();
@@ -300,7 +226,6 @@ export default function SignupPage() {
       toast.error("Erro ao cadastrar. Tente novamente.");
     }
   };
-  
 
   useEffect(() => {
     const fetchStates = async () => {
@@ -430,7 +355,7 @@ export default function SignupPage() {
         >
           Preencha todos os campos para concorrer aos prêmios.
         </Heading>
-        <form onSubmit={handleSubmit2}>
+        <form onSubmit={handleSubmit}>
           <Grid templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }} gap="4">
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
