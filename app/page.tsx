@@ -130,11 +130,13 @@ const VerificationGate: React.FC = () => {
       textAlign="center"
       borderRadius="md"
       bg="transparent"
-      maxWidth={{ base: "500px", md: "600px" }}
-      height="650px"
+      maxWidth={{ base: "100vw", md: "600px" }}
+      minW={"380px"}
       mx="auto"
-      my="auto"
+      my={{ md: "auto" }}
+      mt={{ base: "8vh" }}
       p={{ base: "50px", md: "20px" }}
+      position={{ md: "relative" }}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -267,72 +269,87 @@ const VerificationGate: React.FC = () => {
         </Button>
       </Flex>
       <Box
-        position={{ base: "fixed" }}
-        top={{ base: "55%", md: 200 }}
+        position="fixed"
+        top="55%"
         left={0}
         right={0}
-        w={{ md: "100vw" }}
-        h="1px"
+        w="100vw"
         overflow="visible"
         pointerEvents="none"
       >
-        <Text mt={{ base: "370px", md: "640px" }} fontSize={"12px"}>
-          BEBA COM SABEDORIA
-        </Text>
         <Box
-          width={{ base: 120, md: 120 }}
-          position="absolute"
-          left={{ base: 50, md: 50 }}
-          top={{ base: 250, md: -160 }}
-          display={"flex"}
-          flexDirection={"column"}
-          gap={"10px"}
-          alignItems={"center"}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "25vh", md: "-50vh" }}
+          left={{ base: "20vw", md: "3vw" }}
+          position={{ base: "absolute", md: "absolute" }}
+          gap={"1vh"}
         >
-          <Text fontSize={"12px"}>CERVEJA OFICIAL:</Text>
+          <Text fontSize="12px" color={"#fff"}>
+            CERVEJA OFICIAL:
+          </Text>
           <Image
-            src={"https://shorturl.at/xvMUq"}
+            src="https://shorturl.at/xvMUq"
             alt="Logo Black Princess"
-            width={{ base: "100px" }}
+            maxWidth="70px"
+            w={"100%"}
           />
         </Box>
+
         <Box
-          width={{ base: 120, md: 120 }}
-          position="absolute"
-          right={{ base: 50, md: 50 }}
-          top={{ base: 250, md: 600 }}
-          display={"flex"}
-          flexDirection={"column"}
-          gap={"10px"}
-          alignItems={"center"}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "25vh", md: "35vh" }}
+          right={{ base: "20vw", md: "3vw" }}
+          position={{ base: "absolute", md: "absolute" }}
+          gap={"1vh"}
         >
-          <Text fontSize={"12px"}>PATROCINADOR:</Text>
+          <Text fontSize="12px" color={"#fff"}>
+            PATROCINADOR:
+          </Text>
           <Image
-            src={"https://shorturl.at/hj0gs"}
+            src="https://shorturl.at/hj0gs"
             alt="Logo Ophicina"
-            width={{ base: "100px" }}
+            maxWidth="100px"
+            w="100%"
           />
         </Box>
+
+        <Box
+          position={{ base: "relative", md: "relative" }}
+          display={"flex"}
+          justifyContent={"center"}
+        >
+          <Text
+            mt={{ base: "42vh", md: "42vh" }}
+            fontSize="12px"
+            textAlign="center"
+            position={"absolute"}
+            color={"#fff"}
+          >
+            BEBA COM SABEDORIA
+          </Text>
+        </Box>
+
         <Image
-          src={"https://shorturl.at/NNZEz"}
+          src="https://shorturl.at/NNZEz"
           alt="Instrumentos"
-          width={{ base: 0, md: 350 }}
+          width={{ base: "0%", md: "350px" }}
           position="absolute"
-          left={{ base: -70, md: -130 }}
-          top={{ base: 170, md: 0 }}
-          transform={{
-            base: "rotate(-10deg) scale(0.8)",
-            md: "rotate(40deg)",
-          }}
+          left={{ base: "-10%", md: "-130px" }}
+          top="-35vh"
+          transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
         />
 
         <Image
-          src={"https://shorturl.at/NNZEz"}
+          src="https://shorturl.at/NNZEz"
           alt="Instrumentos"
-          width={{ base: 0, md: 350 }}
+          width={{ base: "0%", md: "350px" }}
           position="absolute"
-          right={{ base: -70, md: -130 }}
-          top={{ base: 170, md: 0 }}
+          right={{ base: "-10%", md: "-130px" }}
+          top="-35vh"
           transform={{
             base: "rotate(10deg) scaleX(-1) scale(0.8)",
             md: "rotate(-40deg) scaleX(-1)",
