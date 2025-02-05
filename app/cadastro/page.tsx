@@ -129,44 +129,73 @@ export default function SignupPage() {
 
   const validateFullName = (value: string) => {
     const nameParts = value.trim().split(/\s+/);
-    if (nameParts.length < 2) {
-      setFullNameInvalid(true);
-      toast.error("Por favor, insira seu nome completo (nome e sobrenome)!");
-      return false;
+    if (value != "") {
+      if (nameParts.length < 2) {
+        setFullNameInvalid(true);
+        toast.error("Por favor, insira seu nome completo (nome e sobrenome)!");
+        return false;
+      }
+      setFullNameInvalid(false);
+      return true;
+    } else {
+      return;
     }
-    setFullNameInvalid(false);
-    return true;
   };
 
   const validateCellphone = (value: string) => {
-    if (value.length < 15) {
-      setCellphoneInvalid(true);
-      toast.error("Por favor, digite seu telefone completo!");
-      return false;
+    if (value != "") {
+      if (value.length < 15) {
+        setCellphoneInvalid(true);
+        toast.error("Por favor, digite seu telefone completo!");
+        return false;
+      }
+      setCellphoneInvalid(false);
+      return true;
+    } else {
+      return;
     }
-    setCellphoneInvalid(false);
-    return true;
   };
 
   const validatePostalCode = (value: string) => {
-    if (value.length < 9) {
-      setPostalCodeInvalid(true);
-      toast.error("Por favor, digite seu cep completo!");
-      return false;
+    if (value != "") {
+      if (value.length < 9) {
+        setPostalCodeInvalid(true);
+        toast.error("Por favor, digite seu cep completo!");
+        return false;
+      }
+      setPostalCodeInvalid(false);
+      return true;
+    } else {
+      return;
     }
-    setPostalCodeInvalid(false);
-    return true;
   };
 
   const validateEmail = (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(value) === false) {
-      setEmailInvalid(true);
-      toast.error("Por favor, digite um email válido!");
-      return false;
+
+    if (value != "") {
+      if (emailRegex.test(value) === false) {
+        setEmailInvalid(true);
+        toast.error("Por favor, digite um email válido!");
+        return false;
+      }
+      setEmailInvalid(false);
+      return true;
+    } else {
+      return;
     }
-    setEmailInvalid(false);
-    return true;
+  };
+
+  const validateDate = (value: string) => {
+    if (value != "") {
+      if (value.length < 10) {
+        setBirthDateInvalid(true);
+        toast.error("Por favor, digite uma data de nascimento válida!");
+        return;
+      }
+    } else {
+      return;
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -501,6 +530,7 @@ export default function SignupPage() {
               placeholder="dd/mm/aaaa"
               fontSize={{ md: "1.5vh" }}
               onChange={handleChange}
+              onBlur={(e) => validateDate(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
               bgColor={
