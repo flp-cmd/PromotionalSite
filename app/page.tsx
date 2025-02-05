@@ -125,18 +125,17 @@ const VerificationGate: React.FC = () => {
   }
 
   return (
-    <Box
+    <Flex
+      flexDirection={"column"}
       className="content"
       textAlign="center"
       borderRadius="md"
       bg="transparent"
-      maxWidth={{ base: "100vw", md: "600px" }}
       minW={"360px"}
-      mx="auto"
-      my={{ md: "auto" }}
-      mt={{ base: "0vh" }}
-      p={{ base: "50px", md: "20px" }}
+      pt={{ base: "4vh", md: "15vh" }}
+      mx={"auto"}
       position={{ md: "relative" }}
+      alignItems={"center"}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -189,18 +188,17 @@ const VerificationGate: React.FC = () => {
       </Modal>
       <Image
         src="https://shorturl.at/3qVoS"
-        mb={{ base: "30px", md: "50px" }}
-        width={{ base: "350px", md: "500px" }}
-        mx="auto"
+        mb={{ base: "5vh", md: "3vh" }}
+        width={{ base: "40vh", md: "50vh" }}
         alt="PromotionalLogo"
       />
       <Text
-        mb="4"
         color="white"
-        fontSize={{ base: "18px", md: "25px" }}
+        fontSize={{ base: "2.3vh", md: "2.5vh" }}
         fontWeight={"400"}
-        lineHeight={{ base: "22px", md: "37.5px" }}
+        lineHeight={{ base: "3vh", md: "3vh" }}
         textAlign={"center"}
+        width={{ base: "40vh", md: "60vh" }}
       >
         Se você foi <b>comprador</b> de alguma edição do{" "}
         <b>Um Baita Festival</b>, digite seu CPF e concorra a um{" "}
@@ -208,16 +206,16 @@ const VerificationGate: React.FC = () => {
       </Text>
 
       <Flex
-        gap={{ base: "30px", md: "15px" }}
-        mb="4"
-        mt={"30px"}
+        gap={{ base: "5vh", md: "2vh" }}
+        mt={{ base: "5vh", md: "2vh" }}
         direction={{ base: "column", md: "row" }}
         alignItems={"center"}
+        width={{ md: "70vh" }}
       >
         <Flex
           flexDirection={"column"}
-          width={{ base: "100%", md: "65%" }}
-          mt={"33px"}
+          width={{ base: "100%", md: "100%" }}
+          mt={{ base: "0vh", md: "3vh" }}
         >
           <Input
             value={cpf}
@@ -226,7 +224,7 @@ const VerificationGate: React.FC = () => {
             borderRadius={"10px"}
             color="black"
             bg="white"
-            height={"50px"}
+            height={"7vh"}
             _focus={{
               border: "2px solid #DF9A00",
               bg: "blue.50",
@@ -261,101 +259,96 @@ const VerificationGate: React.FC = () => {
           color="#fff"
           _hover={{ bg: "#302e2e", color: "#DF9A00" }}
           borderRadius={"lg"}
-          width={{ base: "60%", md: "35%" }}
-          height={"50px"}
+          width={{ base: "60%", md: "28vh" }}
+          height={"7vh"}
           fontWeight={"900"}
+          mb={{ md: "8px" }}
         >
           QUERO PARTICIPAR
         </Button>
+        <Flex gap={"50px"}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            top={{ base: "30vh", md: "3vh" }}
+            left={{ base: "20vw", md: "3vw" }}
+            position={{ md: "absolute" }}
+            gap={"1vh"}
+          >
+            <Text fontSize="1.6vh" color={"#fff"}>
+              CERVEJA OFICIAL:
+            </Text>
+            <Image
+              src="https://shorturl.at/xvMUq"
+              alt="Logo Black Princess"
+              maxWidth="70px"
+              w={"100%"}
+              height={"4.5vh"}
+            />
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            top={{ base: "28vh", md: "90vh" }}
+            right={{ base: "20vw", md: "3vw" }}
+            position={{ md: "absolute" }}
+            gap={"1vh"}
+          >
+            <Text fontSize="1.6vh" color={"#fff"}>
+              PATROCINADOR:
+            </Text>
+            <Image
+              src="https://shorturl.at/hj0gs"
+              alt="Logo Ophicina"
+              maxWidth="100px"
+              w="100%"
+              height={"2.5vh"}
+            />
+          </Box>
+        </Flex>
       </Flex>
       <Box
-        position="fixed"
-        top="55%"
-        right={0}
-        w="100vw"
-        overflow="visible"
-        pointerEvents="none"
+        position={{ md: "relative" }}
+        display={"flex"}
+        justifyContent={"center"}
       >
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          top={{ base: "28vh", md: "-50vh" }}
-          left={{ base: "20vw", md: "3vw" }}
-          position={{ base: "absolute", md: "absolute" }}
-          gap={"1vh"}
+        <Text
+          width={{ md: "15vw" }}
+          mt={{ base: "4vh", md: "21vh" }}
+          fontSize="1.6vh"
+          textAlign="center"
+          position={"absolute"}
+          color={"#fff"}
         >
-          <Text fontSize="12px" color={"#fff"}>
-            CERVEJA OFICIAL:
-          </Text>
-          <Image
-            src="https://shorturl.at/xvMUq"
-            alt="Logo Black Princess"
-            maxWidth="70px"
-            w={"100%"}
-          />
-        </Box>
-
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          top={{ base: "28vh", md: "35vh" }}
-          right={{ base: "20vw", md: "3vw" }}
-          position={{ base: "absolute", md: "absolute" }}
-          gap={"1vh"}
-        >
-          <Text fontSize="12px" color={"#fff"}>
-            PATROCINADOR:
-          </Text>
-          <Image
-            src="https://shorturl.at/hj0gs"
-            alt="Logo Ophicina"
-            maxWidth="100px"
-            w="100%"
-          />
-        </Box>
-
-        <Box
-          position={{ base: "relative", md: "relative" }}
-          display={"flex"}
-          justifyContent={"center"}
-        >
-          <Text
-            mt={{ base: "42vh", md: "42vh" }}
-            fontSize="12px"
-            textAlign="center"
-            position={"absolute"}
-            color={"#fff"}
-          >
-            BEBA COM SABEDORIA
-          </Text>
-        </Box>
-
-        <Image
-          src="https://shorturl.at/NNZEz"
-          alt="Instrumentos"
-          width={{ base: "0%", md: "350px" }}
-          position="absolute"
-          left={{ base: "-10%", md: "-130px" }}
-          top="-35vh"
-          transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
-        />
-
-        <Image
-          src="https://shorturl.at/NNZEz"
-          alt="Instrumentos"
-          width={{ base: "0%", md: "350px" }}
-          position="absolute"
-          right={{ base: "-10%", md: "-130px" }}
-          top="-35vh"
-          transform={{
-            base: "rotate(10deg) scaleX(-1) scale(0.8)",
-            md: "rotate(-40deg) scaleX(-1)",
-          }}
-        />
+          BEBA COM SABEDORIA
+        </Text>
       </Box>
-    </Box>
+      <Image
+        src="https://shorturl.at/NNZEz"
+        alt="Instrumentos"
+        width={{ base: "0%", md: "40vh" }}
+        position="absolute"
+        left={{ base: "-10%", md: "-130px" }}
+        top="20vh"
+        transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
+      />
+
+      <Image
+        src="https://shorturl.at/NNZEz"
+        alt="Instrumentos"
+        width={{ base: "0%", md: "40vh" }}
+        position="fixed"
+        right={{ base: "-10%", md: "-130px" }}
+        top="20vh"
+        transform={{
+          base: "rotate(10deg) scaleX(-1) scale(0.8)",
+          md: "rotate(-40deg) scaleX(-1)",
+        }}
+      />
+    </Flex>
   );
 };
 

@@ -262,11 +262,12 @@ export default function SignupPage() {
     <Box
       bgColor={"transparent"}
       border={"0"}
-      maxWidth={{ base: "100%", md: "600px" }}
-      maxHeight={{ base: "100%", md: "650px" }}
+      w={{ md: "50vw" }}
+      maxW={{ md: "600px" }}
+      maxH={{ md: "700px" }}
       mx="auto"
-      my={{ base: "30px", md: "auto" }}
-      p={{ base: "30px", md: "20px" }}
+      pt={{ md: "10vh" }}
+      p={{ base: "3vh" }}
       paddingBottom={{ base: "0" }}
       position="relative"
     >
@@ -357,15 +358,24 @@ export default function SignupPage() {
           Preencha todos os campos para concorrer aos prêmios.
         </Heading>
         <form onSubmit={handleSubmit}>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }} gap="4">
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }}
+            gap="2vh"
+          >
             <GridItem colSpan={{ base: 1, md: 6 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Nome Completo:
               </Text>
               <Input
                 type="text"
                 name="fullName"
                 placeholder="Escreva seu nome aqui"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.fullName}
                 onChange={handleChange}
                 height={"35px"}
@@ -380,7 +390,12 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Data de Nascimento:
               </Text>
               <Input
@@ -388,6 +403,7 @@ export default function SignupPage() {
                 name="birthDate"
                 value={formData.birthDate}
                 placeholder="dd/mm/aaaa"
+                fontSize={{ md: "1.5vh" }}
                 onChange={handleChange}
                 height={"35px"}
                 borderRadius={"lg"}
@@ -401,13 +417,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Telefone:
               </Text>
               <Input
                 type="tel"
                 name="cellphone"
                 placeholder="(XX) XXXXX-XXXX"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.cellphone}
                 onChange={handleChange}
                 height={"35px"}
@@ -422,13 +444,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 6 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Email:
               </Text>
               <Input
                 type="email"
                 name="email"
                 placeholder="Digite seu email aqui"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.email}
                 onChange={handleChange}
                 height={"35px"}
@@ -443,13 +471,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Endereço:
               </Text>
               <Input
                 type="text"
                 name="address"
                 placeholder="Digite seu endereço aqui"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.address}
                 onChange={handleChange}
                 height={"35px"}
@@ -464,13 +498,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Número:
               </Text>
               <Input
                 type="text"
                 name="addressNumber"
                 placeholder="Ex: 123"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.addressNumber}
                 onChange={handleChange}
                 height={"35px"}
@@ -485,13 +525,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Complemento:
               </Text>
               <Input
                 type="text"
                 name="complement"
                 placeholder="Ex: Apt 48"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.complement}
                 onChange={handleChange}
                 height={"35px"}
@@ -506,13 +552,19 @@ export default function SignupPage() {
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              <Text
+                mb="2"
+                color={"#FFDE00"}
+                fontWeight={"700"}
+                fontSize={{ md: "2vh" }}
+              >
                 Bairro:
               </Text>
               <Input
                 type="text"
                 name="neighborhood"
                 placeholder="Escreva seu bairro aqui"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.neighborhood}
                 onChange={handleChange}
                 height={"35px"}
@@ -530,7 +582,7 @@ export default function SignupPage() {
               <Text
                 mb="2"
                 color={"#FFDE00"}
-                fontSize={"16px"}
+                fontSize={{ md: "2vh" }}
                 fontWeight={"700"}
               >
                 Selecione um estado:
@@ -547,7 +599,7 @@ export default function SignupPage() {
                 styles={{
                   placeholder: (provided) => ({
                     ...provided,
-                    fontSize: "14px",
+                    fontSize: "1.5vh",
                     color: "#5a5959",
                     fontWeight: "500",
                   }),
@@ -571,7 +623,7 @@ export default function SignupPage() {
               <Text
                 mb="2"
                 color={"#FFDE00"}
-                fontSize={"16px"}
+                fontSize={{ md: "2vh" }}
                 fontWeight={"700"}
               >
                 Selecione uma cidade:
@@ -588,7 +640,7 @@ export default function SignupPage() {
                 styles={{
                   placeholder: (provided) => ({
                     ...provided,
-                    fontSize: "13px",
+                    fontSize: "1.5vh",
                     color: "#5a5959",
                     fontWeight: "500",
                   }),
@@ -617,6 +669,7 @@ export default function SignupPage() {
                 type="text"
                 name="postalCode"
                 placeholder="Digite seu CEP"
+                fontSize={{ md: "1.5vh" }}
                 value={formData.postalCode}
                 onChange={handleChange}
                 height={"35px"}
@@ -642,7 +695,7 @@ export default function SignupPage() {
               color={"#FFF"}
               bgColor={"#DF9A00"}
               justifySelf={"center"}
-              height={"50px"}
+              height={"7vh"}
               width={{ base: "60%", md: "35%" }}
               borderRadius={"lg"}
               fontWeight={"900"}
@@ -721,7 +774,7 @@ export default function SignupPage() {
             flexDirection="column"
             alignItems="center"
             top={{ base: "30vh", md: "-50vh" }}
-            right={{ base: "60vw", md: "88vw" }}
+            left={{ base: "20vw", md: "3vw" }}
             position={{ base: "absolute", md: "absolute" }}
           >
             <Text fontSize="12px" color={"#fff"}>
@@ -773,7 +826,7 @@ export default function SignupPage() {
           <Image
             src="https://shorturl.at/NNZEz"
             alt="Instrumentos"
-            width={{ base: "0%", md: "350px" }}
+            width={{ base: "0%", md: "40vh" }}
             position="absolute"
             left={{ base: "-10%", md: "-130px" }}
             top="-35vh"
@@ -786,7 +839,7 @@ export default function SignupPage() {
           <Image
             src="https://shorturl.at/NNZEz"
             alt="Instrumentos"
-            width={{ base: "0%", md: "350px" }}
+            width={{ base: "0%", md: "40vh" }}
             position="absolute"
             right={{ base: "-10%", md: "-130px" }}
             top="-35vh"

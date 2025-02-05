@@ -6,14 +6,12 @@ body {
 }
 
 body {
-  display: flex;
   flex-direction: column;
   background-image: url("https://shorturl.at/PBoTv");
   background-repeat: repeat;
   background-color: black;
   font-family: "Roboto", sans-serif;
   position: relative;
-  overflow-x: hidden;
 }
 
 

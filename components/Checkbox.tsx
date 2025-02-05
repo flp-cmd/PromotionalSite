@@ -31,7 +31,7 @@ const Checkbox = ({
   };
 
   return (
-    <Flex flexDirection={"row"} gap={"5px"} mt={"10px"}>
+    <Flex flexDirection={"row"} gap={"5px"} mt={"1.5vh"}>
       <input
         type="checkbox"
         checked={isChecked}
