@@ -1,4 +1,4 @@
-import { db } from "@/lib/firebase"; 
+import { db } from "@/lib/firebase";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -30,18 +30,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       !body.address ||
       !body.addressNumber ||
       !body.neighborhood ||
-      !body.complement ||
       !body.state ||
       !body.city ||
       !body.postalCode
     ) {
       return NextResponse.json(
-        { status: "error", message: "Todos os campos são obrigatórios." },
+        { status: "error", message: "Campos obrigatórios faltando!" },
         { status: 400 }
       );
     }
 
-    const sanitizedCpf = body.cpf.replace(/\D/g, ""); 
+    const sanitizedCpf = body.cpf.replace(/\D/g, "");
 
     await setDoc(doc(db, "clientes", sanitizedCpf), {
       ...body,

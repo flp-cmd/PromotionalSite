@@ -28,6 +28,7 @@ const VerificationGate: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<React.ReactNode>(null);
   const { open, onOpen, onClose } = useDisclosure();
   const [isChecked, setIsChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const sanitizeCpf = (cpf: string) => {
     return cpf.replace(/\D/g, "");
@@ -91,6 +92,7 @@ const VerificationGate: React.FC = () => {
   };
 
   async function validarCPF() {
+    setIsLoading(true);
     if (!isChecked) {
       setErrorMessage(
         <>
@@ -99,6 +101,7 @@ const VerificationGate: React.FC = () => {
         </>
       );
       onOpen();
+      setIsLoading(false);
       return;
     }
 
@@ -121,6 +124,8 @@ const VerificationGate: React.FC = () => {
         <>Ocorreu um erro na verificação. Tente novamente mais tarde.</>
       );
       onOpen();
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -244,6 +249,7 @@ const VerificationGate: React.FC = () => {
             height={"7vh"}
             fontWeight={"900"}
             mb={{ md: "8px" }}
+            disabled={isLoading}
           >
             QUERO PARTICIPAR
           </Button>

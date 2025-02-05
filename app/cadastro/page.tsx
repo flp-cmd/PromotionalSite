@@ -58,6 +58,7 @@ export default function SignupPage() {
   const [cpf, setCpf] = useState("");
   const [emptyForm, setEmptyForm] = useState(false);
   const [states, setStates] = useState<ListItem[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [cities, setCities] = useState(
     createListCollection<ListItem>({ items: [] })
@@ -183,11 +184,13 @@ export default function SignupPage() {
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (Object.values(formData).some((value) => !value)) {
       setEmptyForm(true);
-      toast.error("Todos os campos devem ser preenchidos!");
+      toast.error("Campos obrigatórios faltando!");
+      setIsLoading(false);
       return;
     }
 
@@ -224,6 +227,8 @@ export default function SignupPage() {
     } catch (error) {
       console.error("Erro ao salvar:", error);
       toast.error("Erro ao cadastrar. Tente novamente.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -263,7 +268,7 @@ export default function SignupPage() {
       bgColor={"transparent"}
       border={"0"}
       w={{ md: "71vw" }}
-      maxW={{ md: "600px" }}
+      maxW={{ md: "800px" }}
       maxH={{ md: "700px" }}
       mx="auto"
       pt={{ md: "10vh" }}
@@ -374,7 +379,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.fullName}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               color={"#000"}
               bgColor={"#FFF"}
@@ -401,7 +406,7 @@ export default function SignupPage() {
               placeholder="dd/mm/aaaa"
               fontSize={{ md: "1.5vh" }}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -428,7 +433,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.cellphone}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -455,7 +460,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.email}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -482,7 +487,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.address}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -509,7 +514,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.addressNumber}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -536,15 +541,10 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.complement}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
-              border={
-                emptyForm && formData.complement === ""
-                  ? "2px solid red"
-                  : "1px solid transparent"
-              }
             />
           </GridItem>
           <GridItem colSpan={{ base: 1, md: 4 }}>
@@ -563,7 +563,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.neighborhood}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -601,7 +601,7 @@ export default function SignupPage() {
                 }),
                 control: (provided) => ({
                   ...provided,
-                  height: "5px",
+                  height: "5vh",
                   border:
                     emptyForm && !formData.state
                       ? "2px solid red"
@@ -642,7 +642,7 @@ export default function SignupPage() {
                 }),
                 control: (provided) => ({
                   ...provided,
-                  height: "35px",
+                  height: "5vh",
                   border:
                     emptyForm && !formData.city
                       ? "2px solid red"
@@ -668,7 +668,7 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.postalCode}
               onChange={handleChange}
-              height={"35px"}
+              height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
@@ -697,6 +697,7 @@ export default function SignupPage() {
             fontWeight={"900"}
             onSubmit={handleSubmit}
             _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+            disabled={isLoading}
           >
             ENVIAR
           </Button>
