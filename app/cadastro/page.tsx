@@ -362,6 +362,7 @@ export default function SignupPage() {
       p={{ base: "3vh" }}
       paddingBottom={{ base: "0" }}
       position="relative"
+      zIndex={0}
     >
       <Modal
         isOpen={isSuccessModalOpen}
@@ -470,7 +471,12 @@ export default function SignupPage() {
               height={"5vh"}
               borderRadius={"lg"}
               color={"#000"}
-              bgColor={"#FFF"}
+              bgColor={
+                (emptyForm && formData.fullName) === "" ||
+                fullNameInvalid === true
+                  ? "#f3a3a3"
+                  : "#fff"
+              }
               border={
                 (emptyForm && formData.fullName) === "" ||
                 fullNameInvalid === true
@@ -486,7 +492,7 @@ export default function SignupPage() {
               fontWeight={"700"}
               fontSize={{ md: "2vh" }}
             >
-              Data de Nascimento:
+              Nascimento:
             </Text>
             <Input
               type="text"
@@ -497,7 +503,12 @@ export default function SignupPage() {
               onChange={handleChange}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                (emptyForm && formData.birthDate) === "" ||
+                birthDateInvalid === true
+                  ? "#f3a3a3"
+                  : "#fff"
+              }
               color={"#000"}
               border={
                 (emptyForm && formData.birthDate) === "" ||
@@ -526,7 +537,12 @@ export default function SignupPage() {
               onBlur={(e) => validateCellphone(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                (emptyForm && formData.cellphone === "") ||
+                cellphoneInvalid === true
+                  ? "#f3a3a3"
+                  : "#fff"
+              }
               color={"#000"}
               border={
                 (emptyForm && formData.cellphone === "") ||
@@ -555,7 +571,11 @@ export default function SignupPage() {
               onBlur={(e) => validateEmail(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                (emptyForm && formData.email === "") || emailInvalid === true
+                  ? "#f3a3a3"
+                  : "#fff"
+              }
               color={"#000"}
               border={
                 (emptyForm && formData.email === "") || emailInvalid === true
@@ -582,7 +602,9 @@ export default function SignupPage() {
               onChange={handleChange}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                emptyForm && formData.address === "" ? "#f3a3a3" : "#fff"
+              }
               color={"#000"}
               border={
                 emptyForm && formData.address === ""
@@ -609,7 +631,9 @@ export default function SignupPage() {
               onChange={handleChange}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                emptyForm && formData.addressNumber === "" ? "#f3a3a3" : "#fff"
+              }
               color={"#000"}
               border={
                 emptyForm && formData.addressNumber === ""
@@ -658,7 +682,9 @@ export default function SignupPage() {
               onChange={handleChange}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                emptyForm && formData.neighborhood === "" ? "#f3a3a3" : "#fff"
+              }
               color={"#000"}
               border={
                 emptyForm && formData.neighborhood === ""
@@ -674,7 +700,7 @@ export default function SignupPage() {
               fontSize={{ md: "2vh" }}
               fontWeight={"700"}
             >
-              Selecione um estado:
+              Estado:
             </Text>
             <Select
               name="state"
@@ -695,6 +721,8 @@ export default function SignupPage() {
                 control: (provided) => ({
                   ...provided,
                   height: "5vh",
+                  backgroundColor:
+                    emptyForm && !formData.state ? "#f3a3a3" : "#fff",
                   border:
                     emptyForm && !formData.state
                       ? "2px solid red"
@@ -715,7 +743,7 @@ export default function SignupPage() {
               fontSize={{ md: "2vh" }}
               fontWeight={"700"}
             >
-              Selecione uma cidade:
+              Cidade:
             </Text>
             <Select
               name="city"
@@ -736,6 +764,8 @@ export default function SignupPage() {
                 control: (provided) => ({
                   ...provided,
                   height: "5vh",
+                  backgroundColor:
+                    emptyForm && !formData.city ? "#f3a3a3" : "#fff",
                   border:
                     emptyForm && !formData.city
                       ? "2px solid red"
@@ -764,7 +794,12 @@ export default function SignupPage() {
               onBlur={(e) => validatePostalCode(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={"#FFF"}
+              bgColor={
+                (emptyForm && formData.postalCode === "") ||
+                postalCodeInvalid === true
+                  ? "#f3a3a3"
+                  : "#fff"
+              }
               color={"#000"}
               border={
                 (emptyForm && formData.postalCode === "") ||
@@ -860,6 +895,7 @@ export default function SignupPage() {
         w="100vw"
         overflow="visible"
         pointerEvents="none"
+        zIndex={-1}
       >
         <Box
           display={{ base: "none", md: "flex" }}

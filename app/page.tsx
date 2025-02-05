@@ -153,9 +153,11 @@ const VerificationGate: React.FC = () => {
       bg="transparent"
       minW={"360px"}
       pt={{ base: "4vh", md: "15vh" }}
+      paddingInline={{ base: "10vw" }}
       mx={"auto"}
       position={{ md: "relative" }}
       alignItems={"center"}
+      zIndex={0}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -218,7 +220,7 @@ const VerificationGate: React.FC = () => {
         fontWeight={"400"}
         lineHeight={{ base: "3vh", md: "3vh" }}
         textAlign={"center"}
-        width={{ base: "40vh", md: "60vh" }}
+        width={{ base: "30vh", md: "60vh" }}
       >
         Se você foi <b>comprador</b> de alguma edição do{" "}
         <b>Um Baita Festival</b>, digite seu CPF e concorra a um{" "}
@@ -266,7 +268,7 @@ const VerificationGate: React.FC = () => {
             mb={{ md: "8px" }}
             disabled={isLoading}
           >
-            QUERO PARTICIPAR
+            {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
           </Button>
         </Flex>
 
@@ -462,6 +464,7 @@ const VerificationGate: React.FC = () => {
         left={{ base: "-10%", md: "-130px" }}
         top="20vh"
         transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
+        zIndex={-1}
       />
 
       <Image
@@ -475,6 +478,7 @@ const VerificationGate: React.FC = () => {
           base: "rotate(10deg) scaleX(-1) scale(0.8)",
           md: "rotate(-40deg) scaleX(-1)",
         }}
+        zIndex={-1}
       />
     </Flex>
   );
