@@ -21,7 +21,6 @@ import {
   ModalBody,
 } from "@chakra-ui/modal";
 import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
 
 const VerificationGate: React.FC = () => {
   const router = useRouter();

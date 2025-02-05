@@ -260,9 +260,11 @@ export default function SignupPage() {
     setIsLoading(true);
     e.preventDefault();
 
-    const { complement, ...requiredFields } = formData;
+    const requiredFields = Object.entries(formData).filter(
+      ([key, value]) => key !== "complement" && value
+    );
 
-    if (Object.values(requiredFields).some((value) => !value)) {
+    if (requiredFields.length !== Object.keys(formData).length - 1) {
       setEmptyForm(true);
       toast.error("Campos obrigatórios faltando!");
       setIsLoading(false);
