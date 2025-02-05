@@ -65,6 +65,11 @@ export default function SignupPage() {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [fullNameInvalid, setFullNameInvalid] = useState(false);
+  const [birthDateInvalid, setBirthDateInvalid] = useState(false);
+  const [cellphoneInvalid, setCellphoneInvalid] = useState(false);
+  const [emailInvalid, setEmailInvalid] = useState(false);
+  const [postalCodeInvalid, setPostalCodeInvalid] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     birthDate: "",
@@ -122,6 +127,48 @@ export default function SignupPage() {
     }
   };
 
+  const validateFullName = (value: string) => {
+    const nameParts = value.trim().split(/\s+/);
+    if (nameParts.length < 2) {
+      setFullNameInvalid(true);
+      toast.error("Por favor, insira seu nome completo (nome e sobrenome)!");
+      return false;
+    }
+    setFullNameInvalid(false);
+    return true;
+  };
+
+  const validateCellphone = (value: string) => {
+    if (value.length < 15) {
+      setCellphoneInvalid(true);
+      toast.error("Por favor, digite seu telefone completo!");
+      return false;
+    }
+    setCellphoneInvalid(false);
+    return true;
+  };
+
+  const validatePostalCode = (value: string) => {
+    if (value.length < 9) {
+      setPostalCodeInvalid(true);
+      toast.error("Por favor, digite seu cep completo!");
+      return false;
+    }
+    setPostalCodeInvalid(false);
+    return true;
+  };
+
+  const validateEmail = (value: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(value) === false) {
+      setEmailInvalid(true);
+      toast.error("Por favor, digite um email válido!");
+      return false;
+    }
+    setEmailInvalid(false);
+    return true;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -134,6 +181,32 @@ export default function SignupPage() {
         .replace(/(\d{2})(\d{2})?(\d{4})?/, (_, d, m, y) => {
           return [d, m, y].filter(Boolean).join("/");
         });
+
+      // Valid BirthDate Verification
+      if (formattedValue.length === 10) {
+        const [day, month, year] = formattedValue.split("/").map(Number);
+        const birthDate = new Date(year, month - 1, day);
+        const today = new Date();
+
+        // Age Calculation
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+
+        if (
+          birthDate.getFullYear() !== year ||
+          birthDate.getMonth() + 1 !== month ||
+          birthDate.getDate() !== day ||
+          birthDate > today ||
+          age < 12 ||
+          (age === 12 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0))) // OLDER THAN 12
+        ) {
+          setBirthDateInvalid(true);
+          toast.error("Data de nascimento inválida!");
+        } else {
+          setBirthDateInvalid(false);
+        }
+      }
     }
 
     if (name === "addressNumber") {
@@ -187,9 +260,21 @@ export default function SignupPage() {
     setIsLoading(true);
     e.preventDefault();
 
-    if (Object.values(formData).some((value) => !value)) {
+    const { complement, ...requiredFields } = formData;
+
+    if (Object.values(requiredFields).some((value) => !value)) {
       setEmptyForm(true);
       toast.error("Campos obrigatórios faltando!");
+      setIsLoading(false);
+      return;
+    } else if (
+      fullNameInvalid ||
+      birthDateInvalid ||
+      cellphoneInvalid ||
+      emailInvalid ||
+      postalCodeInvalid
+    ) {
+      toast.error("Complete corretamente os campos!");
       setIsLoading(false);
       return;
     }
@@ -379,12 +464,14 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.fullName}
               onChange={handleChange}
+              onBlur={(e) => validateFullName(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
               color={"#000"}
               bgColor={"#FFF"}
               border={
-                emptyForm && formData.fullName === ""
+                (emptyForm && formData.fullName) === "" ||
+                fullNameInvalid === true
                   ? "2px solid red"
                   : "1px solid transparent"
               }
@@ -411,7 +498,8 @@ export default function SignupPage() {
               bgColor={"#FFF"}
               color={"#000"}
               border={
-                emptyForm && formData.birthDate === ""
+                (emptyForm && formData.birthDate) === "" ||
+                birthDateInvalid === true
                   ? "2px solid red"
                   : "1px solid transparent"
               }
@@ -433,12 +521,14 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.cellphone}
               onChange={handleChange}
+              onBlur={(e) => validateCellphone(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
               border={
-                emptyForm && formData.cellphone === ""
+                (emptyForm && formData.cellphone === "") ||
+                cellphoneInvalid === true
                   ? "2px solid red"
                   : "1px solid transparent"
               }
@@ -454,18 +544,19 @@ export default function SignupPage() {
               Email:
             </Text>
             <Input
-              type="email"
+              type="text"
               name="email"
               placeholder="Digite seu email aqui"
               fontSize={{ md: "1.5vh" }}
               value={formData.email}
               onChange={handleChange}
+              onBlur={(e) => validateEmail(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
               border={
-                emptyForm && formData.email === ""
+                (emptyForm && formData.email === "") || emailInvalid === true
                   ? "2px solid red"
                   : "1px solid transparent"
               }
@@ -668,12 +759,14 @@ export default function SignupPage() {
               fontSize={{ md: "1.5vh" }}
               value={formData.postalCode}
               onChange={handleChange}
+              onBlur={(e) => validatePostalCode(e.target.value)}
               height={"5vh"}
               borderRadius={"lg"}
               bgColor={"#FFF"}
               color={"#000"}
               border={
-                emptyForm && formData.postalCode === ""
+                (emptyForm && formData.postalCode === "") ||
+                postalCodeInvalid === true
                   ? "2px solid red"
                   : "1px solid transparent"
               }

@@ -21,6 +21,7 @@ import {
   ModalBody,
 } from "@chakra-ui/modal";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 const VerificationGate: React.FC = () => {
   const router = useRouter();
@@ -91,6 +92,16 @@ const VerificationGate: React.FC = () => {
     router.push("/cadastro");
   };
 
+  const validateCpfCnpj = (value: string) => {
+    const onlyNumbers = value.replace(/\D/g, "");
+
+    if (![11, 14].includes(onlyNumbers.length)) {
+      return false;
+    }
+
+    return true;
+  };
+
   async function validarCPF() {
     setIsLoading(true);
     if (!isChecked) {
@@ -100,6 +111,11 @@ const VerificationGate: React.FC = () => {
           sorteio. Marque a opção antes de prosseguir.
         </>
       );
+      onOpen();
+      setIsLoading(false);
+      return;
+    } else if (!validateCpfCnpj(cpf)) {
+      setErrorMessage("CPF/CNPJ inválido. Verifique o número digitado.");
       onOpen();
       setIsLoading(false);
       return;
@@ -428,7 +444,6 @@ const VerificationGate: React.FC = () => {
         </Box>
       </Flex>
       <Text
-        //mt={{ base: "4vh", md: "21vh" }}
         fontSize="1.6vh"
         textAlign="center"
         position={"absolute"}
