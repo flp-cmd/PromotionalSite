@@ -136,6 +136,7 @@ const VerificationGate: React.FC = () => {
       mx={"auto"}
       position={{ md: "relative" }}
       alignItems={"center"}
+      zIndex={2}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -206,13 +207,79 @@ const VerificationGate: React.FC = () => {
       </Text>
 
       <Flex
+        mt={{ base: "5vh", md: "2vh" }}
+        direction={{ base: "column", md: "column" }}
+        alignItems={"flex-start"}
+        width={{ md: "70vh" }}
+        display={{ base: "none", md: "flex" }}
+        gap={"0vh"}
+      >
+        <Flex
+          flexDirection={"row"}
+          width={{ base: "100%", md: "100%" }}
+          mt={{ base: "0vh", md: "3vh" }}
+          gap={"3vh"}
+        >
+          <Input
+            value={cpf}
+            onChange={handleCpfChange}
+            placeholder="Digite seu cpf ou cnpj aqui"
+            borderRadius={"10px"}
+            color="black"
+            bg="white"
+            height={"7vh"}
+            _focus={{
+              border: "2px solid #DF9A00",
+              bg: "blue.50",
+              transform: "scale(1.02)",
+              transition: "all 0.2s",
+            }}
+          />
+          <Button
+            onClick={validarCPF}
+            bg="#DF9A00"
+            color="#fff"
+            _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+            borderRadius={"lg"}
+            width={{ base: "60%", md: "28vh" }}
+            height={"7vh"}
+            fontWeight={"900"}
+            mb={{ md: "8px" }}
+          >
+            QUERO PARTICIPAR
+          </Button>
+        </Flex>
+
+        <Checkbox
+          checked={isChecked}
+          onChange={(checked) => setIsChecked(checked)}
+          label={
+            <>
+              Concordo com as{" "}
+              <Link
+                href="/regras-sorteio.pdf"
+                color="#7E92FF"
+                textDecoration={"underline"}
+                target="_blank"
+                _focus={{ outline: "none" }}
+              >
+                regras
+              </Link>{" "}
+              do sorteio
+            </>
+          }
+        />
+      </Flex>
+
+      <Flex
         gap={{ base: "5vh", md: "2vh" }}
         mt={{ base: "5vh", md: "2vh" }}
         direction={{ base: "column", md: "row" }}
         alignItems={"center"}
         width={{ md: "70vh" }}
+        display={{ base: "flex", md: "none" }}
       >
-        <Flex
+        <Flex //MOBILE FLEX
           flexDirection={"column"}
           width={{ base: "100%", md: "100%" }}
           mt={{ base: "0vh", md: "3vh" }}
@@ -266,7 +333,7 @@ const VerificationGate: React.FC = () => {
         >
           QUERO PARTICIPAR
         </Button>
-        <Flex gap={"50px"}>
+        <Flex gap={"50px"} display={{ base: "flex", md: "none" }}>
           <Box
             display="flex"
             flexDirection="column"
@@ -282,7 +349,7 @@ const VerificationGate: React.FC = () => {
             <Image
               src="https://shorturl.at/xvMUq"
               alt="Logo Black Princess"
-              maxWidth="70px"
+              maxW={{ base: "9vh" }}
               w={"100%"}
               height={"4.5vh"}
             />
@@ -303,14 +370,58 @@ const VerificationGate: React.FC = () => {
             <Image
               src="https://shorturl.at/hj0gs"
               alt="Logo Ophicina"
-              maxWidth="100px"
+              maxW={{ base: "14vh" }}
               w="100%"
               height={"2.5vh"}
             />
           </Box>
         </Flex>
       </Flex>
+      <Flex gap={"50px"} display={{ base: "none", md: "flex" }}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "30vh", md: "3vh" }}
+          left={{ base: "20vw", md: "3vw" }}
+          position={{ md: "absolute" }}
+          gap={"1vh"}
+          width={{ md: "15vh" }}
+        >
+          <Text fontSize="1.6vh" color={"#fff"}>
+            CERVEJA OFICIAL:
+          </Text>
+          <Image
+            src="https://shorturl.at/xvMUq"
+            alt="Logo Black Princess"
+            w={"100%"}
+            height={"5vh"}
+            maxW={{ md: "10vh" }}
+          />
+        </Box>
 
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "28vh", md: "90vh" }}
+          right={{ base: "20vw", md: "3vw" }}
+          position={{ md: "absolute" }}
+          gap={"1vh"}
+          width={{ md: "15vh" }}
+        >
+          <Text fontSize="1.6vh" color={"#fff"}>
+            PATROCINADOR:
+          </Text>
+          <Image
+            src="https://shorturl.at/hj0gs"
+            alt="Logo Ophicina"
+            maxW={{ md: "20vh" }}
+            w="100%"
+            height={{ base: "2.5vh", md: "3vh" }}
+          />
+        </Box>
+      </Flex>
       <Text
         //mt={{ base: "4vh", md: "21vh" }}
         fontSize="1.6vh"
@@ -332,6 +443,7 @@ const VerificationGate: React.FC = () => {
         left={{ base: "-10%", md: "-130px" }}
         top="20vh"
         transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
+        zIndex={-1}
       />
 
       <Image
@@ -345,6 +457,7 @@ const VerificationGate: React.FC = () => {
           base: "rotate(10deg) scaleX(-1) scale(0.8)",
           md: "rotate(-40deg) scaleX(-1)",
         }}
+        zIndex={-1}
       />
     </Flex>
   );

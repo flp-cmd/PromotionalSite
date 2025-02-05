@@ -31,7 +31,7 @@ const Checkbox = ({
   };
 
   return (
-    <Flex flexDirection={"row"} gap={"5px"} mt={"1.5vh"}>
+    <Flex flexDirection={"row"} gap={"1vh"} mt={"1.5vh"} alignItems={"center"}>
       <input
         type="checkbox"
         checked={isChecked}
@@ -60,7 +60,11 @@ const Checkbox = ({
         )}
       </Box>
 
-      {label && <Text color="white">{label}</Text>}
+      {label && (
+        <Text color="white" fontSize={{ md: "2vh" }}>
+          {label}
+        </Text>
+      )}
     </Flex>
   );
 };

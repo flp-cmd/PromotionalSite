@@ -262,7 +262,7 @@ export default function SignupPage() {
     <Box
       bgColor={"transparent"}
       border={"0"}
-      w={{ md: "50vw" }}
+      w={{ md: "71vw" }}
       maxW={{ md: "600px" }}
       maxH={{ md: "700px" }}
       mx="auto"
@@ -270,6 +270,7 @@ export default function SignupPage() {
       p={{ base: "3vh" }}
       paddingBottom={{ base: "0" }}
       position="relative"
+      zIndex={2}
     >
       <Modal
         isOpen={isSuccessModalOpen}
@@ -345,511 +346,512 @@ export default function SignupPage() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <>
-        <Heading
-          as="h1"
-          size="lg"
-          textAlign="center"
-          mt="-5"
-          mb="10"
-          color={"#FFF"}
-          textDecoration={"underline"}
-        >
-          Preencha todos os campos para concorrer aos prêmios.
-        </Heading>
-        <form onSubmit={handleSubmit}>
-          <Grid
-            templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }}
-            gap="2vh"
-          >
-            <GridItem colSpan={{ base: 1, md: 6 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Nome Completo:
-              </Text>
-              <Input
-                type="text"
-                name="fullName"
-                placeholder="Escreva seu nome aqui"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.fullName}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                color={"#000"}
-                bgColor={"#FFF"}
-                border={
-                  emptyForm && formData.fullName === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Data de Nascimento:
-              </Text>
-              <Input
-                type="text"
-                name="birthDate"
-                value={formData.birthDate}
-                placeholder="dd/mm/aaaa"
-                fontSize={{ md: "1.5vh" }}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.birthDate === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Telefone:
-              </Text>
-              <Input
-                type="tel"
-                name="cellphone"
-                placeholder="(XX) XXXXX-XXXX"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.cellphone}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.cellphone === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 6 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Email:
-              </Text>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Digite seu email aqui"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.email}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.email === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Endereço:
-              </Text>
-              <Input
-                type="text"
-                name="address"
-                placeholder="Digite seu endereço aqui"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.address}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.address === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Número:
-              </Text>
-              <Input
-                type="text"
-                name="addressNumber"
-                placeholder="Ex: 123"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.addressNumber}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.addressNumber === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Complemento:
-              </Text>
-              <Input
-                type="text"
-                name="complement"
-                placeholder="Ex: Apt 48"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.complement}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.complement === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontWeight={"700"}
-                fontSize={{ md: "2vh" }}
-              >
-                Bairro:
-              </Text>
-              <Input
-                type="text"
-                name="neighborhood"
-                placeholder="Escreva seu bairro aqui"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.neighborhood}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.neighborhood === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontSize={{ md: "2vh" }}
-                fontWeight={"700"}
-              >
-                Selecione um estado:
-              </Text>
-              <Select
-                name="state"
-                isSearchable
-                options={Array.isArray(states) ? states : []}
-                placeholder="Selecione um estado"
-                onChange={(option, meta) =>
-                  handleSelectChange(option, { ...meta, name: "state" })
-                }
-                menuPosition="fixed"
-                styles={{
-                  placeholder: (provided) => ({
-                    ...provided,
-                    fontSize: "1.5vh",
-                    color: "#5a5959",
-                    fontWeight: "500",
-                  }),
-                  control: (provided) => ({
-                    ...provided,
-                    height: "5px",
-                    border:
-                      emptyForm && !formData.state
-                        ? "2px solid red"
-                        : "1px solid transparent",
-                  }),
-                  option: (provided) => ({
-                    ...provided,
-                    color: "black",
-                    padding: 10,
-                  }),
-                }}
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text
-                mb="2"
-                color={"#FFDE00"}
-                fontSize={{ md: "2vh" }}
-                fontWeight={"700"}
-              >
-                Selecione uma cidade:
-              </Text>
-              <Select
-                name="city"
-                isSearchable
-                options={Array.isArray(cities.items) ? cities.items : []}
-                placeholder="Selecione uma cidade"
-                onChange={(option, meta) =>
-                  handleSelectChange(option, { ...meta, name: "city" })
-                }
-                menuPosition="fixed"
-                styles={{
-                  placeholder: (provided) => ({
-                    ...provided,
-                    fontSize: "1.5vh",
-                    color: "#5a5959",
-                    fontWeight: "500",
-                  }),
-                  control: (provided) => ({
-                    ...provided,
-                    height: "35px",
-                    border:
-                      emptyForm && !formData.city
-                        ? "2px solid red"
-                        : "1px solid transparent",
-                  }),
-                  option: (provided) => ({
-                    ...provided,
-                    color: "black",
-                    padding: 10,
-                  }),
-                }}
-                isDisabled={!formData.state}
-              />
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
-                CEP:
-              </Text>
-              <Input
-                type="text"
-                name="postalCode"
-                placeholder="Digite seu CEP"
-                fontSize={{ md: "1.5vh" }}
-                value={formData.postalCode}
-                onChange={handleChange}
-                height={"35px"}
-                borderRadius={"lg"}
-                bgColor={"#FFF"}
-                color={"#000"}
-                border={
-                  emptyForm && formData.postalCode === ""
-                    ? "2px solid red"
-                    : "1px solid transparent"
-                }
-              />
-            </GridItem>
-          </Grid>
-          <Flex
-            justifyContent={"center"}
-            alignItems={"center"}
-            height={"80px"}
-            mt={"20px"}
-          >
-            <Button
-              type="submit"
-              color={"#FFF"}
-              bgColor={"#DF9A00"}
-              justifySelf={"center"}
-              height={"7vh"}
-              width={{ base: "60%", md: "35%" }}
+      <Heading
+        as="h1"
+        size="lg"
+        textAlign="center"
+        mt="-5"
+        mb="10"
+        color={"#FFF"}
+        textDecoration={"underline"}
+      >
+        Preencha todos os campos para concorrer aos prêmios.
+      </Heading>
+      <form onSubmit={handleSubmit}>
+        <Grid templateColumns={{ base: "1fr", md: "repeat(6, 1fr)" }} gap="2vh">
+          <GridItem colSpan={{ base: 1, md: 6 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Nome Completo:
+            </Text>
+            <Input
+              type="text"
+              name="fullName"
+              placeholder="Escreva seu nome aqui"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.fullName}
+              onChange={handleChange}
+              height={"35px"}
               borderRadius={"lg"}
-              fontWeight={"900"}
-              onSubmit={handleSubmit}
-              _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+              color={"#000"}
+              bgColor={"#FFF"}
+              border={
+                emptyForm && formData.fullName === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
             >
-              ENVIAR
-            </Button>
-          </Flex>
-          <Box
-            display={"flex"}
-            paddingInline={"20px"}
-            paddingTop={"20px"}
-            mt={"10px"}
-            justifyContent={"center"}
+              Data de Nascimento:
+            </Text>
+            <Input
+              type="text"
+              name="birthDate"
+              value={formData.birthDate}
+              placeholder="dd/mm/aaaa"
+              fontSize={{ md: "1.5vh" }}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.birthDate === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 4 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Telefone:
+            </Text>
+            <Input
+              type="tel"
+              name="cellphone"
+              placeholder="(XX) XXXXX-XXXX"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.cellphone}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.cellphone === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 6 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Email:
+            </Text>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Digite seu email aqui"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.email}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.email === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 4 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Endereço:
+            </Text>
+            <Input
+              type="text"
+              name="address"
+              placeholder="Digite seu endereço aqui"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.address}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.address === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Número:
+            </Text>
+            <Input
+              type="text"
+              name="addressNumber"
+              placeholder="Ex: 123"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.addressNumber}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.addressNumber === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Complemento:
+            </Text>
+            <Input
+              type="text"
+              name="complement"
+              placeholder="Ex: Apt 48"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.complement}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.complement === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 4 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontWeight={"700"}
+              fontSize={{ md: "2vh" }}
+            >
+              Bairro:
+            </Text>
+            <Input
+              type="text"
+              name="neighborhood"
+              placeholder="Escreva seu bairro aqui"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.neighborhood}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.neighborhood === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontSize={{ md: "2vh" }}
+              fontWeight={"700"}
+            >
+              Selecione um estado:
+            </Text>
+            <Select
+              name="state"
+              isSearchable
+              options={Array.isArray(states) ? states : []}
+              placeholder="Selecione um estado"
+              onChange={(option, meta) =>
+                handleSelectChange(option, { ...meta, name: "state" })
+              }
+              menuPosition="fixed"
+              styles={{
+                placeholder: (provided) => ({
+                  ...provided,
+                  fontSize: "1.5vh",
+                  color: "#5a5959",
+                  fontWeight: "500",
+                }),
+                control: (provided) => ({
+                  ...provided,
+                  height: "5px",
+                  border:
+                    emptyForm && !formData.state
+                      ? "2px solid red"
+                      : "1px solid transparent",
+                }),
+                option: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  padding: 10,
+                }),
+              }}
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text
+              mb="2"
+              color={"#FFDE00"}
+              fontSize={{ md: "2vh" }}
+              fontWeight={"700"}
+            >
+              Selecione uma cidade:
+            </Text>
+            <Select
+              name="city"
+              isSearchable
+              options={Array.isArray(cities.items) ? cities.items : []}
+              placeholder="Selecione uma cidade"
+              onChange={(option, meta) =>
+                handleSelectChange(option, { ...meta, name: "city" })
+              }
+              menuPosition="fixed"
+              styles={{
+                placeholder: (provided) => ({
+                  ...provided,
+                  fontSize: "1.5vh",
+                  color: "#5a5959",
+                  fontWeight: "500",
+                }),
+                control: (provided) => ({
+                  ...provided,
+                  height: "35px",
+                  border:
+                    emptyForm && !formData.city
+                      ? "2px solid red"
+                      : "1px solid transparent",
+                }),
+                option: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  padding: 10,
+                }),
+              }}
+              isDisabled={!formData.state}
+            />
+          </GridItem>
+          <GridItem colSpan={{ base: 1, md: 2 }}>
+            <Text mb="2" color={"#FFDE00"} fontWeight={"700"}>
+              CEP:
+            </Text>
+            <Input
+              type="text"
+              name="postalCode"
+              placeholder="Digite seu CEP"
+              fontSize={{ md: "1.5vh" }}
+              value={formData.postalCode}
+              onChange={handleChange}
+              height={"35px"}
+              borderRadius={"lg"}
+              bgColor={"#FFF"}
+              color={"#000"}
+              border={
+                emptyForm && formData.postalCode === ""
+                  ? "2px solid red"
+                  : "1px solid transparent"
+              }
+            />
+          </GridItem>
+        </Grid>
+        <Flex
+          justifyContent={"center"}
+          alignItems={"center"}
+          height={"80px"}
+          mt={"20px"}
+        >
+          <Button
+            type="submit"
+            color={"#FFF"}
+            bgColor={"#DF9A00"}
+            justifySelf={"center"}
+            height={"7vh"}
+            width={{ base: "60%", md: "28vh" }}
+            borderRadius={"lg"}
+            fontWeight={"900"}
+            onSubmit={handleSubmit}
+            _hover={{ bg: "#302e2e", color: "#DF9A00" }}
           >
-            <Box
-              width={{ base: 80, md: 120 }}
-              left={{ base: 50, md: 50 }}
-              top={{ base: 0, md: -160 }}
-              display={{ base: "flex", md: "none" }}
-              flexDirection={"column"}
-              gap={"10px"}
-              alignItems={"center"}
-            >
-              <Text fontSize={"12px"} color={"#fff"}>
-                CERVEJA OFICIAL:
-              </Text>
-              <Image
-                src={"https://shorturl.at/xvMUq"}
-                alt="Logo Black Princess"
-                width={{ base: "100px" }}
-              />
-            </Box>
-            <Box
-              width={{ base: 80, md: 120 }}
-              right={{ base: 0, md: 50 }}
-              top={{ base: 0, md: 600 }}
-              display={{ base: "flex", md: "none" }}
-              flexDirection={"column"}
-              gap={"10px"}
-              alignItems={"center"}
-            >
-              <Text fontSize={"12px"} color={"#fff"}>
-                PATROCINADOR:
-              </Text>
-              <Image
-                src={"https://shorturl.at/hj0gs"}
-                alt="Logo Ophicina"
-                width={{ base: "100px" }}
-              />
-            </Box>
+            ENVIAR
+          </Button>
+        </Flex>
+        <Box
+          display={"flex"}
+          paddingInline={"20px"}
+          paddingTop={"20px"}
+          mt={"10px"}
+          justifyContent={"center"}
+        >
+          <Box
+            width={{ base: 80, md: 120 }}
+            left={{ base: 50, md: 50 }}
+            top={{ base: 0, md: -160 }}
+            display={{ base: "flex", md: "none" }}
+            flexDirection={"column"}
+            gap={"10px"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"12px"} color={"#fff"}>
+              CERVEJA OFICIAL:
+            </Text>
+            <Image
+              src={"https://shorturl.at/xvMUq"}
+              alt="Logo Black Princess"
+              width={{ base: "100px" }}
+            />
           </Box>
+          <Box
+            width={{ base: 80, md: 120 }}
+            right={{ base: 0, md: 50 }}
+            top={{ base: 0, md: 600 }}
+            display={{ base: "flex", md: "none" }}
+            flexDirection={"column"}
+            gap={"10px"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"12px"} color={"#fff"}>
+              PATROCINADOR:
+            </Text>
+            <Image
+              src={"https://shorturl.at/hj0gs"}
+              alt="Logo Ophicina"
+              width={{ base: "100px" }}
+            />
+          </Box>
+        </Box>
 
+        <Text
+          mt={"30px"}
+          fontSize={"12px"}
+          textAlign={"center"}
+          display={{ md: "none" }}
+          color={"#fff"}
+        >
+          BEBA COM SABEDORIA
+        </Text>
+      </form>
+      <Box
+        position="fixed"
+        top="55%"
+        left={0}
+        right={0}
+        w="100vw"
+        overflow="visible"
+        pointerEvents="none"
+      >
+        <Box
+          display={{ base: "none", md: "flex" }}
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "30vh", md: "-50vh" }}
+          left={{ base: "20vw", md: "3vw" }}
+          position={{ base: "absolute", md: "absolute" }}
+          gap={"1vh"}
+          width={{ md: "15vh" }}
+        >
+          <Text fontSize="1.6vh" color={"#fff"}>
+            CERVEJA OFICIAL:
+          </Text>
+          <Image
+            src="https://shorturl.at/xvMUq"
+            alt="Logo Black Princess"
+            maxW={{ md: "10vh" }}
+            w="100%"
+            height={"5vh"}
+          />
+        </Box>
+
+        <Box
+          display={{ base: "none", md: "flex" }}
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "30vh", md: "35vh" }}
+          right={{ base: "20vw", md: "3vw" }}
+          position={{ base: "absolute", md: "absolute" }}
+          gap={"1vh"}
+          width={{ md: "15vh" }}
+        >
+          <Text fontSize="1.6vh" color={"#fff"}>
+            PATROCINADOR:
+          </Text>
+          <Image
+            src="https://shorturl.at/hj0gs"
+            alt="Logo Ophicina"
+            maxW={{ md: "20vh" }}
+            w="100%"
+            height={{ md: "3vh" }}
+          />
+        </Box>
+
+        <Box
+          position={{ base: "relative", md: "relative" }}
+          display={{ base: "none", md: "flex" }}
+          justifyContent={"center"}
+        >
           <Text
-            mt={"30px"}
-            fontSize={"12px"}
-            textAlign={"center"}
-            display={{ md: "none" }}
+            mt={{ base: "42vh", md: "42vh" }}
+            fontSize="12px"
+            textAlign="center"
+            position={"absolute"}
             color={"#fff"}
           >
             BEBA COM SABEDORIA
           </Text>
-        </form>
-        <Box
-          position="fixed"
-          top="55%"
-          left={0}
-          right={0}
-          w="100vw"
-          overflow="visible"
-          pointerEvents="none"
-        >
-          <Box
-            display={{ base: "none", md: "flex" }}
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "30vh", md: "-50vh" }}
-            left={{ base: "20vw", md: "3vw" }}
-            position={{ base: "absolute", md: "absolute" }}
-          >
-            <Text fontSize="12px" color={"#fff"}>
-              CERVEJA OFICIAL:
-            </Text>
-            <Image
-              src="https://shorturl.at/xvMUq"
-              alt="Logo Black Princess"
-              maxWidth="100px"
-              w="100%"
-            />
-          </Box>
-
-          <Box
-            display={{ base: "none", md: "flex" }}
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "30vh", md: "35vh" }}
-            right={{ base: "20vw", md: "3vw" }}
-            position={{ base: "absolute", md: "absolute" }}
-          >
-            <Text fontSize="12px" color={"#fff"}>
-              PATROCINADOR:
-            </Text>
-            <Image
-              src="https://shorturl.at/hj0gs"
-              alt="Logo Ophicina"
-              maxWidth="100px"
-              w="100%"
-            />
-          </Box>
-
-          <Box
-            position={{ base: "relative", md: "relative" }}
-            display={{ base: "none", md: "flex" }}
-            justifyContent={"center"}
-          >
-            <Text
-              mt={{ base: "42vh", md: "42vh" }}
-              fontSize="12px"
-              textAlign="center"
-              position={"absolute"}
-              color={"#fff"}
-            >
-              BEBA COM SABEDORIA
-            </Text>
-          </Box>
-
-          <Image
-            src="https://shorturl.at/NNZEz"
-            alt="Instrumentos"
-            width={{ base: "0%", md: "40vh" }}
-            position="absolute"
-            left={{ base: "-10%", md: "-130px" }}
-            top="-35vh"
-            transform={{
-              base: "rotate(-10deg) scale(0.8)",
-              md: "rotate(40deg)",
-            }}
-          />
-
-          <Image
-            src="https://shorturl.at/NNZEz"
-            alt="Instrumentos"
-            width={{ base: "0%", md: "40vh" }}
-            position="absolute"
-            right={{ base: "-10%", md: "-130px" }}
-            top="-35vh"
-            transform={{
-              base: "rotate(10deg) scaleX(-1) scale(0.8)",
-              md: "rotate(-40deg) scaleX(-1)",
-            }}
-          />
         </Box>
-      </>
+
+        <Image
+          src="https://shorturl.at/NNZEz"
+          alt="Instrumentos"
+          width={{ base: "0%", md: "40vh" }}
+          position="absolute"
+          left={{ base: "-10%", md: "-130px" }}
+          top="-35vh"
+          transform={{
+            base: "rotate(-10deg) scale(0.8)",
+            md: "rotate(40deg)",
+          }}
+        />
+
+        <Image
+          src="https://shorturl.at/NNZEz"
+          alt="Instrumentos"
+          width={{ base: "0%", md: "40vh" }}
+          position="absolute"
+          right={{ base: "-10%", md: "-130px" }}
+          top="-35vh"
+          transform={{
+            base: "rotate(10deg) scaleX(-1) scale(0.8)",
+            md: "rotate(-40deg) scaleX(-1)",
+          }}
+        />
+      </Box>
     </Box>
   );
 }
