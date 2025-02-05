@@ -136,7 +136,6 @@ const VerificationGate: React.FC = () => {
       mx={"auto"}
       position={{ md: "relative" }}
       alignItems={"center"}
-      zIndex={2}
     >
       <Modal isOpen={open} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.7)" />
@@ -443,7 +442,6 @@ const VerificationGate: React.FC = () => {
         left={{ base: "-10%", md: "-130px" }}
         top="20vh"
         transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
-        zIndex={-1}
       />
 
       <Image
@@ -457,7 +455,6 @@ const VerificationGate: React.FC = () => {
           base: "rotate(10deg) scaleX(-1) scale(0.8)",
           md: "rotate(-40deg) scaleX(-1)",
         }}
-        zIndex={-1}
       />
     </Flex>
   );

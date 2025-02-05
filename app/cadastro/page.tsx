@@ -270,7 +270,6 @@ export default function SignupPage() {
       p={{ base: "3vh" }}
       paddingBottom={{ base: "0" }}
       position="relative"
-      zIndex={2}
     >
       <Modal
         isOpen={isSuccessModalOpen}
