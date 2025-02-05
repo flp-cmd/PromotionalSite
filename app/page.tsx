@@ -310,22 +310,20 @@ const VerificationGate: React.FC = () => {
           </Box>
         </Flex>
       </Flex>
-      <Box
-        position={{ md: "relative" }}
+
+      <Text
+        //mt={{ base: "4vh", md: "21vh" }}
+        fontSize="1.6vh"
+        textAlign="center"
+        position={"absolute"}
+        color={"#fff"}
         display={"flex"}
         justifyContent={"center"}
+        top={{ base: "95vh", md: "95vh" }}
+        width={{ md: "20vw" }}
       >
-        <Text
-          width={{ md: "15vw" }}
-          mt={{ base: "4vh", md: "21vh" }}
-          fontSize="1.6vh"
-          textAlign="center"
-          position={"absolute"}
-          color={"#fff"}
-        >
-          BEBA COM SABEDORIA
-        </Text>
-      </Box>
+        BEBA COM SABEDORIA
+      </Text>
       <Image
         src="https://shorturl.at/NNZEz"
         alt="Instrumentos"
