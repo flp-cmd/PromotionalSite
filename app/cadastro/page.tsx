@@ -990,10 +990,10 @@ export default function SignupPage() {
         <Image
           src="https://shorturl.at/NNZEz"
           alt="Instrumentos"
-          width={{ base: "0%", md: "40vh" }}
+          width={{ base: "0%", md: "42vh" }}
           position="absolute"
           left={{ base: "-10%", md: "-130px" }}
-          top="-35vh"
+          top="-30vh"
           transform={{
             base: "rotate(-10deg) scale(0.8)",
             md: "rotate(40deg)",
@@ -1003,10 +1003,10 @@ export default function SignupPage() {
         <Image
           src="https://shorturl.at/NNZEz"
           alt="Instrumentos"
-          width={{ base: "0%", md: "40vh" }}
+          width={{ base: "0%", md: "42vh" }}
           position="absolute"
           right={{ base: "-10%", md: "-130px" }}
-          top="-35vh"
+          top="-30vh"
           transform={{
             base: "rotate(10deg) scaleX(-1) scale(0.8)",
             md: "rotate(-40deg) scaleX(-1)",

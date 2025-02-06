@@ -130,7 +130,20 @@ const VerificationGate: React.FC = () => {
       if (data.status === "success") {
         handleVerificationSuccess();
       } else {
-        setErrorMessage(<>{data.message}</>);
+        let formattedMessage = data.message;
+
+        if (data.message.includes("Um Baita Festival")) {
+          const messageParts = data.message.split("Um Baita Festival");
+          formattedMessage = (
+            <>
+              {messageParts[0]}
+              <strong>Um Baita Festival</strong>
+              {messageParts[1]}
+            </>
+          );
+        }
+
+        setErrorMessage(formattedMessage);
         onOpen();
       }
     } catch (error) {
@@ -459,7 +472,7 @@ const VerificationGate: React.FC = () => {
       <Image
         src="https://shorturl.at/NNZEz"
         alt="Instrumentos"
-        width={{ base: "0%", md: "40vh" }}
+        width={{ base: "0%", md: "45vh" }}
         position="absolute"
         left={{ base: "-10%", md: "-130px" }}
         top="20vh"
@@ -470,7 +483,7 @@ const VerificationGate: React.FC = () => {
       <Image
         src="https://shorturl.at/NNZEz"
         alt="Instrumentos"
-        width={{ base: "0%", md: "40vh" }}
+        width={{ base: "0%", md: "45vh" }}
         position="fixed"
         right={{ base: "-10%", md: "-130px" }}
         top="20vh"
