@@ -355,7 +355,7 @@ const VerificationGate: React.FC = () => {
         >
           QUERO PARTICIPAR
         </Button>
-        <Flex gap={"50px"} display={{ base: "flex", md: "none" }}>
+        <Flex gap={"5vh"} display={{ base: "flex", md: "none" }}>
           <Box
             display="flex"
             flexDirection="column"
@@ -384,17 +384,17 @@ const VerificationGate: React.FC = () => {
             top={{ base: "28vh", md: "90vh" }}
             right={{ base: "20vw", md: "3vw" }}
             position={{ md: "absolute" }}
-            gap={"1vh"}
+            gap={"0.7vh"}
           >
             <Text fontSize="1.6vh" color={"#fff"}>
               PATROCINADOR:
             </Text>
             <Image
-              src="https://shorturl.at/hj0gs"
+              src="https://shorturl.at/knnDQ"
               alt="Logo Ophicina"
-              maxW={{ base: "14vh" }}
-              w="100%"
-              height={"2.5vh"}
+              maxW={{ base: "15vh" }}
+              w="75%"
+              height={"5vh"}
             />
           </Box>
         </Flex>
@@ -407,7 +407,7 @@ const VerificationGate: React.FC = () => {
           top={{ base: "30vh", md: "3vh" }}
           left={{ base: "20vw", md: "3vw" }}
           position={{ md: "absolute" }}
-          gap={"1vh"}
+          gap={"0.7vh"}
           width={{ md: "15vh" }}
         >
           <Text fontSize="1.6vh" color={"#fff"}>
@@ -426,21 +426,21 @@ const VerificationGate: React.FC = () => {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          top={{ base: "28vh", md: "90vh" }}
-          right={{ base: "20vw", md: "3vw" }}
+          top={{ base: "28vh", md: "88vh" }}
+          right={{ base: "20vw", md: "1vw" }}
           position={{ md: "absolute" }}
-          gap={"1vh"}
-          width={{ md: "15vh" }}
+          gap={"0.7vh"}
+          width={{ md: "18vh" }}
         >
           <Text fontSize="1.6vh" color={"#fff"}>
             PATROCINADOR:
           </Text>
           <Image
-            src="https://shorturl.at/hj0gs"
+            src="https://shorturl.at/knnDQ"
             alt="Logo Ophicina"
             maxW={{ md: "20vh" }}
-            w="100%"
-            height={{ base: "2.5vh", md: "3vh" }}
+            w="50%"
+            height={{ md: "5vh" }}
           />
         </Box>
       </Flex>

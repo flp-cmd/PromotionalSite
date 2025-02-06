@@ -900,7 +900,7 @@ export default function SignupPage() {
               PATROCINADOR:
             </Text>
             <Image
-              src={"https://shorturl.at/hj0gs"}
+              src={"https://shorturl.at/knnDQ"}
               alt="Logo Ophicina"
               width={{ base: "100px" }}
             />
@@ -953,21 +953,21 @@ export default function SignupPage() {
           display={{ base: "none", md: "flex" }}
           flexDirection="column"
           alignItems="center"
-          top={{ base: "30vh", md: "35vh" }}
-          right={{ base: "20vw", md: "3vw" }}
+          top={{ base: "30vh", md: "33vh" }}
+          right={{ base: "20vw", md: "1vw" }}
           position={{ base: "absolute", md: "absolute" }}
-          gap={"1vh"}
-          width={{ md: "15vh" }}
+          gap={"0.7vh"}
+          width={{ md: "18vh" }}
         >
           <Text fontSize="1.6vh" color={"#fff"}>
             PATROCINADOR:
           </Text>
           <Image
-            src="https://shorturl.at/hj0gs"
+            src="https://shorturl.at/knnDQ"
             alt="Logo Ophicina"
             maxW={{ md: "20vh" }}
-            w="100%"
-            height={{ md: "3vh" }}
+            w="50%"
+            height={{ md: "5vh" }}
           />
         </Box>
 
