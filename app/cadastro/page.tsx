@@ -869,7 +869,7 @@ export default function SignupPage() {
             _hover={{ bg: "#302e2e", color: "#DF9A00" }}
             disabled={isLoading}
           >
-            ENVIAR
+            {isLoading === true ? "CARREGANDO..." : "ENVIAR"}
           </Button>
         </Flex>
         <Box
