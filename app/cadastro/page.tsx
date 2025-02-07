@@ -874,45 +874,59 @@ export default function SignupPage() {
         </Flex>
         <Box
           display={"flex"}
-          paddingInline={"20px"}
+          paddingInline={"0vw"}
           paddingTop={"20px"}
           mt={"10px"}
-          justifyContent={"center"}
+          justifyContent={"space-between"}
         >
           <Box
-            width={{ base: 80, md: 120 }}
+            width={{ base: "20vw", md: 120 }}
             left={{ base: 50, md: 50 }}
             top={{ base: 0, md: -160 }}
             display={{ base: "flex", md: "none" }}
             flexDirection={"column"}
-            gap={"10px"}
+            gap={"1vw"}
             alignItems={"center"}
           >
-            <Text fontSize={"12px"} color={"#fff"}>
+            <Text fontSize={"10px"} color={"#fff"}>
               CERVEJA OFICIAL:
             </Text>
             <Image
               src={"https://shorturl.at/xvMUq"}
               alt="Logo Black Princess"
-              width={{ base: "100px" }}
+              width={{ base: "100%" }}
             />
           </Box>
           <Box
-            width={{ base: 80, md: 120 }}
+            width={{ base: "20vw", md: 120 }}
             right={{ base: 0, md: 50 }}
             top={{ base: 0, md: 600 }}
             display={{ base: "flex", md: "none" }}
             flexDirection={"column"}
-            gap={"10px"}
             alignItems={"center"}
           >
-            <Text fontSize={"12px"} color={"#fff"}>
+            <Image
+              src={"https://shorturl.at/u50i4"}
+              alt="Logo Baita Festival"
+              width={{ base: "100%" }}
+            />
+          </Box>
+          <Box
+            width={{ base: "20vw", md: 120 }}
+            right={{ base: 0, md: 50 }}
+            top={{ base: 0, md: 600 }}
+            display={{ base: "flex", md: "none" }}
+            flexDirection={"column"}
+            gap={"1vw"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"10px"} color={"#fff"}>
               PATROCINADOR:
             </Text>
             <Image
               src={"https://shorturl.at/knnDQ"}
               alt="Logo Ophicina"
-              width={{ base: "100px" }}
+              width={{ base: "100%" }}
             />
           </Box>
         </Box>
@@ -956,6 +970,23 @@ export default function SignupPage() {
             maxW={{ md: "10vh" }}
             w="100%"
             height={"5vh"}
+          />
+        </Box>
+
+        <Box
+          display={{ base: "none", md: "flex" }}
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "30vh", md: "33vh" }}
+          left={{ base: "20vw", md: "1vw" }}
+          position={{ base: "absolute", md: "absolute" }}
+          width={{ md: "18vh" }}
+        >
+          <Image
+            src="https://shorturl.at/u50i4"
+            alt="Logo Baita Festival"
+            maxW={{ md: "20vh" }}
+            w="60%"
           />
         </Box>
 

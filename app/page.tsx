@@ -368,7 +368,7 @@ const VerificationGate: React.FC = () => {
         >
           QUERO PARTICIPAR
         </Button>
-        <Flex gap={"5vh"} display={{ base: "flex", md: "none" }}>
+        <Box gap={"2vw"} display={{ base: "flex", md: "none" }}>
           <Box
             display="flex"
             flexDirection="column"
@@ -384,9 +384,25 @@ const VerificationGate: React.FC = () => {
             <Image
               src="https://shorturl.at/xvMUq"
               alt="Logo Black Princess"
-              maxW={{ base: "9vh" }}
+              maxW={{ base: "11vh" }}
               w={"100%"}
-              height={"4.5vh"}
+            />
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            top={{ base: "28vh", md: "90vh" }}
+            right={{ base: "20vw", md: "3vw" }}
+            position={{ md: "absolute" }}
+            gap={"0.7vh"}
+          >
+            <Image
+              src="https://shorturl.at/u50i4"
+              alt="Logo Baita Festival"
+              maxW={{ base: "15vh" }}
+              w="80%"
             />
           </Box>
 
@@ -407,10 +423,9 @@ const VerificationGate: React.FC = () => {
               alt="Logo Ophicina"
               maxW={{ base: "15vh" }}
               w="75%"
-              height={"5vh"}
             />
           </Box>
-        </Flex>
+        </Box>
       </Flex>
       <Flex gap={"50px"} display={{ base: "none", md: "flex" }}>
         <Box
@@ -432,6 +447,23 @@ const VerificationGate: React.FC = () => {
             w={"100%"}
             height={"5vh"}
             maxW={{ md: "10vh" }}
+          />
+        </Box>
+
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          top={{ base: "28vh", md: "88vh" }}
+          left={{ base: "20vw", md: "1vw" }}
+          position={{ md: "absolute" }}
+          width={{ md: "18vh" }}
+        >
+          <Image
+            src="https://shorturl.at/u50i4"
+            alt="Logo Baita Festival"
+            maxW={{ md: "20vh" }}
+            w="60%"
           />
         </Box>
 
