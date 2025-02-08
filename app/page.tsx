@@ -368,7 +368,7 @@ const VerificationGate: React.FC = () => {
         >
           QUERO PARTICIPAR
         </Button>
-        <Box gap={"2vw"} display={{ base: "flex", md: "none" }}>
+        <Box display={{ base: "flex", md: "none" }} gap={"3.5vw"}>
           <Box
             display="flex"
             flexDirection="column"
@@ -378,13 +378,13 @@ const VerificationGate: React.FC = () => {
             position={{ md: "absolute" }}
             gap={"1vh"}
           >
-            <Text fontSize="1.6vh" color={"#fff"}>
+            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
               CERVEJA OFICIAL:
             </Text>
             <Image
               src="https://shorturl.at/xvMUq"
               alt="Logo Black Princess"
-              maxW={{ base: "11vh" }}
+              maxW={{ base: "12vh" }}
               w={"100%"}
             />
           </Box>
@@ -401,8 +401,8 @@ const VerificationGate: React.FC = () => {
             <Image
               src="https://shorturl.at/u50i4"
               alt="Logo Baita Festival"
-              maxW={{ base: "15vh" }}
-              w="80%"
+              maxW={{ base: "12vh" }}
+              w="100%"
             />
           </Box>
 
@@ -415,14 +415,14 @@ const VerificationGate: React.FC = () => {
             position={{ md: "absolute" }}
             gap={"0.7vh"}
           >
-            <Text fontSize="1.6vh" color={"#fff"}>
+            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
               PATROCINADOR:
             </Text>
             <Image
               src="https://shorturl.at/knnDQ"
               alt="Logo Ophicina"
-              maxW={{ base: "15vh" }}
-              w="75%"
+              maxW={{ base: "12vh" }}
+              w="95%"
             />
           </Box>
         </Box>

@@ -874,33 +874,27 @@ export default function SignupPage() {
         </Flex>
         <Box
           display={"flex"}
-          paddingInline={"0vw"}
           paddingTop={"20px"}
           mt={"10px"}
           justifyContent={"space-between"}
         >
           <Box
-            width={{ base: "20vw", md: 120 }}
-            left={{ base: 50, md: 50 }}
-            top={{ base: 0, md: -160 }}
             display={{ base: "flex", md: "none" }}
             flexDirection={"column"}
             gap={"1vw"}
             alignItems={"center"}
           >
-            <Text fontSize={"10px"} color={"#fff"}>
+            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
               CERVEJA OFICIAL:
             </Text>
             <Image
               src={"https://shorturl.at/xvMUq"}
               alt="Logo Black Princess"
-              width={{ base: "100%" }}
+              maxW={{ base: "12vh" }}
+              w={"100%"}
             />
           </Box>
           <Box
-            width={{ base: "20vw", md: 120 }}
-            right={{ base: 0, md: 50 }}
-            top={{ base: 0, md: 600 }}
             display={{ base: "flex", md: "none" }}
             flexDirection={"column"}
             alignItems={"center"}
@@ -908,25 +902,24 @@ export default function SignupPage() {
             <Image
               src={"https://shorturl.at/u50i4"}
               alt="Logo Baita Festival"
-              width={{ base: "100%" }}
+              maxW={{ base: "12vh" }}
+              w={"100%"}
             />
           </Box>
           <Box
-            width={{ base: "20vw", md: 120 }}
-            right={{ base: 0, md: 50 }}
-            top={{ base: 0, md: 600 }}
             display={{ base: "flex", md: "none" }}
             flexDirection={"column"}
             gap={"1vw"}
             alignItems={"center"}
           >
-            <Text fontSize={"10px"} color={"#fff"}>
+            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
               PATROCINADOR:
             </Text>
             <Image
               src={"https://shorturl.at/knnDQ"}
               alt="Logo Ophicina"
-              width={{ base: "100%" }}
+              maxW={{ base: "12vh" }}
+              w={"95%"}
             />
           </Box>
         </Box>
