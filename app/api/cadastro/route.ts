@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
 interface CadastroRequest {
@@ -39,9 +39,21 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         { status: 400 }
       );
     }
-
     const sanitizedCpf = body.cpf.replace(/\D/g, "");
 
+    const docRef = doc(db, "clientes", sanitizedCpf);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+
+      if (data?.isParticipating === true) {
+        return NextResponse.json({
+          status: "error",
+          message: "Cliente já participando do sorteio!.",
+        });
+      }
+    }
     await setDoc(doc(db, "clientes", sanitizedCpf), {
       ...body,
       isParticipating: true,
