@@ -7,13 +7,12 @@ body {
 
 body {
   flex-direction: column;
-  background-image: url("https://shorturl.at/PBoTv");
+  background-image: url("/estrelas.png");
   background-repeat: repeat;
   background-color: black;
   font-family: "Roboto", sans-serif;
   position: relative;
 }
-
 
 button span {
   color: #5a5959;

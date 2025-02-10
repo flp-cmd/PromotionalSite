@@ -222,7 +222,7 @@ const VerificationGate: React.FC = () => {
         </ModalContent>
       </Modal>
       <Image
-        src="https://shorturl.at/3qVoS"
+        src="/promotionalLogo.png"
         mb={{ base: "5vh", md: "3vh" }}
         width={{ base: "40vh", md: "50vh" }}
         alt="PromotionalLogo"
@@ -382,7 +382,7 @@ const VerificationGate: React.FC = () => {
               CERVEJA OFICIAL:
             </Text>
             <Image
-              src="https://shorturl.at/xvMUq"
+              src="/blackPrincess.png"
               alt="Logo Black Princess"
               maxW={{ base: "12vh" }}
               w={"100%"}
@@ -399,7 +399,7 @@ const VerificationGate: React.FC = () => {
             gap={"0.7vh"}
           >
             <Image
-              src="https://shorturl.at/u50i4"
+              src="/logoUBF.png"
               alt="Logo Baita Festival"
               maxW={{ base: "12vh" }}
               w="100%"
@@ -419,7 +419,7 @@ const VerificationGate: React.FC = () => {
               PATROCINADOR:
             </Text>
             <Image
-              src="https://shorturl.at/knnDQ"
+              src="/ophicina.png"
               alt="Logo Ophicina"
               maxW={{ base: "12vh" }}
               w="95%"
@@ -442,7 +442,7 @@ const VerificationGate: React.FC = () => {
             CERVEJA OFICIAL:
           </Text>
           <Image
-            src="https://shorturl.at/xvMUq"
+            src="/blackPrincess.png"
             alt="Logo Black Princess"
             w={"100%"}
             height={"5vh"}
@@ -460,7 +460,7 @@ const VerificationGate: React.FC = () => {
           width={{ md: "18vh" }}
         >
           <Image
-            src="https://shorturl.at/u50i4"
+            src="/logoUBF.png"
             alt="Logo Baita Festival"
             maxW={{ md: "20vh" }}
             w="60%"
@@ -481,7 +481,7 @@ const VerificationGate: React.FC = () => {
             PATROCINADOR:
           </Text>
           <Image
-            src="https://shorturl.at/knnDQ"
+            src="/ophicina.png"
             alt="Logo Ophicina"
             maxW={{ md: "20vh" }}
             w="50%"
@@ -502,7 +502,7 @@ const VerificationGate: React.FC = () => {
         BEBA COM SABEDORIA
       </Text>
       <Image
-        src="https://shorturl.at/NNZEz"
+        src="/instrumentos.png"
         alt="Instrumentos"
         width={{ base: "0%", md: "45vh" }}
         position="absolute"
@@ -513,7 +513,7 @@ const VerificationGate: React.FC = () => {
       />
 
       <Image
-        src="https://shorturl.at/NNZEz"
+        src="/instrumentos.png"
         alt="Instrumentos"
         width={{ base: "0%", md: "45vh" }}
         position="fixed"

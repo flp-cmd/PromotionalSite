@@ -888,7 +888,7 @@ export default function SignupPage() {
               CERVEJA OFICIAL:
             </Text>
             <Image
-              src={"https://shorturl.at/xvMUq"}
+              src={"/blackPrincess.png"}
               alt="Logo Black Princess"
               maxW={{ base: "12vh" }}
               w={"100%"}
@@ -900,7 +900,7 @@ export default function SignupPage() {
             alignItems={"center"}
           >
             <Image
-              src={"https://shorturl.at/u50i4"}
+              src={"/logoUBF.png"}
               alt="Logo Baita Festival"
               maxW={{ base: "12vh" }}
               w={"100%"}
@@ -916,7 +916,7 @@ export default function SignupPage() {
               PATROCINADOR:
             </Text>
             <Image
-              src={"https://shorturl.at/knnDQ"}
+              src={"/ophicina.png"}
               alt="Logo Ophicina"
               maxW={{ base: "12vh" }}
               w={"95%"}
@@ -958,7 +958,7 @@ export default function SignupPage() {
             CERVEJA OFICIAL:
           </Text>
           <Image
-            src="https://shorturl.at/xvMUq"
+            src="/blackPrincess.png"
             alt="Logo Black Princess"
             maxW={{ md: "10vh" }}
             w="100%"
@@ -976,7 +976,7 @@ export default function SignupPage() {
           width={{ md: "18vh" }}
         >
           <Image
-            src="https://shorturl.at/u50i4"
+            src="/logoUBF.png"
             alt="Logo Baita Festival"
             maxW={{ md: "20vh" }}
             w="60%"
@@ -997,7 +997,7 @@ export default function SignupPage() {
             PATROCINADOR:
           </Text>
           <Image
-            src="https://shorturl.at/knnDQ"
+            src="/ophicina.png"
             alt="Logo Ophicina"
             maxW={{ md: "20vh" }}
             w="50%"
@@ -1022,7 +1022,7 @@ export default function SignupPage() {
         </Box>
 
         <Image
-          src="https://shorturl.at/NNZEz"
+          src="/instrumentos.png"
           alt="Instrumentos"
           width={{ base: "0%", md: "42vh" }}
           position="absolute"
@@ -1035,7 +1035,7 @@ export default function SignupPage() {
         />
 
         <Image
-          src="https://shorturl.at/NNZEz"
+          src="/instrumentos.png"
           alt="Instrumentos"
           width={{ base: "0%", md: "42vh" }}
           position="absolute"
