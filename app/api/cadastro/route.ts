@@ -41,6 +41,22 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     const sanitizedCpf = body.cpf.replace(/\D/g, "");
 
+    const response = await fetch(
+      `https://promocaoumbaitafestival.vercel.app/api/validar-cpf?cpf=${body.cpf}`,
+      {
+        method: "GET",
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.status === "error") {
+      return NextResponse.json(
+        { status: "error", message: "CPF/CNPJ inválido!" },
+        { status: 400 }
+      );
+    }
+
     const docRef = doc(db, "clientes", sanitizedCpf);
     const docSnap = await getDoc(docRef);
 
