@@ -367,6 +367,7 @@ const VerificationGate: React.FC = () => {
           height={"7vh"}
           fontWeight={"900"}
           mb={{ md: "8px" }}
+          disabled={isLoading}
         >
           {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
           {isLoading && <Spinner />}
