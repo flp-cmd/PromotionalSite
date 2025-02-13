@@ -9,6 +9,7 @@ import {
   Image,
   useDisclosure,
   Link,
+  Spinner,
 } from "@chakra-ui/react";
 import Checkbox from "@/components/Checkbox";
 import { useState } from "react";
@@ -282,6 +283,7 @@ const VerificationGate: React.FC = () => {
             disabled={isLoading}
           >
             {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
+            {isLoading && <Spinner />}
           </Button>
         </Flex>
 
@@ -366,7 +368,8 @@ const VerificationGate: React.FC = () => {
           fontWeight={"900"}
           mb={{ md: "8px" }}
         >
-          QUERO PARTICIPAR
+          {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
+          {isLoading && <Spinner />}
         </Button>
         <Box display={{ base: "flex", md: "none" }} gap={"3.5vw"}>
           <Box

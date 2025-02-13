@@ -11,6 +11,7 @@ import {
   Text,
   useDisclosure,
   Image,
+  Spinner,
 } from "@chakra-ui/react";
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
@@ -870,6 +871,7 @@ export default function SignupPage() {
             disabled={isLoading}
           >
             {isLoading === true ? "CARREGANDO..." : "ENVIAR"}
+            {isLoading && <Spinner />}
           </Button>
         </Flex>
         <Box
