@@ -236,9 +236,9 @@ const VerificationGate: React.FC = () => {
         textAlign={"center"}
         width={{ base: "30vh", md: "60vh" }}
       >
-        Se você foi <b>comprador</b> de alguma edição do{" "}
-        <b>Um Baita Festival</b>, digite seu CPF e concorra a um{" "}
-        <b id="highlightedText">Black Ticket</b> com prêmios especiais!{" "}
+        Se você <b>foi comprador</b> de alguma edição do
+        <b> Um Baita Festival</b>, digite seu CPF e ganhe um
+        <b id="highlightedText"> Ticket</b> com prêmios especiais!
       </Text>
 
       <Flex
