@@ -291,10 +291,10 @@ export default function SignupPage() {
     e.preventDefault();
 
     const requiredFields = Object.entries(formData).filter(
-      ([key, value]) => key !== "complement" && value
+      ([key, value]) => key !== "complement" && key !== "addressNumber" && value
     );
 
-    if (requiredFields.length !== Object.keys(formData).length - 1) {
+    if (requiredFields.length !== Object.keys(formData).length - 2) {
       setEmptyForm(true);
       toast.error("Campos obrigatórios faltando!");
       setIsLoading(false);
@@ -325,19 +325,6 @@ export default function SignupPage() {
       if (response.ok) {
         sessionStorage.removeItem("validatedCpf");
         onOpenSuccessModal();
-        setFormData({
-          fullName: "",
-          birthDate: "",
-          cellphone: "",
-          email: "",
-          address: "",
-          addressNumber: "",
-          neighborhood: "",
-          complement: "",
-          state: "",
-          city: "",
-          postalCode: "",
-        });
       } else {
         toast.error(data.message);
       }
@@ -672,15 +659,8 @@ export default function SignupPage() {
               onChange={handleChange}
               height={"5vh"}
               borderRadius={"lg"}
-              bgColor={
-                emptyForm && formData.addressNumber === "" ? "#f3a3a3" : "#fff"
-              }
+              bgColor={"#fff"}
               color={"#000"}
-              border={
-                emptyForm && formData.addressNumber === ""
-                  ? "2px solid red"
-                  : "1px solid transparent"
-              }
             />
           </GridItem>
           <GridItem colSpan={{ base: 1, md: 2 }}>

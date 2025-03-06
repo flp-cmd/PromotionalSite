@@ -28,7 +28,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       !body.cellphone ||
       !body.email ||
       !body.address ||
-      !body.addressNumber ||
       !body.neighborhood ||
       !body.state ||
       !body.city ||
