@@ -11,7 +11,7 @@ import {
   Link,
   Spinner,
 } from "@chakra-ui/react";
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/common/Checkbox";
 import { useState } from "react";
 import {
   Modal,
@@ -294,7 +294,7 @@ const VerificationGate: React.FC = () => {
             <>
               Concordo com as{" "}
               <Link
-                href="/regras-sorteio.pdf"
+                href="/regras-promoção.pdf"
                 color="#7E92FF"
                 textDecoration={"underline"}
                 target="_blank"
@@ -343,7 +343,7 @@ const VerificationGate: React.FC = () => {
               <>
                 Concordo com as{" "}
                 <Link
-                  href="/regras-sorteio.pdf"
+                  href="/regras-promoção.pdf"
                   color="#7E92FF"
                   textDecoration={"underline"}
                   target="_blank"

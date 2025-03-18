@@ -1,16 +1,19 @@
 import "@/styles/globals.css";
 import { Provider } from "@/components/ui/provider";
-import { Toaster } from "react-hot-toast";
+import { Roboto } from "next/font/google";
+import ToasterClient from "@/components/common/ToasterClient";
+
+const roboto = Roboto({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR">
       <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -30,9 +33,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body>
+      <body className={roboto.className}>
         <Provider>{children}</Provider>
-        <Toaster />
+        <ToasterClient />
       </body>
     </html>
   );
