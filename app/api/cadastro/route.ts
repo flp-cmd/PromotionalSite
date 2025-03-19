@@ -1,6 +1,7 @@
 import { db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
 
 interface CadastroRequest {
   cpf: string;
@@ -20,6 +21,16 @@ interface CadastroRequest {
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const body: CadastroRequest = await req.json();
+    const authHeader = req.headers.get("authorization");
+
+    if (!authHeader) {
+      return NextResponse.json(
+        { status: "error", message: "Token não fornecido" },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.split(" ")[1];
 
     if (
       !body.cpf ||
@@ -40,36 +51,18 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     const sanitizedCpf = body.cpf.replace(/\D/g, "");
 
-    const response = await fetch(
-      `https://promocaoumbaitafestival.vercel.app/api/validar-cpf?cpf=${body.cpf}`,
-      {
-        method: "GET",
-      }
-    );
+    const decoded = jwt.verify(token, process.env.SECRET_API_KEY_JWT_SECRET as string) as {
+      cpf: string;
+    };
 
-    const data = await response.json();
-
-    if (data.status === "error") {
+    if (decoded.cpf !== sanitizedCpf) {
       return NextResponse.json(
-        { status: "error", message: "CPF/CNPJ inválido!" },
+        { status: "error", message: "CPF não corresponde à validação" },
         { status: 400 }
       );
     }
 
-    const docRef = doc(db, "clientes", sanitizedCpf);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-
-      if (data?.isParticipating === true) {
-        return NextResponse.json({
-          status: "error",
-          message: "Cliente já participando do sorteio!.",
-        });
-      }
-    }
-    await setDoc(doc(db, "clientes", sanitizedCpf), {
+    await setDoc(doc(db, "clientes", decoded.cpf), {
       ...body,
       isParticipating: true,
       createdAt: Timestamp.now(),
