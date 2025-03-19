@@ -128,6 +128,10 @@ const VerificationGate: React.FC = () => {
 
       const data = await response.json();
 
+      if (data.token) {
+        sessionStorage.setItem("validationToken", data.token);
+      }
+
       if (data.status === "success") {
         handleVerificationSuccess();
       } else {

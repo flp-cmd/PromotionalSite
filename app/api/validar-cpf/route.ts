@@ -1,6 +1,7 @@
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
 
 interface ApiResponse {
   status: "success" | "error";
@@ -30,9 +31,16 @@ export async function GET(
       const data = docSnap.data();
 
       if (data?.isParticipating === false) {
+        const token = jwt.sign(
+          { cpf, validated: true },
+          process.env.JWT_SECRET as string,
+          { expiresIn: "15m" }
+        );
+
         return NextResponse.json({
           status: "success",
           message: "Pode participar do sorteio.",
+          token: token,
         });
       } else {
         return NextResponse.json(
@@ -56,9 +64,15 @@ export async function GET(
       );
 
       if (response.status === 200) {
+        const token = jwt.sign(
+          { cpf, validated: true },
+          process.env.JWT_SECRET as string,
+          { expiresIn: "15m" }
+        );
         return NextResponse.json({
           status: "success",
           message: "Pode participar do sorteio.",
+          token: token,
         });
       } else {
         return NextResponse.json(

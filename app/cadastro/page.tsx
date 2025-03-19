@@ -312,10 +312,12 @@ export default function SignupPage() {
     }
 
     try {
+      const token = sessionStorage.getItem("validationToken");
       const response = await fetch("/api/cadastro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ ...formData, cpf }),
       });
@@ -324,6 +326,7 @@ export default function SignupPage() {
 
       if (response.ok) {
         sessionStorage.removeItem("validatedCpf");
+        sessionStorage.removeItem("validationToken");
         onOpenSuccessModal();
       } else {
         toast.error(data.message);
