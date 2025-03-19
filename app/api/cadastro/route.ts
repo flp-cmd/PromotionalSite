@@ -51,7 +51,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     const sanitizedCpf = body.cpf.replace(/\D/g, "");
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+    const decoded = jwt.verify(token, process.env.SECRET_API_KEY_JWT_SECRET as string) as {
       cpf: string;
     };
 

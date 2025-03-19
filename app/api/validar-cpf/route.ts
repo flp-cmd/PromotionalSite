@@ -33,7 +33,7 @@ export async function GET(
       if (data?.isParticipating === false) {
         const token = jwt.sign(
           { cpf, validated: true },
-          process.env.JWT_SECRET as string,
+          process.env.SECRET_API_KEY_JWT_SECRET as string,
           { expiresIn: "15m" }
         );
 
@@ -66,7 +66,7 @@ export async function GET(
       if (response.status === 200) {
         const token = jwt.sign(
           { cpf, validated: true },
-          process.env.JWT_SECRET as string,
+          process.env.SECRET_API_KEY_JWT_SECRET as string,
           { expiresIn: "15m" }
         );
         return NextResponse.json({
