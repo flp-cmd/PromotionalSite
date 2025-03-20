@@ -107,8 +107,8 @@ const VerificationGate: React.FC = () => {
     if (!isChecked) {
       setErrorMessage(
         <>
-          Para continuar, é necessário concordar com as <b>regras</b> do
-          sorteio. Marque a opção antes de prosseguir.
+          Para continuar, é necessário concordar com as <b>regras</b> da
+          promoção. Marque a opção antes de prosseguir.
         </>
       );
       onOpen();
@@ -306,7 +306,7 @@ const VerificationGate: React.FC = () => {
               >
                 regras
               </Link>{" "}
-              do sorteio
+              da promoção
             </>
           }
         />
@@ -355,7 +355,7 @@ const VerificationGate: React.FC = () => {
                 >
                   regras
                 </Link>{" "}
-                do sorteio
+                da promoção
               </>
             }
           />

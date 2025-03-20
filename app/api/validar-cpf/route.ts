@@ -39,7 +39,7 @@ export async function GET(
 
         return NextResponse.json({
           status: "success",
-          message: "Pode participar do sorteio.",
+          message: "Pode participar da promoção.",
           token: token,
         });
       } else {
@@ -47,7 +47,7 @@ export async function GET(
           {
             status: "error",
             message:
-              "Seu CPF ou CNPJ já está participando do sorteio, aguarde os resultados!",
+              "Seu CPF ou CNPJ já está participando, aguarde seu ticket premiado!",
           },
           { status: 400 }
         );
@@ -71,7 +71,7 @@ export async function GET(
         );
         return NextResponse.json({
           status: "success",
-          message: "Pode participar do sorteio.",
+          message: "Pode participar da promoção.",
           token: token,
         });
       } else {
