@@ -79,7 +79,7 @@ export async function GET(
           {
             status: "error",
             message:
-              "Não encontramos seu CPF/CNPJ. Verifique se usou o mesmo na compra dos ingressos do Um Baita Festival.",
+              "Não encontramos seu CPF/CNPJ. Verifique se usou o mesmo na compra dos ingressos do Um Baita Festival. Se o problema persistir, entre em contato com o SAC pelo e-mail: support.icones@zendesk.com. ",
           },
           { status: 404 }
         );

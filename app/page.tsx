@@ -137,15 +137,33 @@ const VerificationGate: React.FC = () => {
       } else {
         let formattedMessage = data.message;
 
-        if (data.message.includes("Um Baita Festival")) {
-          const messageParts = data.message.split("Um Baita Festival");
-          formattedMessage = (
+        if (
+          data.message.includes("Um Baita Festival") ||
+          data.message.includes("SAC")
+        ) {
+          const festivalParts = data.message.split("Um Baita Festival");
+          let formattedFestival = (
             <>
-              {messageParts[0]}
+              {festivalParts[0]}
               <strong>Um Baita Festival</strong>
-              {messageParts[1]}
+              {festivalParts[1]}
             </>
           );
+
+          if (festivalParts[1]?.includes("SAC")) {
+            const sacParts = festivalParts[1].split("SAC");
+            formattedFestival = (
+              <>
+                {festivalParts[0]}
+                <strong>Um Baita Festival</strong>
+                {sacParts[0]}
+                <strong>SAC</strong>
+                {sacParts[1]}
+              </>
+            );
+          }
+
+          formattedMessage = formattedFestival;
         }
 
         setErrorMessage(formattedMessage);
