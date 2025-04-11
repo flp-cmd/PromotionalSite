@@ -453,6 +453,7 @@ const VerificationGate: React.FC = () => {
           </Box>
         </Box>
       </Flex>
+
       <Flex gap={"50px"} display={{ base: "none", md: "flex" }}>
         <Box
           display="flex"
@@ -515,6 +516,7 @@ const VerificationGate: React.FC = () => {
           />
         </Box>
       </Flex>
+
       <Text
         fontSize="1.6vh"
         textAlign="center"
@@ -527,6 +529,7 @@ const VerificationGate: React.FC = () => {
       >
         BEBA COM SABEDORIA
       </Text>
+      
       <Image
         src="/instrumentos.png"
         alt="Instrumentos"
