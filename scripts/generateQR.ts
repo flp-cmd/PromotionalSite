@@ -8,7 +8,7 @@ dotenv.config();
 const dominio = "https://www.fabulosa.umbaitafestival.com.br";
 const codigo = process.env.NEXT_PUBLIC_QR_CODE_KEY;
 
-const pastaSaida = path.join(__dirname, "qrcodes");
+const pastaSaida = path.join(__dirname, "..", "qrcode");
 if (!fs.existsSync(pastaSaida)) {
   fs.mkdirSync(pastaSaida);
 }
