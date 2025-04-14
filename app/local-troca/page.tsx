@@ -1,25 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Box, Flex, Text, Image, Link } from "@chakra-ui/react";
 import MapaGoogle from "@/components/common/GoogleMap";
 
 export default function ExchangePage() {
-  const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const flag = localStorage.getItem("acesso_autorizado");
-    if (flag === "true") {
-      setAuthenticated(true);
-    } else {
-      router.replace("/");
-    }
-  }, [router]);
-
-  if (!authenticated) return null;
-
   return (
     <Flex
       flexDirection={"column"}
