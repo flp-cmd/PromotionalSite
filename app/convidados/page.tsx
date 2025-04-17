@@ -8,10 +8,8 @@ import {
   Text,
   Image,
   useDisclosure,
-  Link,
   Spinner,
 } from "@chakra-ui/react";
-import Checkbox from "@/components/common/Checkbox";
 import { useState } from "react";
 import {
   Modal,
@@ -23,110 +21,34 @@ import {
 } from "@chakra-ui/modal";
 import { useRouter } from "next/navigation";
 
-const VerificationGate: React.FC = () => {
+export default function GuestsPage() {
   const router = useRouter();
-  const [cpf, setCpf] = useState("");
+  const [codigo, setCodigo] = useState("");
   const [errorMessage, setErrorMessage] = useState<React.ReactNode>(null);
   const { open, onOpen, onClose } = useDisclosure();
-  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const sanitizeCpf = (cpf: string) => {
-    return cpf.replace(/\D/g, "");
-  };
-
-  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    const cleaned = value.replace(/\D/g, "");
-    let formattedValue = "";
-
-    if (cleaned.length <= 11) {
-      if (cleaned.length <= 3) {
-        formattedValue = cleaned;
-      } else if (cleaned.length <= 6) {
-        formattedValue = `${cleaned.slice(0, 3)}.${cleaned.slice(3)}`;
-      } else if (cleaned.length <= 9) {
-        formattedValue = `${cleaned.slice(0, 3)}.${cleaned.slice(
-          3,
-          6
-        )}.${cleaned.slice(6)}`;
-      } else {
-        formattedValue = `${cleaned.slice(0, 3)}.${cleaned.slice(
-          3,
-          6
-        )}.${cleaned.slice(6, 9)}-${cleaned.slice(9, 11)}`;
-      }
-    } else {
-      if (cleaned.length <= 2) {
-        formattedValue = cleaned;
-      } else if (cleaned.length <= 5) {
-        formattedValue = `${cleaned.slice(0, 2)}.${cleaned.slice(2)}`;
-      } else if (cleaned.length <= 8) {
-        formattedValue = `${cleaned.slice(0, 2)}.${cleaned.slice(
-          2,
-          5
-        )}.${cleaned.slice(5)}`;
-      } else if (cleaned.length <= 12) {
-        formattedValue = `${cleaned.slice(0, 2)}.${cleaned.slice(
-          2,
-          5
-        )}.${cleaned.slice(5, 8)}/${cleaned.slice(8, 12)}`;
-      } else {
-        formattedValue = `${cleaned.slice(0, 2)}.${cleaned.slice(
-          2,
-          5
-        )}.${cleaned.slice(5, 8)}/${cleaned.slice(8, 12)}-${cleaned.slice(
-          12,
-          14
-        )}`;
-      }
-    }
-
-    setCpf(formattedValue);
-  };
-
   const handleVerificationSuccess = () => {
-    sessionStorage.setItem("validatedCpf", sanitizeCpf(cpf));
+    sessionStorage.setItem("validatedCpf", codigo.toUpperCase());
     router.push("/cadastro");
   };
 
-  const validateCpfCnpj = (value: string) => {
-    const onlyNumbers = value.replace(/\D/g, "");
-
-    if (![11, 14].includes(onlyNumbers.length)) {
-      return false;
-    }
-
-    return true;
-  };
-
-  async function validarCPF() {
+  async function validarCodigo() {
     setIsLoading(true);
-    if (!isChecked) {
-      setErrorMessage(
-        <>
-          Para continuar, é necessário concordar com as <b>regras</b> da
-          promoção. Marque a opção antes de prosseguir.
-        </>
-      );
-      onOpen();
-      setIsLoading(false);
-      return;
-    } else if (!validateCpfCnpj(cpf)) {
-      setErrorMessage("CPF/CNPJ inválido. Verifique o número digitado.");
+
+    if (codigo.length !== 6) {
+      setErrorMessage("Código inválido. Verifique o número digitado.");
       onOpen();
       setIsLoading(false);
       return;
     }
 
     try {
-      const response = await fetch(`/api/validar-cpf?cpf=${cpf}`, {
+      const response = await fetch(`/api/validar-codigo?codigo=${codigo}`, {
         method: "GET",
       });
 
       const data = await response.json();
-
       if (data.token) {
         sessionStorage.setItem("validationToken", data.token);
       }
@@ -169,7 +91,7 @@ const VerificationGate: React.FC = () => {
         onOpen();
       }
     } catch (error) {
-      console.error("Erro ao validar CPF:", error);
+      console.log("Erro ao validar Código: ", error);
       setErrorMessage(
         <>Ocorreu um erro na verificação. Tente novamente mais tarde.</>
       );
@@ -257,9 +179,9 @@ const VerificationGate: React.FC = () => {
         textAlign={"center"}
         width={{ base: "30vh", md: "60vh" }}
       >
-        Se você <b>foi comprador</b> de alguma edição do
-        <b> Um Baita Festival</b>, digite seu CPF e ganhe um
-        <b id="highlightedText"> Ticket</b> com prêmios especiais!
+        Se você recebeu um código de convite para participar do{" "}
+        <b> Um Baita Festival</b>, digite seu código e confirme sua presença no
+        melhor festival do Brasil!
       </Text>
 
       <Flex
@@ -277,9 +199,9 @@ const VerificationGate: React.FC = () => {
           gap={"3vh"}
         >
           <Input
-            value={cpf}
-            onChange={handleCpfChange}
-            placeholder="Digite seu cpf ou cnpj aqui"
+            value={codigo}
+            onChange={(e) => setCodigo(e.target.value)}
+            placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"
             bg="white"
@@ -292,7 +214,7 @@ const VerificationGate: React.FC = () => {
             }}
           />
           <Button
-            onClick={validarCPF}
+            onClick={validarCodigo}
             bg="#DF9A00"
             color="#fff"
             _hover={{ bg: "#302e2e", color: "#DF9A00" }}
@@ -301,32 +223,11 @@ const VerificationGate: React.FC = () => {
             height={"7vh"}
             fontWeight={"900"}
             mb={{ md: "8px" }}
-            disabled={isLoading}
           >
-            {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
+            {isLoading === true ? "CARREGANDO..." : "VALIDAR CÓDIGO"}
             {isLoading && <Spinner />}
           </Button>
         </Flex>
-
-        <Checkbox
-          checked={isChecked}
-          onChange={(checked) => setIsChecked(checked)}
-          label={
-            <>
-              Concordo com as{" "}
-              <Link
-                href="/regras-promoção.pdf"
-                color="#7E92FF"
-                textDecoration={"underline"}
-                target="_blank"
-                _focus={{ outline: "none" }}
-              >
-                regras
-              </Link>{" "}
-              da promoção
-            </>
-          }
-        />
       </Flex>
 
       <Flex
@@ -343,9 +244,9 @@ const VerificationGate: React.FC = () => {
           mt={{ base: "0vh", md: "3vh" }}
         >
           <Input
-            value={cpf}
-            onChange={handleCpfChange}
-            placeholder="Digite seu cpf ou cnpj aqui"
+            value={codigo}
+            onChange={(e) => setCodigo(e.target.value)}
+            placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"
             bg="white"
@@ -357,29 +258,10 @@ const VerificationGate: React.FC = () => {
               transition: "all 0.2s",
             }}
           />
-          <Checkbox
-            checked={isChecked}
-            onChange={(checked) => setIsChecked(checked)}
-            label={
-              <>
-                Concordo com as{" "}
-                <Link
-                  href="/regras-promoção.pdf"
-                  color="#7E92FF"
-                  textDecoration={"underline"}
-                  target="_blank"
-                  _focus={{ outline: "none" }}
-                >
-                  regras
-                </Link>{" "}
-                da promoção
-              </>
-            }
-          />
         </Flex>
 
         <Button
-          onClick={validarCPF}
+          onClick={validarCodigo}
           bg="#DF9A00"
           color="#fff"
           _hover={{ bg: "#302e2e", color: "#DF9A00" }}
@@ -388,9 +270,8 @@ const VerificationGate: React.FC = () => {
           height={"7vh"}
           fontWeight={"900"}
           mb={{ md: "8px" }}
-          disabled={isLoading}
         >
-          {isLoading === true ? "CARREGANDO..." : "QUERO PARTICIPAR"}
+          {isLoading === true ? "CARREGANDO..." : "VALIDAR CÓDIGO"}
           {isLoading && <Spinner />}
         </Button>
         <Box display={{ base: "flex", md: "none" }} gap={"3.5vw"}>
@@ -528,7 +409,7 @@ const VerificationGate: React.FC = () => {
       >
         BEBA COM SABEDORIA
       </Text>
-      
+
       <Image
         src="/instrumentos.png"
         alt="Instrumentos"
@@ -555,6 +436,4 @@ const VerificationGate: React.FC = () => {
       />
     </Flex>
   );
-};
-
-export default VerificationGate;
+}

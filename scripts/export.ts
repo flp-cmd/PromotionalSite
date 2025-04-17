@@ -42,9 +42,21 @@ async function exportParticipatingClients() {
       return;
     }
 
+    const hoje = new Date();
+    const dia = hoje.getDate().toString().padStart(2, "0");
+    const mes = (hoje.getMonth() + 1).toString().padStart(2, "0");
+    const nomeArquivo = `fabulosa_participantes_${dia}-${mes}.csv`;
+
+    // Garante que a pasta files existe
+    const pastaFiles = "./files";
+    if (!fs.existsSync(pastaFiles)) {
+      fs.mkdirSync(pastaFiles);
+    }
+
+    const caminhoCompleto = `${pastaFiles}/${nomeArquivo}`;
     const csv = Papa.unparse(data);
-    fs.writeFileSync("fabulosa_participantes.csv", csv);
-    console.log("✅ Exportado com sucesso para fabulosa_participantes.csv");
+    fs.writeFileSync(caminhoCompleto, csv);
+    console.log(`✅ Exportado com sucesso para ${caminhoCompleto}`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Erro ao exportar:", error);

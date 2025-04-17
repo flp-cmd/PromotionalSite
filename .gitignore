@@ -45,6 +45,6 @@ data/
 
 tsconfig.scripts.json
 
-qrcode/
+files/
 
-fabulosa_participantes.csv
+serviceAccountKey.json
