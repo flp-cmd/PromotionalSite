@@ -13,8 +13,8 @@ export async function GET(
 ): Promise<NextResponse<ApiResponse>> {
   try {
     const { searchParams } = new URL(req.url);
-    const codigo = searchParams.get("codigo");
-    if (!codigo || codigo.length !== 6) {
+    const code = searchParams.get("code");
+    if (!code || code.length !== 6) {
       return NextResponse.json(
         {
           status: "error",
@@ -24,7 +24,7 @@ export async function GET(
       );
     }
 
-    const docRef = doc(db, "convidados", codigo);
+    const docRef = doc(db, "convidados", code);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -32,7 +32,7 @@ export async function GET(
 
       if (data?.isActive === false) {
         const token = jwt.sign(
-          { codigo, validated: true },
+          { code, validated: true },
           process.env.SECRET_API_KEY_JWT_SECRET as string,
           { expiresIn: "15m" }
         );

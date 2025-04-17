@@ -23,20 +23,20 @@ import { useRouter } from "next/navigation";
 
 export default function GuestsPage() {
   const router = useRouter();
-  const [codigo, setCodigo] = useState("");
+  const [code, setCode] = useState("");
   const [errorMessage, setErrorMessage] = useState<React.ReactNode>(null);
   const { open, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleVerificationSuccess = () => {
-    sessionStorage.setItem("validatedCpf", codigo.toUpperCase());
-    router.push("/cadastro");
+    sessionStorage.setItem("validatedCode", code.toUpperCase());
+    router.push("/convidados/cadastro");
   };
 
   async function validarCodigo() {
     setIsLoading(true);
 
-    if (codigo.length !== 6) {
+    if (code.length !== 6) {
       setErrorMessage("Código inválido. Verifique o número digitado.");
       onOpen();
       setIsLoading(false);
@@ -44,7 +44,7 @@ export default function GuestsPage() {
     }
 
     try {
-      const response = await fetch(`/api/validar-codigo?codigo=${codigo}`, {
+      const response = await fetch(`/api/validar-codigo?code=${code}`, {
         method: "GET",
       });
 
@@ -199,8 +199,8 @@ export default function GuestsPage() {
           gap={"3vh"}
         >
           <Input
-            value={codigo}
-            onChange={(e) => setCodigo(e.target.value)}
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
             placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"
@@ -244,8 +244,8 @@ export default function GuestsPage() {
           mt={{ base: "0vh", md: "3vh" }}
         >
           <Input
-            value={codigo}
-            onChange={(e) => setCodigo(e.target.value)}
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
             placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"

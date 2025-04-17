@@ -57,6 +57,7 @@ async function populateConvidados() {
 
         const convidadoData = {
           isActive: false,
+          wasExported: false,
           cpf: "",
           fullName: "",
           cellPhone: "",

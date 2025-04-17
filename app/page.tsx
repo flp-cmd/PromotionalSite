@@ -528,7 +528,7 @@ const VerificationGate: React.FC = () => {
       >
         BEBA COM SABEDORIA
       </Text>
-      
+
       <Image
         src="/instrumentos.png"
         alt="Instrumentos"
