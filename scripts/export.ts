@@ -5,6 +5,8 @@ import {
   getDocs,
   query,
   where,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 import fs from "fs";
 import Papa from "papaparse";
@@ -29,7 +31,12 @@ async function exportParticipatingClients() {
   try {
     const colRef = collection(db, "clientes");
 
-    const q = query(colRef, where("isParticipating", "==", true));
+    // Busca apenas clientes participantes que ainda não foram exportados
+    const q = query(
+      colRef,
+      where("isParticipating", "==", true),
+      where("wasExported", "==", false)
+    );
     const snapshot = await getDocs(q);
 
     const data = snapshot.docs.map((doc) => ({
@@ -38,16 +45,42 @@ async function exportParticipatingClients() {
     }));
 
     if (data.length === 0) {
-      console.log("Nenhum cliente participante encontrado.");
+      console.log("Nenhum cliente novo para exportar.");
       return;
     }
 
+    const hoje = new Date();
+    const dia = hoje.getDate().toString().padStart(2, "0");
+    const mes = (hoje.getMonth() + 1).toString().padStart(2, "0");
+    const nomeArquivo = `fabulosa_participantes_${dia}-${mes}.csv`;
+
+    // Garante que a pasta files existe
+    const pastaFiles = "./files";
+    if (!fs.existsSync(pastaFiles)) {
+      fs.mkdirSync(pastaFiles);
+    }
+
+    const caminhoCompleto = `${pastaFiles}/${nomeArquivo}`;
     const csv = Papa.unparse(data);
-    fs.writeFileSync("fabulosa_participantes.csv", csv);
-    console.log("✅ Exportado com sucesso para fabulosa_participantes.csv");
+    fs.writeFileSync(caminhoCompleto, csv);
+
+    // Atualiza os documentos marcando como exportados
+    console.log("Atualizando status dos clientes exportados...");
+    const atualizacoes = snapshot.docs.map((doc) =>
+      updateDoc(doc.ref, {
+        wasExported: true,
+        exportedAt: new Date().toISOString(),
+      })
+    );
+
+    await Promise.all(atualizacoes);
+
+    console.log(`✅ Exportado com sucesso para ${caminhoCompleto}`);
+    console.log(`📊 Total de clientes exportados: ${data.length}`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Erro ao exportar:", error);
+    process.exit(1);
   }
 }
 
