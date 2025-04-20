@@ -6,7 +6,6 @@ import {
   query,
   where,
   updateDoc,
-  doc,
 } from "firebase/firestore";
 import fs from "fs";
 import Papa from "papaparse";
@@ -29,12 +28,12 @@ const db = getFirestore(app);
 
 async function exportParticipatingClients() {
   try {
-    const colRef = collection(db, "clientes");
+    const colRef = collection(db, "convidados");
 
     // Busca apenas clientes participantes que ainda não foram exportados
     const q = query(
       colRef,
-      where("isParticipating", "==", true),
+      where("isActive", "==", true),
       where("wasExported", "==", false)
     );
     const snapshot = await getDocs(q);
@@ -45,14 +44,14 @@ async function exportParticipatingClients() {
     }));
 
     if (data.length === 0) {
-      console.log("Nenhum cliente novo para exportar.");
+      console.log("Nenhum convidado novo para exportar.");
       return;
     }
 
     const hoje = new Date();
     const dia = hoje.getDate().toString().padStart(2, "0");
     const mes = (hoje.getMonth() + 1).toString().padStart(2, "0");
-    const nomeArquivo = `fabulosa_participantes_${dia}-${mes}.csv`;
+    const nomeArquivo = `fabulosa_convidados_${dia}-${mes}.csv`;
 
     // Garante que a pasta files existe
     const pastaFiles = "./files";
@@ -65,7 +64,7 @@ async function exportParticipatingClients() {
     fs.writeFileSync(caminhoCompleto, csv);
 
     // Atualiza os documentos marcando como exportados
-    console.log("Atualizando status dos clientes exportados...");
+    console.log("Atualizando status dos convidados exportados...");
     const atualizacoes = snapshot.docs.map((doc) =>
       updateDoc(doc.ref, {
         wasExported: true,
@@ -76,7 +75,7 @@ async function exportParticipatingClients() {
     await Promise.all(atualizacoes);
 
     console.log(`✅ Exportado com sucesso para ${caminhoCompleto}`);
-    console.log(`📊 Total de clientes exportados: ${data.length}`);
+    console.log(`📊 Total de convidados exportados: ${data.length}`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Erro ao exportar:", error);

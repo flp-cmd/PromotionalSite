@@ -264,14 +264,16 @@ export default function GuestSignUpPage() {
           <ModalBody py={6} bgColor={"#fff"}>
             <Text
               color={"#4b4a4a"}
-              textAlign={"center"}
+              textAlign={"justify"}
               mx={"10px"}
               fontSize={"14px"}
               paddingTop={"5px"}
+              paddingInline={"5px"}
             >
-              Agora é só esperar e torcer para ser um dos premiados! Enquanto
-              isso, que tal postar nos seus stories uma imagem especial com a{" "}
-              <b>#umbaitafestival</b> e já ir se preparando?
+              Tudo certo! Sua presença e a do(a) convidado(a) que você cadastrou
+              estão oficialmente confirmadas para o <b>Um Baita Festival!</b>{" "}
+              Agora é só se preparar para viver uma experiência inesquecível.{" "}
+              <b>Nos vemos lá!</b>
             </Text>
           </ModalBody>
           <ModalFooter
@@ -280,22 +282,7 @@ export default function GuestSignUpPage() {
             justifyContent={"center"}
             height={"70px"}
             borderBottomRadius={"8px"}
-            gap={"10px"}
           >
-            <Button
-              bgColor={"#ED7678"}
-              color={"#fff"}
-              fontWeight={"500"}
-              onClick={() => {
-                onCloseSuccessModal();
-                router.push("/convidados");
-              }}
-              _hover={{ bg: "#302e2e", color: "#ED7678" }}
-              borderRadius={"8px"}
-              width={"150px"}
-            >
-              DEIXA PRA LÁ...
-            </Button>
             <Button
               bgColor={"#DF9A00"}
               color={"#fff"}

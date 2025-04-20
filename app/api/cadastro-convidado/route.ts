@@ -48,6 +48,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await setDoc(doc(db, "convidados", decoded.code), {
       ...body,
       isActive: true,
+      wasExported: false,
       createdAt: Timestamp.now(),
     });
 
