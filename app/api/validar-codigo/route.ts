@@ -14,7 +14,7 @@ export async function GET(
   try {
     const { searchParams } = new URL(req.url);
     const code = searchParams.get("code");
-    if (!code || code.length !== 6) {
+    if (!code || code.length !== 8) {
       return NextResponse.json(
         {
           status: "error",

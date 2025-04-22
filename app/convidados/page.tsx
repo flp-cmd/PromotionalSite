@@ -36,7 +36,7 @@ export default function GuestsPage() {
   async function validarCodigo() {
     setIsLoading(true);
 
-    if (code.length !== 6) {
+    if (code.length !== 8) {
       setErrorMessage("Código inválido. Verifique o número digitado.");
       onOpen();
       setIsLoading(false);
@@ -56,38 +56,7 @@ export default function GuestsPage() {
       if (data.status === "success") {
         handleVerificationSuccess();
       } else {
-        let formattedMessage = data.message;
-
-        if (
-          data.message.includes("Um Baita Festival") ||
-          data.message.includes("SAC")
-        ) {
-          const festivalParts = data.message.split("Um Baita Festival");
-          let formattedFestival = (
-            <>
-              {festivalParts[0]}
-              <strong>Um Baita Festival</strong>
-              {festivalParts[1]}
-            </>
-          );
-
-          if (festivalParts[1]?.includes("SAC")) {
-            const sacParts = festivalParts[1].split("SAC");
-            formattedFestival = (
-              <>
-                {festivalParts[0]}
-                <strong>Um Baita Festival</strong>
-                {sacParts[0]}
-                <strong>SAC</strong>
-                {sacParts[1]}
-              </>
-            );
-          }
-
-          formattedMessage = formattedFestival;
-        }
-
-        setErrorMessage(formattedMessage);
+        setErrorMessage(data.message);
         onOpen();
       }
     } catch (error) {
@@ -109,7 +78,7 @@ export default function GuestsPage() {
       borderRadius="md"
       bg="transparent"
       minW={"360px"}
-      pt={{ base: "4vh", md: "15vh" }}
+      pt={{ base: "4vh", md: "10vh" }}
       paddingInline={{ base: "10vw" }}
       mx={"auto"}
       position={{ md: "relative" }}
@@ -165,6 +134,7 @@ export default function GuestsPage() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
       <Image
         src="/promotionalLogo.png"
         mb={{ base: "5vh", md: "3vh" }}
@@ -175,29 +145,24 @@ export default function GuestsPage() {
         color="white"
         fontSize={{ base: "2.3vh", md: "2.5vh" }}
         fontWeight={"400"}
-        lineHeight={{ base: "3vh", md: "3vh" }}
-        textAlign={"center"}
-        width={{ base: "30vh", md: "60vh" }}
+        lineHeight={{ base: "3.5vh", md: "4vh" }}
+        textAlign={"justify"}
+        width={{ base: "40vh", md: "60vh" }}
       >
         Se você recebeu um código de convite para participar do{" "}
         <b> Um Baita Festival</b>, digite seu código e confirme sua presença no
-        melhor festival do Brasil!
+        melhor festival do Brasil e de brinde ganhe uma <b id="highlightedText">cortesia</b> para um
+        convidado de sua escolha!
       </Text>
 
       <Flex
         mt={{ base: "5vh", md: "2vh" }}
         direction={{ base: "column", md: "column" }}
-        alignItems={"flex-start"}
-        width={{ md: "70vh" }}
+        width={{ base: "100%", md: "60vh" }}
         display={{ base: "none", md: "flex" }}
         gap={"0vh"}
       >
-        <Flex
-          flexDirection={"row"}
-          width={{ base: "100%", md: "100%" }}
-          mt={{ base: "0vh", md: "3vh" }}
-          gap={"3vh"}
-        >
+        <Flex flexDirection={"row"} width={"100%"} mt={"3vh"} gap={"3vh"}>
           <Input
             value={code}
             onChange={(e) => setCode(e.target.value)}
@@ -235,7 +200,6 @@ export default function GuestsPage() {
         mt={{ base: "5vh", md: "2vh" }}
         direction={{ base: "column", md: "row" }}
         alignItems={"center"}
-        width={{ md: "70vh" }}
         display={{ base: "flex", md: "none" }}
       >
         <Flex //MOBILE FLEX
