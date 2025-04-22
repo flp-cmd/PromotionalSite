@@ -339,7 +339,6 @@ export default function SignupPage() {
     }
   };
 
-
   useEffect(() => {
     const fetchStates = async () => {
       try {
@@ -447,7 +446,6 @@ export default function SignupPage() {
               color={"#fff"}
               fontWeight={"900"}
               onClick={() => {
-                handleStoryDownload();
                 onCloseSuccessModal();
                 router.push("/");
               }}

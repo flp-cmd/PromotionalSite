@@ -333,10 +333,6 @@ export default function GuestSignUpPage() {
       bottom="0"
       width="100vw"
       height="100vh"
-      backgroundImage={"url('/estrelas.png')"}
-      backgroundSize="cover"
-      backgroundPosition="center"
-      backgroundRepeat="repeat"
       overflowY="auto"
     >
       <Flex

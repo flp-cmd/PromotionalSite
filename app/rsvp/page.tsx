@@ -30,7 +30,7 @@ export default function GuestsPage() {
 
   const handleVerificationSuccess = () => {
     sessionStorage.setItem("validatedCode", code.toUpperCase());
-    router.push("/convidados/cadastro");
+    router.push("/rsvp/cadastro");
   };
 
   async function validarCodigo() {
@@ -149,10 +149,10 @@ export default function GuestsPage() {
         textAlign={"justify"}
         width={{ base: "40vh", md: "60vh" }}
       >
-        Se você recebeu um código de convite para participar do{" "}
+        Se você recebeu um código <b>RSVP</b> para participar do{" "}
         <b> Um Baita Festival</b>, digite seu código e confirme sua presença no
-        melhor festival do Brasil e de brinde ganhe uma <b id="highlightedText">cortesia</b> para um
-        convidado de sua escolha!
+        melhor festival do Brasil e de brinde ganhe uma{" "}
+        <b id="highlightedText">cortesia</b> para um convidado de sua escolha!
       </Text>
 
       <Flex
