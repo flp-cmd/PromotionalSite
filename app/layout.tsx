@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Roboto } from "next/font/google";
 import ToasterClient from "@/components/common/ToasterClient";
-import { Analytics } from "@vercel/analytics/next";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -13,7 +12,7 @@ const roboto = Roboto({
 export default function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <link
           rel="apple-touch-icon"
@@ -37,7 +36,6 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body className={roboto.className}>
         <Provider>{children}</Provider>
         <ToasterClient />
-        <Analytics />
       </body>
     </html>
   );

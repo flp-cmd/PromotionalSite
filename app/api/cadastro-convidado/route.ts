@@ -4,9 +4,18 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
 interface CadastroRequest {
-  cpf: string;
-  fullName: string;
-  cellphone: string;
+  vip: {
+    cpf: string;
+    fullName: string;
+    cellphone: string;
+    email: string;
+  };
+  guest: {
+    cpf: string;
+    fullName: string;
+    cellphone: string;
+    email: string;
+  };
   code: string;
 }
 
@@ -24,7 +33,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     const token = authHeader.split(" ")[1];
 
-    if (!body.cpf || !body.fullName || !body.cellphone) {
+    if (!body.vip.cpf || !body.vip.fullName || !body.vip.cellphone) {
       return NextResponse.json(
         { status: "error", message: "Campos obrigatórios faltando!" },
         { status: 400 }
@@ -46,10 +55,20 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
 
     await setDoc(doc(db, "convidados", decoded.code), {
-      ...body,
+      ...body.vip,
       isActive: true,
+      wasExported: false,
       createdAt: Timestamp.now(),
     });
+
+    if (body.guest.cpf !== "") {
+      await setDoc(doc(db, "convidados", `${decoded.code}-guest`), {
+        ...body.guest,
+        isActive: true,
+        wasExported: false,
+        createdAt: Timestamp.now(),
+      });
+    }
 
     return NextResponse.json(
       { status: "success", message: "Cadastro realizado com sucesso!" },

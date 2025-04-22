@@ -2,27 +2,23 @@ import admin from "firebase-admin";
 import fs from "fs";
 import path from "path";
 
-// Caminho do JSON da service account (ajuste se necessário)
 const serviceAccountPath = path.resolve(__dirname, "../serviceAccountKey.json");
 
-// Inicializa o Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(require(serviceAccountPath)),
 });
 
 const db = admin.firestore();
 
-// Função para gerar código aleatório (6 caracteres alfanuméricos)
 function generateInviteCode(): string {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let code = "";
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 8; i++) {
     code += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return code;
 }
 
-// Função para esperar um tempo específico
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function populateConvidados() {
@@ -36,7 +32,6 @@ async function populateConvidados() {
       `\n=== INICIANDO GERAÇÃO DE ${numberOfCodes} CÓDIGOS DE CONVITE ===\n`
     );
 
-    // Teste inicial
     try {
       const testCode = "TEST123";
       await db.collection("convidados").doc(testCode).set({ active: true });
@@ -77,7 +72,6 @@ async function populateConvidados() {
     console.log(`\n=== PROCESSO FINALIZADO ===`);
     console.log(`Total de códigos gerados: ${codigosGerados.size}`);
 
-    // Salva os códigos em arquivo
     if (!fs.existsSync("./files")) {
       fs.mkdirSync("./files");
     }

@@ -339,14 +339,6 @@ export default function SignupPage() {
     }
   };
 
-  const handleStoryDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/storyUmBaitaFestival.png";
-    link.download = "storyUmBaitaFestival.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   useEffect(() => {
     const fetchStates = async () => {
