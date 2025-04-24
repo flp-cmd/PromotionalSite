@@ -438,8 +438,8 @@ export default function GuestSignUpPage() {
         >
           <b id="highlightedText">Parabéns! </b>
           <b>
-            Você acaba de ganhar um ingresso cortesia para você e um
-            acompanhante de sua escolha!
+            Você acaba de ganhar um ingresso para você e um acompanhante de sua
+            escolha!
           </b>{" "}
           Por favor preencha o formulário abaixo com os dados necessários.
         </Text>

@@ -149,10 +149,10 @@ export default function GuestsPage() {
         textAlign={"justify"}
         width={{ base: "40vh", md: "60vh" }}
       >
-        Se você recebeu um código <b>RSVP</b> para participar do{" "}
-        <b> Um Baita Festival</b>, digite seu código e confirme sua presença no
-        melhor festival do Brasil e de brinde ganhe uma{" "}
-        <b id="highlightedText">cortesia</b> para um convidado de sua escolha!
+        Se você recebeu um código <b id="highlightedText">RSVP</b> para
+        participar do <b> Um Baita Festival</b>, digite seu código e confirme
+        sua presença no melhor festival do Brasil e de brinde ganhe um outro
+        ingresso para um convidado de sua escolha!
       </Text>
 
       <Flex
