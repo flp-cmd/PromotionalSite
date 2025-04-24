@@ -241,7 +241,7 @@ export default function GuestSignUpPage() {
   useEffect(() => {
     const validatedCode = sessionStorage.getItem("validatedCode");
     if (!validatedCode) {
-      router.push("/convidados");
+      router.push("/rsvp");
     } else {
       setError(false);
       setCode(validatedCode);
@@ -374,7 +374,7 @@ export default function GuestSignUpPage() {
             <ModalBody py={6} bgColor={"#fff"}>
               <Text
                 color={"#4b4a4a"}
-                textAlign={"center"}
+                textAlign={"justify"}
                 mx={"10px"}
                 fontSize={"14px"}
                 paddingTop={"5px"}
