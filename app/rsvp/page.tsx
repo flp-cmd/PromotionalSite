@@ -171,6 +171,11 @@ export default function GuestsPage() {
             color="black"
             bg="white"
             height={"7vh"}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                validarCodigo();
+              }
+            }}
             _focus={{
               border: "2px solid #DF9A00",
               bg: "blue.50",
@@ -215,6 +220,11 @@ export default function GuestsPage() {
             color="black"
             bg="white"
             height={"7vh"}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                validarCodigo();
+              }
+            }}
             _focus={{
               border: "2px solid #DF9A00",
               bg: "blue.50",

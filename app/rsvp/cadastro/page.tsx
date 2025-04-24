@@ -399,7 +399,7 @@ export default function GuestSignUpPage() {
                 fontWeight={"500"}
                 onClick={() => {
                   onCloseSuccessModal();
-                  router.push("/convidados");
+                  router.push("/rsvp");
                 }}
                 _hover={{ bg: "#302e2e", color: "#ED7678" }}
                 borderRadius={"8px"}
@@ -414,7 +414,7 @@ export default function GuestSignUpPage() {
                 onClick={() => {
                   handleStoryDownload();
                   onCloseSuccessModal();
-                  router.push("/convidados");
+                  router.push("/rsvp");
                 }}
                 _hover={{ bg: "#302e2e", color: "#DF9A00" }}
                 borderRadius={"8px"}
