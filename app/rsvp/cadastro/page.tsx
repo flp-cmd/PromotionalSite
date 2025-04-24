@@ -62,6 +62,42 @@ export default function GuestSignUpPage() {
     useState(false);
   const [emailInvalidGuest, setEmailInvalidGuest] = useState(false);
 
+  useEffect(() => {
+    const fetchFullName = async () => {
+      const validatedCode = sessionStorage.getItem("validatedCode");
+      const token = sessionStorage.getItem("validationToken");
+
+      if (validatedCode && token) {
+        try {
+          const response = await fetch(
+            `/api/get-fullname?code=${validatedCode}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok && data.status === "success") {
+            setFormData((prev) => ({
+              ...prev,
+              vip: {
+                ...prev.vip,
+                fullName: data.fullName || "",
+              },
+            }));
+          }
+        } catch (error) {
+          console.error("Erro ao buscar nome do convidado:", error);
+        }
+      }
+    };
+
+    fetchFullName();
+  }, [router]);
+
   const handleStoryDownload = () => {
     const link = document.createElement("a");
     link.href = "/storyUmBaitaFestival.png";
@@ -437,11 +473,11 @@ export default function GuestSignUpPage() {
           mt={"40px"}
         >
           <b id="highlightedText">Parabéns! </b>
-          <b>
-            Você acaba de ganhar um ingresso para você e um acompanhante de sua
-            escolha!
-          </b>{" "}
-          Por favor preencha o formulário abaixo com os dados necessários.
+          Você foi convidado(a) para fazer parte da lista{" "}
+          <b id="highlightedText">VIP</b> do <b>Um Baita Festival</b> e pode
+          levar um acompanhante da sua escolha para curtir esse evento incrível
+          com você. Preencha o formulário abaixo com as informações necessárias
+          para garantir seu acesso.
         </Text>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <Grid

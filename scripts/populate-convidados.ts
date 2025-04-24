@@ -25,24 +25,20 @@ async function populateConvidados() {
   try {
     console.log("Iniciando conexão com o Firestore...");
 
-    const numberOfCodes = 100;
-    const codigosGerados = new Set<string>();
+    const vipFilePath = path.resolve(__dirname, "../files/convidados_vip.json");
+    const vipData = JSON.parse(fs.readFileSync(vipFilePath, "utf8"));
+    const vipNames = vipData.nomes;
 
     console.log(
-      `\n=== INICIANDO GERAÇÃO DE ${numberOfCodes} CÓDIGOS DE CONVITE ===\n`
+      `\n=== INICIANDO GERAÇÃO DE ${vipNames.length} CÓDIGOS DE CONVITE PARA VIPs ===\n`
     );
 
-    try {
-      const testCode = "TEST123";
-      await db.collection("convidados").doc(testCode).set({ active: true });
-      console.log("✅ Teste inicial bem sucedido");
-    } catch (error) {
-      console.error("❌ Erro no teste inicial:", error);
-      process.exit(1);
-    }
+    const codigosGerados = new Set<string>();
 
-    for (let i = 0; i < numberOfCodes; i++) {
+    for (let i = 0; i < vipNames.length; i++) {
       try {
+        const vipName = vipNames[i];
+
         let codigo: string;
         do {
           codigo = generateInviteCode();
@@ -54,13 +50,14 @@ async function populateConvidados() {
           isActive: false,
           wasExported: false,
           cpf: "",
-          fullName: "",
+          email: "",
+          fullName: vipName,
           cellPhone: "",
           createdAt: new Date(),
         };
 
         await db.collection("convidados").doc(codigo).set(convidadoData);
-        console.log(`✅ Código salvo com sucesso: ${codigo}`);
+        console.log(`✅ Código ${codigo} salvo com sucesso para: ${vipName}`);
 
         await delay(100);
       } catch (error) {
@@ -76,12 +73,16 @@ async function populateConvidados() {
       fs.mkdirSync("./files");
     }
 
-    const codigosArray = Array.from(codigosGerados);
+    const codigosVIP = Array.from(codigosGerados).map((codigo, index) => ({
+      codigo,
+      nome: vipNames[index],
+    }));
+
     fs.writeFileSync(
-      "./files/codigos_gerados.json",
-      JSON.stringify(codigosArray, null, 2)
+      "./files/codigos_vip_gerados.json",
+      JSON.stringify(codigosVIP, null, 2)
     );
-    console.log(`✅ Códigos salvos em: ./files/codigos_gerados.json`);
+    console.log(`✅ Códigos VIP salvos em: ./files/codigos_vip_gerados.json`);
 
     process.exit(0);
   } catch (error) {
