@@ -32,11 +32,7 @@ async function exportParticipatingClients() {
     const colRef = collection(db, "clientes");
 
     // Busca apenas clientes participantes que ainda não foram exportados
-    const q = query(
-      colRef,
-      where("isParticipating", "==", true),
-      where("wasExported", "==", false)
-    );
+    const q = query(colRef, where("isParticipating", "==", true));
     const snapshot = await getDocs(q);
 
     const data = snapshot.docs.map((doc) => ({

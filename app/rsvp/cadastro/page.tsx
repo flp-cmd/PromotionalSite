@@ -415,10 +415,21 @@ export default function GuestSignUpPage() {
                 fontSize={"14px"}
                 paddingTop={"5px"}
               >
-                Parabéns você está na lista de convidados VIP do{" "}
-                <b>Um Baita Festival</b>! Enquanto isso, que tal postar nos seus
-                stories uma imagem especial com a <b>#umbaitafestival</b> e já
-                ir se preparando?
+                {showGuestFields ? (
+                  <>
+                    Parabéns! Você e seu convidado estão na lista de convidados
+                    VIP do <b>Um Baita Festival</b>! Enquanto isso, que tal
+                    postar nos seus stories uma imagem especial com a{" "}
+                    <b>#umbaitafestival</b> e já ir se preparando?
+                  </>
+                ) : (
+                  <>
+                    Parabéns você está na lista de convidados VIP do{" "}
+                    <b>Um Baita Festival</b>! Enquanto isso, que tal postar nos
+                    seus stories uma imagem especial com a{" "}
+                    <b>#umbaitafestival</b> e já ir se preparando?
+                  </>
+                )}
               </Text>
             </ModalBody>
             <ModalFooter
@@ -475,9 +486,9 @@ export default function GuestSignUpPage() {
           <b id="highlightedText">Parabéns! </b>
           Você foi convidado(a) para fazer parte da lista{" "}
           <b id="highlightedText">VIP</b> do <b>Um Baita Festival</b> e pode
-          levar um acompanhante da sua escolha para curtir esse evento incrível
-          com você. Preencha o formulário abaixo com as informações necessárias
-          para garantir seu acesso.
+          levar um convidado da sua escolha para curtir esse evento incrível com
+          você. Preencha o formulário abaixo com as informações necessárias para
+          garantir seu acesso.
         </Text>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <Grid

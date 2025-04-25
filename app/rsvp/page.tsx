@@ -151,8 +151,8 @@ export default function GuestsPage() {
       >
         Se você recebeu um código <b id="highlightedText">RSVP</b> para
         participar do <b> Um Baita Festival</b>, digite seu código e confirme
-        sua presença no melhor festival do Brasil e de brinde ganhe um outro
-        ingresso para um convidado de sua escolha!
+        sua presença na lista <b id="highlightedText">VIP</b> do melhor festival
+        do Brasil e de brinde leve um convidado de sua escolha!
       </Text>
 
       <Flex
