@@ -165,7 +165,7 @@ export default function GuestsPage() {
         <Flex flexDirection={"row"} width={"100%"} mt={"3vh"} gap={"3vh"}>
           <Input
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
             placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"
@@ -214,7 +214,7 @@ export default function GuestsPage() {
         >
           <Input
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
             placeholder="Digite seu código aqui"
             borderRadius={"10px"}
             color="black"
