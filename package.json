@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "populate-codes": "ts-node -P tsconfig.scripts.json scripts/populate-convidados.ts"
+    "populate-codes": "ts-node -P tsconfig.scripts.json scripts/populate-convidados.ts",
+    "export-vips": "ts-node -P tsconfig.scripts.json scripts/export.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
