@@ -368,8 +368,10 @@ export default function GuestSignUpPage() {
       right="0"
       bottom="0"
       width="100vw"
-      height="100vh"
       overflowY="auto"
+      bg="#3B037F"
+      minH={"100vh"}
+      height={"100%"}
     >
       <Flex
         flexDir={"column"}
@@ -455,7 +457,7 @@ export default function GuestSignUpPage() {
                 DEIXA PRA LÁ...
               </Button>
               <Button
-                bgColor={"#DF9A00"}
+                bgColor={"#FE006C"}
                 color={"#fff"}
                 fontWeight={"900"}
                 onClick={() => {
@@ -463,7 +465,7 @@ export default function GuestSignUpPage() {
                   onCloseSuccessModal();
                   router.push("/rsvp");
                 }}
-                _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+                _hover={{ bg: "#302e2e", color: "#FE006C" }}
                 borderRadius={"8px"}
                 width={"150px"}
               >
@@ -637,9 +639,9 @@ export default function GuestSignUpPage() {
                   onClick={() => setShowGuestFields(!showGuestFields)}
                   colorScheme="yellow"
                   variant="outline"
-                  color="#FFDE00"
-                  borderColor="#FFDE00"
-                  _hover={{ bg: "rgba(255, 222, 0, 0.2)" }}
+                  color="#FE006C"
+                  borderColor="#FE006C"
+                  _hover={{ bg: "rgba(0, 0, 0, 0.5)" }}
                 >
                   {showGuestFields
                     ? "Esconder campos do convidado"
@@ -802,14 +804,14 @@ export default function GuestSignUpPage() {
             <Button
               type="submit"
               color={"#FFF"}
-              bgColor={"#DF9A00"}
+              bgColor={"#FE006C"}
               justifySelf={"center"}
               height={"7vh"}
               width={{ base: "60%", md: "28vh" }}
               borderRadius={"lg"}
               fontWeight={"900"}
               onSubmit={handleSubmit}
-              _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+              _hover={{ bg: "#302e2e", color: "#FE006C" }}
               disabled={isLoading}
             >
               {isLoading === true ? "CARREGANDO..." : "ENVIAR"}

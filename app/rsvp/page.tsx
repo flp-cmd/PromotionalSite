@@ -76,7 +76,9 @@ export default function GuestsPage() {
       className="content"
       textAlign="center"
       borderRadius="md"
-      bg="transparent"
+      bg="#3B037F"
+      minH={"100vh"}
+      height={"100%"}
       minW={"360px"}
       pt={{ base: "4vh", md: "10vh" }}
       paddingInline={{ base: "10vw" }}
@@ -136,7 +138,7 @@ export default function GuestsPage() {
       </Modal>
 
       <Image
-        src="/promotionalLogo.png"
+        src="/logoUBF.png"
         mb={{ base: "5vh", md: "3vh" }}
         width={{ base: "40vh", md: "50vh" }}
         alt="PromotionalLogo"
@@ -185,9 +187,9 @@ export default function GuestsPage() {
           />
           <Button
             onClick={validarCodigo}
-            bg="#DF9A00"
+            bg="#FE006C"
             color="#fff"
-            _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+            _hover={{ bg: "#302e2e", color: "#FE006C" }}
             borderRadius={"lg"}
             width={{ base: "60%", md: "28vh" }}
             height={"7vh"}
@@ -236,9 +238,9 @@ export default function GuestsPage() {
 
         <Button
           onClick={validarCodigo}
-          bg="#DF9A00"
+          bg="#FE006C"
           color="#fff"
-          _hover={{ bg: "#302e2e", color: "#DF9A00" }}
+          _hover={{ bg: "#302e2e", color: "#FE006C" }}
           borderRadius={"lg"}
           width={{ base: "60%", md: "28vh" }}
           height={"7vh"}
@@ -248,64 +250,63 @@ export default function GuestsPage() {
           {isLoading === true ? "CARREGANDO..." : "VALIDAR CÓDIGO"}
           {isLoading && <Spinner />}
         </Button>
-        <Box display={{ base: "flex", md: "none" }} gap={"3.5vw"}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "30vh", md: "3vh" }}
-            left={{ base: "20vw", md: "3vw" }}
-            position={{ md: "absolute" }}
-            gap={"1vh"}
-          >
-            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
-              CERVEJA OFICIAL:
-            </Text>
-            <Image
-              src="/blackPrincess.png"
-              alt="Logo Black Princess"
-              maxW={{ base: "12vh" }}
-              w={"100%"}
-            />
-          </Box>
+        <Flex
+          flexDirection={"column"}
+          display={{ base: "flex", md: "none" }}
+          gap={"4vh"}
+        >
+          <Box display={{ base: "flex", md: "none" }} gap={"20vw"}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              top={{ base: "30vh", md: "3vh" }}
+              left={{ base: "20vw", md: "3vw" }}
+              position={{ md: "absolute" }}
+              gap={"1vh"}
+            >
+              <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
+                CERVEJA OFICIAL:
+              </Text>
+              <Image
+                src="/blackPrincess.png"
+                alt="Logo Black Princess"
+                maxW={{ base: "12vh" }}
+                w={"100%"}
+              />
+            </Box>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "28vh", md: "90vh" }}
-            right={{ base: "20vw", md: "3vw" }}
-            position={{ md: "absolute" }}
-            gap={"0.7vh"}
-          >
-            <Image
-              src="/logoUBF.png"
-              alt="Logo Baita Festival"
-              maxW={{ base: "12vh" }}
-              w="100%"
-            />
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              top={{ base: "28vh", md: "90vh" }}
+              right={{ base: "20vw", md: "3vw" }}
+              position={{ md: "absolute" }}
+              gap={"0.7vh"}
+            >
+              <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
+                PATROCINADOR:
+              </Text>
+              <Image
+                src="/ophicina.png"
+                alt="Logo Ophicina"
+                maxW={{ base: "12vh" }}
+                w="95%"
+              />
+            </Box>
           </Box>
-
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "28vh", md: "90vh" }}
-            right={{ base: "20vw", md: "3vw" }}
-            position={{ md: "absolute" }}
-            gap={"0.7vh"}
+          <Text
+            fontSize="1.6vh"
+            textAlign="center"
+            color={"#fff"}
+            justifyContent={"center"}
+            top={{ base: "95vh", md: "95vh" }}
+            width={{ md: "20vw" }}
           >
-            <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
-              PATROCINADOR:
-            </Text>
-            <Image
-              src="/ophicina.png"
-              alt="Logo Ophicina"
-              maxW={{ base: "12vh" }}
-              w="95%"
-            />
-          </Box>
-        </Box>
+            BEBA COM SABEDORIA
+          </Text>
+        </Flex>
       </Flex>
 
       <Flex gap={"50px"} display={{ base: "none", md: "flex" }}>
@@ -339,14 +340,7 @@ export default function GuestsPage() {
           left={{ base: "20vw", md: "1vw" }}
           position={{ md: "absolute" }}
           width={{ md: "18vh" }}
-        >
-          <Image
-            src="/logoUBF.png"
-            alt="Logo Baita Festival"
-            maxW={{ md: "20vh" }}
-            w="60%"
-          />
-        </Box>
+        ></Box>
 
         <Box
           display="flex"
@@ -376,38 +370,13 @@ export default function GuestsPage() {
         textAlign="center"
         position={"absolute"}
         color={"#fff"}
-        display={"flex"}
+        display={{ base: "none", md: "flex" }}
         justifyContent={"center"}
         top={{ base: "95vh", md: "95vh" }}
         width={{ md: "20vw" }}
       >
         BEBA COM SABEDORIA
       </Text>
-
-      <Image
-        src="/instrumentos.png"
-        alt="Instrumentos"
-        width={{ base: "0%", md: "45vh" }}
-        position="absolute"
-        left={{ base: "-10%", md: "-130px" }}
-        top="20vh"
-        transform={{ base: "rotate(-10deg) scale(0.8)", md: "rotate(40deg)" }}
-        zIndex={-1}
-      />
-
-      <Image
-        src="/instrumentos.png"
-        alt="Instrumentos"
-        width={{ base: "0%", md: "45vh" }}
-        position="fixed"
-        right={{ base: "-10%", md: "-130px" }}
-        top="20vh"
-        transform={{
-          base: "rotate(10deg) scaleX(-1) scale(0.8)",
-          md: "rotate(-40deg) scaleX(-1)",
-        }}
-        zIndex={-1}
-      />
     </Flex>
   );
 }
