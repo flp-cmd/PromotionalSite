@@ -457,7 +457,7 @@ export default function GuestSignUpPage() {
                 DEIXA PRA LÁ...
               </Button>
               <Button
-                bgColor={"#FE006C"}
+                bgColor={"#dfdf26"}
                 color={"#fff"}
                 fontWeight={"900"}
                 onClick={() => {
@@ -465,7 +465,7 @@ export default function GuestSignUpPage() {
                   onCloseSuccessModal();
                   router.push("/rsvp");
                 }}
-                _hover={{ bg: "#302e2e", color: "#FE006C" }}
+                _hover={{ bg: "#302e2e", color: "#dfdf26" }}
                 borderRadius={"8px"}
                 width={"150px"}
               >
@@ -641,7 +641,8 @@ export default function GuestSignUpPage() {
                   variant="outline"
                   color="#FE006C"
                   borderColor="#FE006C"
-                  _hover={{ bg: "rgba(0, 0, 0, 0.5)" }}
+                  bg={"rgba(0,0,0,0.2)"}
+                  _hover={{ bg: "rgba(0, 0, 0, 0.8)" }}
                 >
                   {showGuestFields
                     ? "Esconder campos do convidado"
