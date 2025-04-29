@@ -500,7 +500,7 @@ export default function GuestSignUpPage() {
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text
                 mb="2"
-                color={"#FFDE00"}
+                color={"#fffe2d"}
                 fontWeight={"700"}
                 fontSize={{ md: "2vh" }}
               >
@@ -534,7 +534,7 @@ export default function GuestSignUpPage() {
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text
                 mb="2"
-                color={"#FFDE00"}
+                color={"#fffe2d"}
                 fontWeight={"700"}
                 fontSize={{ md: "2vh" }}
               >
@@ -568,7 +568,7 @@ export default function GuestSignUpPage() {
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text
                 mb="2"
-                color={"#FFDE00"}
+                color={"#fffe2d"}
                 fontWeight={"700"}
                 fontSize={{ md: "2vh" }}
               >
@@ -602,7 +602,7 @@ export default function GuestSignUpPage() {
             <GridItem colSpan={{ base: 1, md: 6 }}>
               <Text
                 mb="2"
-                color={"#FFDE00"}
+                color={"#fffe2d"}
                 fontWeight={"700"}
                 fontSize={{ md: "2vh" }}
               >
@@ -655,7 +655,7 @@ export default function GuestSignUpPage() {
                 <GridItem colSpan={{ base: 1, md: 6 }}>
                   <Text
                     mb="2"
-                    color={"#FFDE00"}
+                    color={"#fffe2d"}
                     fontWeight={"700"}
                     fontSize={{ md: "2vh" }}
                   >
@@ -689,7 +689,7 @@ export default function GuestSignUpPage() {
                 <GridItem colSpan={{ base: 1, md: 6 }}>
                   <Text
                     mb="2"
-                    color={"#FFDE00"}
+                    color={"#fffe2d"}
                     fontWeight={"700"}
                     fontSize={{ md: "2vh" }}
                   >
@@ -725,7 +725,7 @@ export default function GuestSignUpPage() {
                 <GridItem colSpan={{ base: 1, md: 6 }}>
                   <Text
                     mb="2"
-                    color={"#FFDE00"}
+                    color={"#fffe2d"}
                     fontWeight={"700"}
                     fontSize={{ md: "2vh" }}
                   >
@@ -759,7 +759,7 @@ export default function GuestSignUpPage() {
                 <GridItem colSpan={{ base: 1, md: 6 }}>
                   <Text
                     mb="2"
-                    color={"#FFDE00"}
+                    color={"#fffe2d"}
                     fontWeight={"700"}
                     fontSize={{ md: "2vh" }}
                   >

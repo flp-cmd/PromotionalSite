@@ -179,7 +179,7 @@ export default function GuestsPage() {
               }
             }}
             _focus={{
-              border: "2px solid #DF9A00",
+              border: "2px solid #fffe2d",
               bg: "blue.50",
               transform: "scale(1.02)",
               transition: "all 0.2s",
