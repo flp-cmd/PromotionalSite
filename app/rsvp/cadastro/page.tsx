@@ -798,7 +798,7 @@ export default function GuestSignUpPage() {
             justifyContent={"center"}
             alignItems={"center"}
             height={"80px"}
-            mt={"40px"}
+            mt={{ base: "10px", md: "20px" }}
             flexDir={"column"}
             gap={"30px"}
           >
@@ -818,60 +818,28 @@ export default function GuestSignUpPage() {
               {isLoading === true ? "CARREGANDO..." : "ENVIAR"}
               {isLoading && <Spinner />}
             </Button>
-            <Text fontSize="12px" textAlign="center" color={"#fff"}>
+            <Text
+              fontSize="12px"
+              textAlign="center"
+              color={"#fff"}
+              display={{ base: "none", md: "flex" }}
+            >
               BEBA COM SABEDORIA
             </Text>
           </Flex>
+
           <Box
-            display={"flex"}
-            paddingTop={"20px"}
+            display={{ base: "flex", md: "none" }}
+            flexDirection={"column"}
+            alignItems={"center"}
             mt={"10px"}
-            justifyContent={"space-between"}
           >
-            <Box
-              display={{ base: "flex", md: "none" }}
-              flexDirection={"column"}
-              gap={"1vw"}
-              alignItems={"center"}
-            >
-              <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
-                CERVEJA OFICIAL:
-              </Text>
-              <Image
-                src={"/blackPrincess.png"}
-                alt="Logo Black Princess"
-                maxW={{ base: "12vh" }}
-                w={"100%"}
-              />
-            </Box>
-            <Box
-              display={{ base: "flex", md: "none" }}
-              flexDirection={"column"}
-              alignItems={"center"}
-            >
-              <Image
-                src={"/logoUBF.png"}
-                alt="Logo Baita Festival"
-                maxW={{ base: "12vh" }}
-                w={"100%"}
-              />
-            </Box>
-            <Box
-              display={{ base: "flex", md: "none" }}
-              flexDirection={"column"}
-              gap={"1vw"}
-              alignItems={"center"}
-            >
-              <Text fontSize="clamp(8px, 1.6vh, 10.4px)" color={"#fff"}>
-                PATROCINADOR:
-              </Text>
-              <Image
-                src={"/ophicina.png"}
-                alt="Logo Ophicina"
-                maxW={{ base: "12vh" }}
-                w={"95%"}
-              />
-            </Box>
+            <Image
+              src={"/logoUBF.png"}
+              alt="Logo Baita Festival"
+              maxW={{ base: "14vh" }}
+              w={"100%"}
+            />
           </Box>
 
           <Text
@@ -898,28 +866,6 @@ export default function GuestSignUpPage() {
             display={{ base: "none", md: "flex" }}
             flexDirection="column"
             alignItems="center"
-            top={{ base: "30vh", md: "-50vh" }}
-            left={{ base: "20vw", md: "3vw" }}
-            position={{ base: "absolute", md: "absolute" }}
-            gap={"1vh"}
-            width={{ md: "15vh" }}
-          >
-            <Text fontSize="1.6vh" color={"#fff"}>
-              CERVEJA OFICIAL:
-            </Text>
-            <Image
-              src="/blackPrincess.png"
-              alt="Logo Black Princess"
-              maxW={{ md: "10vh" }}
-              w="100%"
-              height={"5vh"}
-            />
-          </Box>
-
-          <Box
-            display={{ base: "none", md: "flex" }}
-            flexDirection="column"
-            alignItems="center"
             top={{ base: "30vh", md: "33vh" }}
             left={{ base: "20vw", md: "1vw" }}
             position={{ base: "absolute", md: "absolute" }}
@@ -930,28 +876,6 @@ export default function GuestSignUpPage() {
               alt="Logo Baita Festival"
               maxW={{ md: "20vh" }}
               w="60%"
-            />
-          </Box>
-
-          <Box
-            display={{ base: "none", md: "flex" }}
-            flexDirection="column"
-            alignItems="center"
-            top={{ base: "30vh", md: "33vh" }}
-            right={{ base: "20vw", md: "1vw" }}
-            position={{ base: "absolute", md: "absolute" }}
-            gap={"0.7vh"}
-            width={{ md: "18vh" }}
-          >
-            <Text fontSize="1.6vh" color={"#fff"}>
-              PATROCINADOR:
-            </Text>
-            <Image
-              src="/ophicina.png"
-              alt="Logo Ophicina"
-              maxW={{ md: "20vh" }}
-              w="50%"
-              height={{ md: "5vh" }}
             />
           </Box>
         </Box>
