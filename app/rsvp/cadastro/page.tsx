@@ -798,7 +798,7 @@ export default function GuestSignUpPage() {
             justifyContent={"center"}
             alignItems={"center"}
             height={"80px"}
-            mt={{ base: "10px", md: "20px" }}
+            mt={{ base: "20px", md: "60px" }}
             flexDir={"column"}
             gap={"30px"}
           >
