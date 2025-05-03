@@ -195,6 +195,7 @@ export default function GuestsPage() {
             height={"7vh"}
             fontWeight={"900"}
             mb={{ md: "8px" }}
+            disabled={isLoading}
           >
             {isLoading === true ? "CARREGANDO..." : "VALIDAR CÓDIGO"}
             {isLoading && <Spinner />}
@@ -246,6 +247,7 @@ export default function GuestsPage() {
           height={"7vh"}
           fontWeight={"900"}
           mb={{ md: "8px" }}
+          disabled={isLoading}
         >
           {isLoading === true ? "CARREGANDO..." : "VALIDAR CÓDIGO"}
           {isLoading && <Spinner />}
