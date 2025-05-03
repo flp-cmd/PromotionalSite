@@ -18,7 +18,7 @@ export async function GET(
       return NextResponse.json(
         {
           status: "error",
-          message: "Código inválido. Verifique o número digitado.",
+          message: "Código Inválido. Verifique o número digitado.",
         },
         { status: 400 }
       );
@@ -55,7 +55,7 @@ export async function GET(
       return NextResponse.json(
         {
           status: "error",
-          message: "Código Inválido!",
+          message: "Código Inválido. Verifique o número digitado.",
         },
         { status: 404 }
       );
