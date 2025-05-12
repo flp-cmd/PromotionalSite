@@ -62,6 +62,17 @@ export default function GuestSignUpPage() {
     useState(false);
   const [emailInvalidGuest, setEmailInvalidGuest] = useState(false);
 
+  const resetInvalidFields = () => {
+    setFullNameInvalidVip(false);
+    setFullNameInvalidGuest(false);
+    setDocumentNumberInvalidVip(false);
+    setDocumentNumberInvalidGuest(false);
+    setCellphoneInvalidVip(false);
+    setCellphoneInvalidGuest(false);
+    setEmailInvalidVip(false);
+    setEmailInvalidGuest(false);
+  };
+
   useEffect(() => {
     const fetchFullName = async () => {
       const validatedCode = sessionStorage.getItem("validatedCode");
@@ -287,6 +298,7 @@ export default function GuestSignUpPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     setIsLoading(true);
     e.preventDefault();
+    resetInvalidFields();
 
     if (
       !formData.vip.fullName ||
@@ -312,18 +324,64 @@ export default function GuestSignUpPage() {
         setIsLoading(false);
         return;
       }
+      if (formData.vip.fullName === formData.guest.fullName) {
+        setEmptyForm(true);
+        setFullNameInvalidVip(true);
+        setFullNameInvalidGuest(true);
+        toast.error(
+          "Por favor, preencha nomes diferentes para cada convidado!"
+        );
+        setIsLoading(false);
+        return;
+      }
+      if (formData.vip.cpf === formData.guest.cpf) {
+        setEmptyForm(true);
+        setDocumentNumberInvalidVip(true);
+        setDocumentNumberInvalidGuest(true);
+        toast.error(
+          "Por favor, preencha um cpf diferente para cada convidado!"
+        );
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    resetInvalidFields();
+
+    const isVipFullNameValid = validateFullName(formData.vip.fullName, "vip");
+    const isVipCpfValid = validateDocumentNumber(formData.vip.cpf, "vip");
+    const isVipEmailValid = validateEmail(formData.vip.email, "vip");
+    const isVipPhoneValid = validateCellphone(formData.vip.cellphone, "vip");
+
+    let isGuestValid = true;
+    if (showGuestFields) {
+      const isGuestFullNameValid = validateFullName(
+        formData.guest.fullName,
+        "guest"
+      );
+      const isGuestCpfValid = validateDocumentNumber(
+        formData.guest.cpf,
+        "guest"
+      );
+      const isGuestEmailValid = validateEmail(formData.guest.email, "guest");
+      const isGuestPhoneValid = validateCellphone(
+        formData.guest.cellphone,
+        "guest"
+      );
+
+      isGuestValid =
+        isGuestFullNameValid === true &&
+        isGuestCpfValid === true &&
+        isGuestEmailValid === true &&
+        isGuestPhoneValid === true;
     }
 
     if (
-      fullNameInvalidVip ||
-      cellphoneInvalidVip ||
-      documentNumberInvalidVip ||
-      emailInvalidVip ||
-      (showGuestFields &&
-        (fullNameInvalidGuest ||
-          cellphoneInvalidGuest ||
-          documentNumberInvalidGuest ||
-          emailInvalidGuest))
+      isVipFullNameValid === false ||
+      isVipCpfValid === false ||
+      isVipEmailValid === false ||
+      isVipPhoneValid === false ||
+      (showGuestFields && !isGuestValid)
     ) {
       toast.error("Complete corretamente todos os campos!");
       setIsLoading(false);
