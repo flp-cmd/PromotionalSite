@@ -587,6 +587,7 @@ export default function GuestSignUpPage() {
                     ? "2px solid red"
                     : "1px solid transparent"
                 }
+                disabled
               />
             </GridItem>
             <GridItem colSpan={{ base: 1, md: 6 }}>
