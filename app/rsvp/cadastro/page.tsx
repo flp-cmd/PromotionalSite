@@ -446,16 +446,22 @@ export default function GuestSignUpPage() {
                 {showGuestFields ? (
                   <>
                     Parabéns! Você e seu convidado estão na lista de convidados
-                    VIP do <b>Um Baita Festival</b>! Enquanto isso, que tal
-                    postar nos seus stories uma imagem especial com a{" "}
+                    VIP do <b>Um Baita Festival</b>! Ao chegar ao evento, basta
+                    se dirigir à bilheteria para retirar o seu ingresso e do seu
+                    acompanhante para aproveitar essa baita experiência que
+                    preparamos com muito carinho. Enquanto isso, que tal postar
+                    nos seus stories uma imagem especial com a{" "}
                     <b>#umbaitafestival</b> e já ir se preparando?
                   </>
                 ) : (
                   <>
                     Parabéns você está na lista de convidados VIP do{" "}
-                    <b>Um Baita Festival</b>! Enquanto isso, que tal postar nos
-                    seus stories uma imagem especial com a{" "}
-                    <b>#umbaitafestival</b> e já ir se preparando?
+                    <b>Um Baita Festival</b>! Ao chegar ao evento, basta se
+                    dirigir à bilheteria para retirar o seu ingresso para
+                    aproveitar essa baita experiência que preparamos com muito
+                    carinho. Enquanto isso, que tal postar nos seus stories uma
+                    imagem especial com a <b>#umbaitafestival</b> e já ir se
+                    preparando?
                   </>
                 )}
               </Text>
