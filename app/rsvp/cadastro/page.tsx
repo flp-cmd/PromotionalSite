@@ -118,31 +118,6 @@ export default function GuestSignUpPage() {
     document.body.removeChild(link);
   };
 
-  const validateFullName = (value: string, type: string) => {
-    const nameParts = value.trim().split(/\s+/);
-    if (value != "") {
-      if (nameParts.length < 2) {
-        if (type === "vip") {
-          setFullNameInvalidVip(true);
-          toast.error(
-            "Por favor, insira seu nome completo (nome e sobrenome)!"
-          );
-        } else {
-          setFullNameInvalidGuest(true);
-          toast.error(
-            "Por favor, insira o nome completo de seu convidado (nome e sobrenome)!"
-          );
-        }
-        return false;
-      }
-      if (type === "vip") setFullNameInvalidVip(false);
-      else setFullNameInvalidGuest(false);
-      return true;
-    } else {
-      return;
-    }
-  };
-
   const validateCellphone = (value: string, type: string) => {
     if (value != "") {
       if (value.length < 15) {
@@ -348,17 +323,12 @@ export default function GuestSignUpPage() {
 
     resetInvalidFields();
 
-    const isVipFullNameValid = validateFullName(formData.vip.fullName, "vip");
     const isVipCpfValid = validateDocumentNumber(formData.vip.cpf, "vip");
     const isVipEmailValid = validateEmail(formData.vip.email, "vip");
     const isVipPhoneValid = validateCellphone(formData.vip.cellphone, "vip");
 
     let isGuestValid = true;
     if (showGuestFields) {
-      const isGuestFullNameValid = validateFullName(
-        formData.guest.fullName,
-        "guest"
-      );
       const isGuestCpfValid = validateDocumentNumber(
         formData.guest.cpf,
         "guest"
@@ -370,14 +340,12 @@ export default function GuestSignUpPage() {
       );
 
       isGuestValid =
-        isGuestFullNameValid === true &&
         isGuestCpfValid === true &&
         isGuestEmailValid === true &&
         isGuestPhoneValid === true;
     }
 
     if (
-      isVipFullNameValid === false ||
       isVipCpfValid === false ||
       isVipEmailValid === false ||
       isVipPhoneValid === false ||
@@ -571,7 +539,6 @@ export default function GuestSignUpPage() {
                 fontSize={{ md: "1.5vh" }}
                 value={formData.vip.fullName}
                 onChange={handleChange}
-                onBlur={(e) => validateFullName(e.target.value, "vip")}
                 height={"5vh"}
                 borderRadius={"lg"}
                 color={"#000"}
@@ -728,7 +695,6 @@ export default function GuestSignUpPage() {
                     fontSize={{ md: "1.5vh" }}
                     value={formData.guest.fullName}
                     onChange={handleChange}
-                    onBlur={(e) => validateFullName(e.target.value, "guest")}
                     height={"5vh"}
                     borderRadius={"lg"}
                     color={"#000"}
